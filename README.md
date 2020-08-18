@@ -1,11 +1,11 @@
 # ETC5521 Assignment 1 
 
-Team name: [FILL]
+Team name: Magpie
 
 Team members:
 
-* [FILL]
-* [FILL]
+* Junhao Wang
+* Priya Ravindra Dingorkar
 
 # Steps
 
