@@ -130,7 +130,7 @@ All the information that has been gather in these different data files have been
 
 ### Detail Structure of Data
 
-All the data has been scarped and written in csv and later, using the readr function the csv have been read.
+All the data has been scraped and written in csv and later, using the readr function the csv have been read in to R environment.
 
 
 
