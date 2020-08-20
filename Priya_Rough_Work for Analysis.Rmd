@@ -42,11 +42,49 @@ Let's look at the small snippets of the various data sets, and better understand
 head(diversity_school) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("hover" , "striped"))
 ```
 
--- Name has data type character properties that describe the school name
--- Total Enrollment has double datatype properties representing the total number of students enrolled
--- State with character datatype representing the various states
--- Category with character properties defining the group Group / Racial / Gender
--- Enrollment with double datatype properties specifying the specific enrollment.
+- Name has data type character properties that describe the school name
+- Total Enrollment has double datatype properties representing the total number of students enrolled
+- State with character datatype representing the various states
+- Category with character properties defining the group Group / Racial / Gender
+- Enrollment with double datatype properties specifying the specific enrollment.
+
+```{r, message=FALSE, echo=TRUE}
+glimpse(diversity_school)
+```
+
+
+2. The historical_tution dataset been obtained from [U.S. Department of Education, National Center for Education Statistics](https://nces.ed.gov/fastfacts/display.asp?id=76)
+
+```{r ht, echo=FALSE}
+head(historical_tuition) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("hover" , "striped"))
+```
+
+- type variable having character datatype describes the Type of school (All, Public, Private)
+- year having character format describes the corresponding Academic year
+- tuition_type having	character datatype refers to duration of the degree, Tuition Type All Constant (dollar inflation adjusted), 4 year degree constant, 2 year constant, Current to year, 4 year current, 2 year current
+- tuition_cost having	double datatype represents the education fees/Tuition cost in USD
+
+```{r, message=FALSE, echo=TRUE}
+glimpse(historical_tuition)
+```
+
+3. Salary_potential, origins from [Payscales](https://www.payscale.com/college-salary-report/best-schools-by-state/bachelors/new-hampshire).
+
+```{r sp, echo=FALSE}
+head(salary_potential) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("hover" , "striped"))
+```
+
+- rank having	double datatype properties defines the potential salary rank within state
+- name using character datatype explains the Name of school
+- state_name having	character datatype defines the state name
+- early_career_pay having double datatype defines the	estimated early career pay in USD
+- mid_career_pay having double datatype defines the	estimated mid career pay in USD
+- make_world_better_percent having double datatype represents the	percent of alumni who think they are making the world a better place
+-stem_percent having double datatype defines the percent of student body in science, technology, engineering and mathematics (STEM)
+
+
+
+
 
 ### Source of the Data
 
