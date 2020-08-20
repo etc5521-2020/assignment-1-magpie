@@ -42,13 +42,17 @@ diversity_school <- readr::read_csv('https://raw.githubusercontent.com/rfordatas
 
 # Research Question
 
-Primary Question
- How valuable is the investment in education among America universities?
+### Primary Question
+ How valuable is the investment in education among America universities? 
+ Since tuition fee is relatively high for most students, or their families,value for money is of great concern. This question is to decover how highly valued are the tuition fees among universities in America. 
 
-Secondary Questions
- How does the tution fee vary across the different types of intistutions?
- What is the ratio of net-cost to total cost?
- how is student's career development?
+### Secondary Questions
+* How does the tution fee vary across the different types of intistutions? 
+This information can be drawn from tuition cost, and can give a point of view of the American education system.
+* What is the ratio of net-cost to total cost among America universities?
+This can show how much burden a student has taken.
+* How is student's career development among America universities? 
+This information can be drawn from salary_potential, if middle-career pay differ a lot from early-career pay, then we believe there is a well career development in that university.
  
 
 # Data description
