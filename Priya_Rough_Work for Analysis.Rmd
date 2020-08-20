@@ -1,0 +1,38 @@
+---
+title: "Priya_Rough_Work"
+author: "Priya"
+date: "20/08/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message = FALSE}
+tuition_cost <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_cost.csv')
+
+tuition_income <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_income.csv') 
+
+salary_potential <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/salary_potential.csv')
+
+historical_tuition <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/historical_tuition.csv')
+
+diversity_school <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/diversity_school.csv')
+```
+
+Write your data description under the header “Data description” in index.Rmd. A data description should tell the reader the source of the data, and detail the structure of the data, including variables, time frame of collection, collection methods
+
+# Introduction and Motivation
+
+## Data Description
+
+It is through data collection that a business or management has the quality information they need to make informed decisions from further analysis, study, and research
+
+### Source of the Data
+
+
+### Detail Structure of Data
+
+### Collection Methods
+

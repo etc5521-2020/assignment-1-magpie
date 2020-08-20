@@ -17,7 +17,12 @@ output:
 
 [FILL] Give the bigger picture of the data, and inspire the reader to learn more about the problem by reading your analysis. 
 
+- Junhao, add the introduction and motivation
+
 # Data description
+
+-Priya Add data description
+
 
 # Analysis and findings
 
