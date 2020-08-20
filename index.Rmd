@@ -13,6 +13,14 @@ output:
 [This assignment is for ETC5521 Assignment 1 by Team `r rmarkdown::metadata$team` comprising of `r knitr::combine_words(rmarkdown::metadata$author)`.]{style="color:#006DAE;"}
 
 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dplyr)
+library(kableExtra)
+```
+
 # Introduction and motivation
 
 [FILL] Give the bigger picture of the data, and inspire the reader to learn more about the problem by reading your analysis. 
@@ -47,6 +55,22 @@ It is through data collection that a business or management has the quality info
 The data, taken from the original pages, turned out to be very large in size, which is why the author, for the convenience of the audience and to produce informative results, filtered the data into five comma-separated documents using web scraping in R with the support of the rvest package.
 
 Let's look at the small snippets of the various data sets, and get a better understanding of the variables
+
+1. The diversity_school data set comes [The Chronicle of Higher Education](https://www.chronicle.com/article/student-diversity-at-4-725-institutions).
+
+```{r ds, echo=FALSE}
+head(diversity_school) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("hover" , "striped"))
+```
+
+- Name has data type character properties that describe the school name
+- Total Enrollment has double datatype properties representing the total number of students enrolled
+- State with character datatype representing the various states
+- Category with character properties defining the group Group / Racial / Gender
+- Enrollment with double datatype properties specifying the specific enrollment.
+
+```{r, message=FALSE, echo=TRUE}
+glimpse(diversity_school)
+```
 
 
 
