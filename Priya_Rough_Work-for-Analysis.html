@@ -385,7 +385,10 @@ summary {
 <h2>Data Description</h2>
 <p>It is through data collection that a business or management has the quality information that they need for further analysis, study, and research to make informed decisions. We will perform exploratory, data review in this study on the subject of <a href="https:/github.com%20/%20rfordatascience%20/%20tidytuesday%20/%20blob%20/%20master%20/%20data/2020/2020-03-10%20/%20readme.md"><strong>College Tuition, Diversity, and Pay Dataset</strong></a>. This collection of data primarily receives all the information from various sources but originally from the US Department of Education.</p>
 <p>The data, taken from the original pages, turned out to be very large in size, which is why the author, for the convenience of the audience and to produce informative results, filtered the data into five comma-separated documents using web scraping in R with the support of the rvest package.</p>
-<p>Let’s look at the small snippets of the various datasets, and better understand the variables</p>
+<p>Let’s look at the small snippets of the various data sets, and get a better understanding of the variables</p>
+<ol style="list-style-type: decimal">
+<li>The diversity_school data set comes <a href="https://www.chronicle.com/article/student-diversity-at-4-725-institutions">The Chronicle of Higher Education</a>.</li>
+</ol>
 <table class="table table-hover table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -511,7 +514,570 @@ Native Hawaiian / Pacific Islander
 </tr>
 </tbody>
 </table>
-<p>The diversity_school data set comes <a href="https://www.chronicle.com/article/student-diversity-at-4-725-institutions">The Chronicle of Higher Education</a>.</p>
+<ul>
+<li>Name has data type character properties that describe the school name</li>
+<li>Total Enrollment has double datatype properties representing the total number of students enrolled</li>
+<li>State with character datatype representing the various states</li>
+<li>Category with character properties defining the group Group / Racial / Gender</li>
+<li>Enrollment with double datatype properties specifying the specific enrollment.</li>
+</ul>
+<pre class="r"><code>glimpse(diversity_school)</code></pre>
+<pre><code>## Rows: 50,655
+## Columns: 5
+## $ name             &lt;chr&gt; &quot;University of Phoenix-Arizona&quot;, &quot;University of Ph...
+## $ total_enrollment &lt;dbl&gt; 195059, 195059, 195059, 195059, 195059, 195059, 19...
+## $ state            &lt;chr&gt; &quot;Arizona&quot;, &quot;Arizona&quot;, &quot;Arizona&quot;, &quot;Arizona&quot;, &quot;Arizo...
+## $ category         &lt;chr&gt; &quot;Women&quot;, &quot;American Indian / Alaska Native&quot;, &quot;Asian...
+## $ enrollment       &lt;dbl&gt; 134722, 876, 1959, 31455, 13984, 1019, 58209, 1903...</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>The historical_tution dataset been obtained from <a href="https://nces.ed.gov/fastfacts/display.asp?id=76">U.S. Department of Education, National Center for Education Statistics</a></li>
+</ol>
+<table class="table table-hover table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+type
+</th>
+<th style="text-align:left;">
+year
+</th>
+<th style="text-align:left;">
+tuition_type
+</th>
+<th style="text-align:right;">
+tuition_cost
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+All Institutions
+</td>
+<td style="text-align:left;">
+1985-86
+</td>
+<td style="text-align:left;">
+All Constant
+</td>
+<td style="text-align:right;">
+10893
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+All Institutions
+</td>
+<td style="text-align:left;">
+1985-86
+</td>
+<td style="text-align:left;">
+4 Year Constant
+</td>
+<td style="text-align:right;">
+12274
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+All Institutions
+</td>
+<td style="text-align:left;">
+1985-86
+</td>
+<td style="text-align:left;">
+2 Year Constant
+</td>
+<td style="text-align:right;">
+7508
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+All Institutions
+</td>
+<td style="text-align:left;">
+1985-86
+</td>
+<td style="text-align:left;">
+All Current
+</td>
+<td style="text-align:right;">
+4885
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+All Institutions
+</td>
+<td style="text-align:left;">
+1985-86
+</td>
+<td style="text-align:left;">
+4 Year Current
+</td>
+<td style="text-align:right;">
+5504
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+All Institutions
+</td>
+<td style="text-align:left;">
+1985-86
+</td>
+<td style="text-align:left;">
+2 Year Current
+</td>
+<td style="text-align:right;">
+3367
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>type variable having character datatype describes the Type of school (All, Public, Private)</li>
+<li>year having character format describes the corresponding Academic year</li>
+<li>tuition_type having character datatype refers to duration of the degree, Tuition Type All Constant (dollar inflation adjusted), 4 year degree constant, 2 year constant, Current to year, 4 year current, 2 year current</li>
+<li>tuition_cost having double datatype represents the education fees/Tuition cost in USD</li>
+</ul>
+<pre class="r"><code>glimpse(historical_tuition)</code></pre>
+<pre><code>## Rows: 270
+## Columns: 4
+## $ type         &lt;chr&gt; &quot;All Institutions&quot;, &quot;All Institutions&quot;, &quot;All Instituti...
+## $ year         &lt;chr&gt; &quot;1985-86&quot;, &quot;1985-86&quot;, &quot;1985-86&quot;, &quot;1985-86&quot;, &quot;1985-86&quot;,...
+## $ tuition_type &lt;chr&gt; &quot;All Constant&quot;, &quot;4 Year Constant&quot;, &quot;2 Year Constant&quot;, ...
+## $ tuition_cost &lt;dbl&gt; 10893, 12274, 7508, 4885, 5504, 3367, 13822, 16224, 74...</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Salary_potential data set origins from <a href="https://www.payscale.com/college-salary-report/best-schools-by-state/bachelors/new-hampshire">Payscales</a>.</li>
+</ol>
+<table class="table table-hover table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+rank
+</th>
+<th style="text-align:left;">
+name
+</th>
+<th style="text-align:left;">
+state_name
+</th>
+<th style="text-align:right;">
+early_career_pay
+</th>
+<th style="text-align:right;">
+mid_career_pay
+</th>
+<th style="text-align:right;">
+make_world_better_percent
+</th>
+<th style="text-align:right;">
+stem_percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Auburn University
+</td>
+<td style="text-align:left;">
+Alabama
+</td>
+<td style="text-align:right;">
+54400
+</td>
+<td style="text-align:right;">
+104500
+</td>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:right;">
+31
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+University of Alabama in Huntsville
+</td>
+<td style="text-align:left;">
+Alabama
+</td>
+<td style="text-align:right;">
+57500
+</td>
+<td style="text-align:right;">
+103900
+</td>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:right;">
+45
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+The University of Alabama
+</td>
+<td style="text-align:left;">
+Alabama
+</td>
+<td style="text-align:right;">
+52300
+</td>
+<td style="text-align:right;">
+97400
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+15
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+Tuskegee University
+</td>
+<td style="text-align:left;">
+Alabama
+</td>
+<td style="text-align:right;">
+54500
+</td>
+<td style="text-align:right;">
+93500
+</td>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:right;">
+30
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Samford University
+</td>
+<td style="text-align:left;">
+Alabama
+</td>
+<td style="text-align:right;">
+48400
+</td>
+<td style="text-align:right;">
+90500
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+Spring Hill College
+</td>
+<td style="text-align:left;">
+Alabama
+</td>
+<td style="text-align:right;">
+46600
+</td>
+<td style="text-align:right;">
+89100
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+12
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>rank having double datatype properties defines the potential salary rank within state</li>
+<li>name using character datatype explains the Name of school</li>
+<li>state_name having character datatype defines the state name</li>
+<li>early_career_pay having double datatype defines the estimated early career pay in USD</li>
+<li>mid_career_pay having double datatype defines the estimated mid career pay in USD</li>
+<li>make_world_better_percent having double datatype represents the percent of alumni who think they are making the world a better place -stem_percent having double datatype defines the percent of student body in science, technology, engineering and mathematics (STEM)</li>
+</ul>
+<pre class="r"><code>glimpse(salary_potential)</code></pre>
+<pre><code>## Rows: 935
+## Columns: 7
+## $ rank                      &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13...
+## $ name                      &lt;chr&gt; &quot;Auburn University&quot;, &quot;University of Alaba...
+## $ state_name                &lt;chr&gt; &quot;Alabama&quot;, &quot;Alabama&quot;, &quot;Alabama&quot;, &quot;Alabama...
+## $ early_career_pay          &lt;dbl&gt; 54400, 57500, 52300, 54500, 48400, 46600,...
+## $ mid_career_pay            &lt;dbl&gt; 104500, 103900, 97400, 93500, 90500, 8910...
+## $ make_world_better_percent &lt;dbl&gt; 51, 59, 50, 61, 52, 53, 48, 57, 56, 58, 6...
+## $ stem_percent              &lt;dbl&gt; 31, 45, 15, 30, 3, 12, 27, 17, 17, 20, 8,...</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Tuition cost</li>
+</ol>
+<p>The Tuition cost data set is obtained from <a href="https://www.chronicle.com/article/tuition-and-fees-1998-99-through-2018-19">the Chronicle of Higher Education.</a></p>
+<table class="table table-hover table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+name
+</th>
+<th style="text-align:left;">
+state
+</th>
+<th style="text-align:left;">
+state_code
+</th>
+<th style="text-align:left;">
+type
+</th>
+<th style="text-align:left;">
+degree_length
+</th>
+<th style="text-align:right;">
+room_and_board
+</th>
+<th style="text-align:right;">
+in_state_tuition
+</th>
+<th style="text-align:right;">
+in_state_total
+</th>
+<th style="text-align:right;">
+out_of_state_tuition
+</th>
+<th style="text-align:right;">
+out_of_state_total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Aaniiih Nakoda College
+</td>
+<td style="text-align:left;">
+Montana
+</td>
+<td style="text-align:left;">
+MT
+</td>
+<td style="text-align:left;">
+Public
+</td>
+<td style="text-align:left;">
+2 Year
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2380
+</td>
+<td style="text-align:right;">
+2380
+</td>
+<td style="text-align:right;">
+2380
+</td>
+<td style="text-align:right;">
+2380
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Abilene Christian University
+</td>
+<td style="text-align:left;">
+Texas
+</td>
+<td style="text-align:left;">
+TX
+</td>
+<td style="text-align:left;">
+Private
+</td>
+<td style="text-align:left;">
+4 Year
+</td>
+<td style="text-align:right;">
+10350
+</td>
+<td style="text-align:right;">
+34850
+</td>
+<td style="text-align:right;">
+45200
+</td>
+<td style="text-align:right;">
+34850
+</td>
+<td style="text-align:right;">
+45200
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Abraham Baldwin Agricultural College
+</td>
+<td style="text-align:left;">
+Georgia
+</td>
+<td style="text-align:left;">
+GA
+</td>
+<td style="text-align:left;">
+Public
+</td>
+<td style="text-align:left;">
+2 Year
+</td>
+<td style="text-align:right;">
+8474
+</td>
+<td style="text-align:right;">
+4128
+</td>
+<td style="text-align:right;">
+12602
+</td>
+<td style="text-align:right;">
+12550
+</td>
+<td style="text-align:right;">
+21024
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Academy College
+</td>
+<td style="text-align:left;">
+Minnesota
+</td>
+<td style="text-align:left;">
+MN
+</td>
+<td style="text-align:left;">
+For Profit
+</td>
+<td style="text-align:left;">
+2 Year
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+17661
+</td>
+<td style="text-align:right;">
+17661
+</td>
+<td style="text-align:right;">
+17661
+</td>
+<td style="text-align:right;">
+17661
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Academy of Art University
+</td>
+<td style="text-align:left;">
+California
+</td>
+<td style="text-align:left;">
+CA
+</td>
+<td style="text-align:left;">
+For Profit
+</td>
+<td style="text-align:left;">
+4 Year
+</td>
+<td style="text-align:right;">
+16648
+</td>
+<td style="text-align:right;">
+27810
+</td>
+<td style="text-align:right;">
+44458
+</td>
+<td style="text-align:right;">
+27810
+</td>
+<td style="text-align:right;">
+44458
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Adams State University
+</td>
+<td style="text-align:left;">
+Colorado
+</td>
+<td style="text-align:left;">
+CO
+</td>
+<td style="text-align:left;">
+Public
+</td>
+<td style="text-align:left;">
+4 Year
+</td>
+<td style="text-align:right;">
+8782
+</td>
+<td style="text-align:right;">
+9440
+</td>
+<td style="text-align:right;">
+18222
+</td>
+<td style="text-align:right;">
+20456
+</td>
+<td style="text-align:right;">
+29238
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>name which has character datatype which represent the School name</li>
+<li>state having character datatype denotes the State name</li>
+<li>state_code having character datatype depicts State Abbreviation</li>
+<li>type having character denotes Type: Public, private, for-profit</li>
+<li>degree_length having character datatype gives us information about the durationof the4 year or 2 year degree</li>
+</ul>
 <div id="source-of-the-data" class="section level3">
 <h3>Source of the Data</h3>
 <p>The origin of this data set is US Department of Education.</p>

@@ -32,6 +32,14 @@ historical_tuition <- readr::read_csv('https://raw.githubusercontent.com/rfordat
 diversity_school <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/diversity_school.csv')
 ```
 
+# Research Question
+
+Primary Question
+
+
+Secondary Questions
+
+
 # Data description
 
 It is through data collection that a business or management has the quality information they need to make informed decisions from further analysis, study, and research. In this report, we will be doing exploratory, data analysis on the topic of analysis is [**College Tuition, diversity, and Pay Dataset**](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-03-10/readme.md)

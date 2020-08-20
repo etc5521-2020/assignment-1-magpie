@@ -34,7 +34,7 @@ It is through data collection that a business or management has the quality info
 
 The data, taken from the original pages, turned out to be very large in size, which is why the author, for the convenience of the audience and to produce informative results, filtered the data into five comma-separated documents using web scraping in R with the support of the rvest package.
 
-Let's look at the small snippets of the various data sets, and better understand the variables
+Let's look at the small snippets of the various data sets, and get a better understanding of the variables
 
 1. The diversity_school data set comes [The Chronicle of Higher Education](https://www.chronicle.com/article/student-diversity-at-4-725-institutions).
 
@@ -68,7 +68,7 @@ head(historical_tuition) %>% kableExtra::kable() %>% kableExtra::kable_styling(c
 glimpse(historical_tuition)
 ```
 
-3. Salary_potential, origins from [Payscales](https://www.payscale.com/college-salary-report/best-schools-by-state/bachelors/new-hampshire).
+3. Salary_potential data set origins from [Payscales](https://www.payscale.com/college-salary-report/best-schools-by-state/bachelors/new-hampshire).
 
 ```{r sp, echo=FALSE}
 head(salary_potential) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("hover" , "striped"))
@@ -82,20 +82,56 @@ head(salary_potential) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("
 - make_world_better_percent having double datatype represents the	percent of alumni who think they are making the world a better place
 -stem_percent having double datatype defines the percent of student body in science, technology, engineering and mathematics (STEM)
 
+```{r, message=FALSE, echo=TRUE}
+glimpse(salary_potential)
+```
 
+4. Tuition cost
 
+The Tuition cost data set is obtained from [the Chronicle of Higher Education.](https://www.chronicle.com/article/tuition-and-fees-1998-99-through-2018-19)
 
+```{r tc, echo=FALSE}
+head(tuition_cost) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("hover" , "striped"))
+```
 
-### Source of the Data
+- name which has character datatype which represent the School name
+- state having character datatype denotes the	State name
+- state_code having character datatype depicts State Abbreviation
+- type having character denotes	Type: Public, private, for-profit
+- degree_length having character datatype gives us information about the duration of the 4 year or 2 year degree
+- room_and_board having double datatype which denote Room and board in USD
+- in_state_tuition having double datatype depicts the Tuition fee for in-state residents in USD
+- out_of_state_tuition	double	Tuition for out-of-state residents in USD
 
-The origin of this data set is US Department of Education.
+```{r, message=FALSE, echo=TRUE}
+glimpse(tuition_cost)
+```
 
+5. Tuition Income
 
+The tuition income has been obtained from the dataset [Tution Tracker](https://www.tuitiontracker.org/) and [Priceconomics](https://priceonomics.com/ranking-the-most-and-least-diverse-colleges-in/)
+
+```{r ti, echo=FALSE}
+head(tuition_income) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("hover" , "striped"))
+```
+ 
+- campus having	character datatype depicts whether the school is	On or off-campus
+- net_cost having double datatype denotes Net-cost - average actually paid after scholarship/award
+- income_lvl having	character datatype gives u information about the	Income bracket
+
+```{r, message=FALSE, echo=TRUE}
+glimpse(tuition_income)
+```
+
+## Cleaning script
+
+All the information that has been gather in these different data files have been done through web scraping using the rvest library, html_nodes, html_url and creating dataset in tibble and mutating new columns and later binding rows together
 
 
 ### Detail Structure of Data
 
-This data, which has been obtained through
+All the data has been scarped and written in csv and later, using the readr function the csv have been read.
 
-### Collection Methods
+
+
 
