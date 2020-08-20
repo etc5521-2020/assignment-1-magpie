@@ -19,9 +19,25 @@ output:
 
 - Junhao, add the introduction and motivation
 
+
+```{r dat-load, message = FALSE, echo=FALSE}
+tuition_cost <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_cost.csv')
+
+tuition_income <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_income.csv') 
+
+salary_potential <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/salary_potential.csv')
+
+historical_tuition <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/historical_tuition.csv')
+
+diversity_school <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/diversity_school.csv')
+```
+
 # Data description
 
--Priya Add data description
+It is through data collection that a business or management has the quality information they need to make informed decisions from further analysis, study, and research. In this report, we will be doing exploratory, data analysis on the topic of analysis is [**College Tuition, diversity, and Pay Dataset**](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-03-10/readme.md)
+
+
+
 
 
 # Analysis and findings
