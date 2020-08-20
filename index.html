@@ -543,6 +543,126 @@ Native Hawaiian / Pacific Islander
 ## $ state            &lt;chr&gt; &quot;Arizona&quot;, &quot;Arizona&quot;, &quot;Arizona&quot;, &quot;Arizona&quot;, &quot;Arizo...
 ## $ category         &lt;chr&gt; &quot;Women&quot;, &quot;American Indian / Alaska Native&quot;, &quot;Asian...
 ## $ enrollment       &lt;dbl&gt; 134722, 876, 1959, 31455, 13984, 1019, 58209, 1903...</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>The historical_tution dataset been obtained from <a href="https://nces.ed.gov/fastfacts/display.asp?id=76">U.S. Department of Education, National Center for Education Statistics</a></li>
+</ol>
+<table class="table table-hover table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+type
+</th>
+<th style="text-align:left;">
+year
+</th>
+<th style="text-align:left;">
+tuition_type
+</th>
+<th style="text-align:right;">
+tuition_cost
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+All Institutions
+</td>
+<td style="text-align:left;">
+1985-86
+</td>
+<td style="text-align:left;">
+All Constant
+</td>
+<td style="text-align:right;">
+10893
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+All Institutions
+</td>
+<td style="text-align:left;">
+1985-86
+</td>
+<td style="text-align:left;">
+4 Year Constant
+</td>
+<td style="text-align:right;">
+12274
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+All Institutions
+</td>
+<td style="text-align:left;">
+1985-86
+</td>
+<td style="text-align:left;">
+2 Year Constant
+</td>
+<td style="text-align:right;">
+7508
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+All Institutions
+</td>
+<td style="text-align:left;">
+1985-86
+</td>
+<td style="text-align:left;">
+All Current
+</td>
+<td style="text-align:right;">
+4885
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+All Institutions
+</td>
+<td style="text-align:left;">
+1985-86
+</td>
+<td style="text-align:left;">
+4 Year Current
+</td>
+<td style="text-align:right;">
+5504
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+All Institutions
+</td>
+<td style="text-align:left;">
+1985-86
+</td>
+<td style="text-align:left;">
+2 Year Current
+</td>
+<td style="text-align:right;">
+3367
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>type variable having character datatype describes the Type of school (All, Public, Private)</li>
+<li>year having character format describes the corresponding Academic year</li>
+<li>tuition_type having character datatype refers to duration of the degree, Tuition Type All Constant (dollar inflation adjusted), 4 year degree constant, 2 year constant, Current to year, 4 year current, 2 year current</li>
+<li>tuition_cost having double datatype represents the education fees/Tuition cost in USD</li>
+</ul>
+<pre class="r"><code>glimpse(historical_tuition)</code></pre>
+<pre><code>## Rows: 270
+## Columns: 4
+## $ type         &lt;chr&gt; &quot;All Institutions&quot;, &quot;All Institutions&quot;, &quot;All Instituti...
+## $ year         &lt;chr&gt; &quot;1985-86&quot;, &quot;1985-86&quot;, &quot;1985-86&quot;, &quot;1985-86&quot;, &quot;1985-86&quot;,...
+## $ tuition_type &lt;chr&gt; &quot;All Constant&quot;, &quot;4 Year Constant&quot;, &quot;2 Year Constant&quot;, ...
+## $ tuition_cost &lt;dbl&gt; 10893, 12274, 7508, 4885, 5504, 3367, 13822, 16224, 74...</code></pre>
 </div>
 <div id="analysis-and-findings" class="section level1">
 <h1>Analysis and findings</h1>

@@ -72,6 +72,20 @@ head(diversity_school) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("
 glimpse(diversity_school)
 ```
 
+2. The historical_tution dataset been obtained from [U.S. Department of Education, National Center for Education Statistics](https://nces.ed.gov/fastfacts/display.asp?id=76)
+
+```{r ht, echo=FALSE}
+head(historical_tuition) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("hover" , "striped"))
+```
+
+- type variable having character datatype describes the Type of school (All, Public, Private)
+- year having character format describes the corresponding Academic year
+- tuition_type having	character datatype refers to duration of the degree, Tuition Type All Constant (dollar inflation adjusted), 4 year degree constant, 2 year constant, Current to year, 4 year current, 2 year current
+- tuition_cost having	double datatype represents the education fees/Tuition cost in USD
+
+```{r, message=FALSE, echo=TRUE}
+glimpse(historical_tuition)
+```
 
 
 # Analysis and findings
