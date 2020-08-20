@@ -47,6 +47,8 @@ Primary Question
 
 Secondary Questions
  How does the tution fee vary across the different types of intistutions?
+ What is the ratio of net-cost to total cost?
+ how is student's career development?
  
 
 # Data description
