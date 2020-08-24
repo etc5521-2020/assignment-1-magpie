@@ -43,8 +43,10 @@ diversity_school <- readr::read_csv('https://raw.githubusercontent.com/rfordatas
 # Research Question
 
 ### Primary Question
- How valuable is the investment in education among America universities? 
- Since tuition fee is relatively high for most students, or their families,value for money is of great concern. This question is to decover how highly valued are the tuition fees among universities in America. 
+
+How valuable is the investment in education among America universities? 
+
+Since tuition fee is relatively high for most students, or their families,value for money is of great concern. This question is to decover how highly valued are the tuition fees among universities in America. 
 
 ### Secondary Questions
 
