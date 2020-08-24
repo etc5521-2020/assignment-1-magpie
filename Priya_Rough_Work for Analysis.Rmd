@@ -24,6 +24,10 @@ historical_tuition <- readr::read_csv('https://raw.githubusercontent.com/rfordat
 diversity_school <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/diversity_school.csv')
 ```
 
+```{r}
+tut_div <- dplyr::left_join(tuition_cost, diversity_school, by = c("name", "state"))
+```
+
 
 ```{r}
 library(ggplot2)
@@ -34,7 +38,7 @@ g + geom_jitter(aes(col=type))
 
 ```{r}
 library(ggplot2)
-g <- ggplot(tuition_cost, aes(in_state_total, out_of_state_total, color = type)) +
+g <- ggplot(tuition_cost, aes(in_state_tuition, out_of_state_tuition, color = type)) +
   geom_point() +  
   facet_wrap(~type, scales = "free") +  
   scale_x_log10() 
@@ -45,15 +49,11 @@ g
 library(ggplot2)
 library(plotly)
 theme_set(theme_classic())
-g <- ggplot(tuition_cost, aes(in_state_total))
+g <- ggplot(tuition_cost, aes(in_state_tuition))
 g + geom_density(aes(fill=factor(type)), alpha=0.8) + 
    facet_wrap(~type, scales = "free") +  
   scale_x_log10() 
-    labs(title="Density plot", 
-         subtitle="City Mileage Grouped by Number of cylinders",
-         caption="Source: mpg",
-         x="City Mileage",
-         fill="# Cylinders")
+    
 ```
 
 ```{r, message=FALSE}
