@@ -24,114 +24,63 @@ historical_tuition <- readr::read_csv('https://raw.githubusercontent.com/rfordat
 diversity_school <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/diversity_school.csv')
 ```
 
-Write your data description under the header “Data description” in index.Rmd. A data description should tell the reader the source of the data, and detail the structure of the data, including variables, time frame of collection, collection methods
 
-# Introduction and Motivation
-
-## Data Description
-
-It is through data collection that a business or management has the quality information that they need for further analysis, study, and research to make informed decisions. We will perform exploratory, data review in this study on the subject of [**College Tuition, Diversity, and Pay Dataset**](https:/github.com / rfordatascience / tidytuesday / blob / master / data/2020/2020-03-10 / readme.md). This collection of data primarily receives all the information from various sources but originally from the US Department of Education.
-
-The data, taken from the original pages, turned out to be very large in size, which is why the author, for the convenience of the audience and to produce informative results, filtered the data into five comma-separated documents using web scraping in R with the support of the rvest package.
-
-Let's look at the small snippets of the various data sets, and get a better understanding of the variables
-
-1. The diversity_school data set comes [The Chronicle of Higher Education](https://www.chronicle.com/article/student-diversity-at-4-725-institutions).
-
-```{r ds, echo=FALSE}
-head(diversity_school) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("hover" , "striped"))
+```{r}
+library(ggplot2)
+theme_set(theme_bw())
+g <- ggplot(tuition_cost, aes(in_state_total,out_of_state_total)) 
+g + geom_jitter(aes(col=type)) 
 ```
 
-- Name has data type character properties that describe the school name
-- Total Enrollment has double datatype properties representing the total number of students enrolled
-- State with character datatype representing the various states
-- Category with character properties defining the group Group / Racial / Gender
-- Enrollment with double datatype properties specifying the specific enrollment.
-
-```{r, message=FALSE, echo=TRUE}
-glimpse(diversity_school)
+```{r}
+library(ggplot2)
+g <- ggplot(tuition_cost, aes(in_state_total, out_of_state_total, color = type)) +
+  geom_point() +  
+  facet_wrap(~type, scales = "free") +  
+  scale_x_log10() 
+g
 ```
 
-
-2. The historical_tution dataset been obtained from [U.S. Department of Education, National Center for Education Statistics](https://nces.ed.gov/fastfacts/display.asp?id=76)
-
-```{r ht, echo=FALSE}
-head(historical_tuition) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("hover" , "striped"))
+```{r}
+library(ggplot2)
+library(plotly)
+theme_set(theme_classic())
+g <- ggplot(tuition_cost, aes(in_state_total))
+g + geom_density(aes(fill=factor(type)), alpha=0.8) + 
+   facet_wrap(~type, scales = "free") +  
+  scale_x_log10() 
+    labs(title="Density plot", 
+         subtitle="City Mileage Grouped by Number of cylinders",
+         caption="Source: mpg",
+         x="City Mileage",
+         fill="# Cylinders")
 ```
 
-- type variable having character datatype describes the Type of school (All, Public, Private)
-- year having character format describes the corresponding Academic year
-- tuition_type having	character datatype refers to duration of the degree, Tuition Type All Constant (dollar inflation adjusted), 4 year degree constant, 2 year constant, Current to year, 4 year current, 2 year current
-- tuition_cost having	double datatype represents the education fees/Tuition cost in USD
+```{r, message=FALSE}
+library(ggridges)
+library(ggplot2)
+library(viridis)
+library(hrbrthemes)
+library(gridExtra)
 
-```{r, message=FALSE, echo=TRUE}
-glimpse(historical_tuition)
+
+ridges_dat <- tuition_cost %>% dplyr::filter(tuition_cost$type != "Other")
+
+
+p1 <- ggplot(ridges_dat, aes(x = in_state_tuition, y = type, fill = stat(x))) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) + 
+  scale_fill_viridis(name = "Range of Tution Fees in USD") + 
+  labs(title = 'Distribution of Tuition Fees of Residents in US') + theme_ridges(font_size = 13, grid = TRUE) +
+  xlab("Tution fee in USD for the residents of USA")+
+   ylab("Type of Insitution")
+
+p2 <- ggplot(ridges_dat, aes(x = out_of_state_tuition, y = type, fill = stat(x))) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) + 
+  scale_fill_viridis(name = "Range of Tution Fees in USD") + 
+  labs(title = 'Distribution of Tuition Fees of Non Residents in US') + theme_ridges(font_size = 13, grid = TRUE) +
+  xlab("Tution fee in USD for the non-residents of USA") +
+  ylab("Type of Insitution")
+
+grid.arrange(p1,p2)
 ```
-
-3. Salary_potential data set origins from [Payscales](https://www.payscale.com/college-salary-report/best-schools-by-state/bachelors/new-hampshire).
-
-```{r sp, echo=FALSE}
-head(salary_potential) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("hover" , "striped"))
-```
-
-- rank having	double datatype properties defines the potential salary rank within state
-- name using character datatype explains the Name of school
-- state_name having	character datatype defines the state name
-- early_career_pay having double datatype defines the	estimated early career pay in USD
-- mid_career_pay having double datatype defines the	estimated mid career pay in USD
-- make_world_better_percent having double datatype represents the	percent of alumni who think they are making the world a better place
--stem_percent having double datatype defines the percent of student body in science, technology, engineering and mathematics (STEM)
-
-```{r, message=FALSE, echo=TRUE}
-glimpse(salary_potential)
-```
-
-4. Tuition cost
-
-The Tuition cost data set is obtained from [the Chronicle of Higher Education.](https://www.chronicle.com/article/tuition-and-fees-1998-99-through-2018-19)
-
-```{r tc, echo=FALSE}
-head(tuition_cost) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("hover" , "striped"))
-```
-
-- name which has character datatype which represent the School name
-- state having character datatype denotes the	State name
-- state_code having character datatype depicts State Abbreviation
-- type having character denotes	Type: Public, private, for-profit
-- degree_length having character datatype gives us information about the duration of the 4 year or 2 year degree
-- room_and_board having double datatype which denote Room and board in USD
-- in_state_tuition having double datatype depicts the Tuition fee for in-state residents in USD
-- out_of_state_tuition	double	Tuition for out-of-state residents in USD
-
-```{r, message=FALSE, echo=TRUE}
-glimpse(tuition_cost)
-```
-
-5. Tuition Income
-
-The tuition income has been obtained from the dataset [Tution Tracker](https://www.tuitiontracker.org/) and [Priceconomics](https://priceonomics.com/ranking-the-most-and-least-diverse-colleges-in/)
-
-```{r ti, echo=FALSE}
-head(tuition_income) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("hover" , "striped"))
-```
- 
-- campus having	character datatype depicts whether the school is	On or off-campus
-- net_cost having double datatype denotes Net-cost - average actually paid after scholarship/award
-- income_lvl having	character datatype gives u information about the	Income bracket
-
-```{r, message=FALSE, echo=TRUE}
-glimpse(tuition_income)
-```
-
-## Cleaning script
-
-All the information that has been gather in these different data files have been done through web scraping using the rvest library, html_nodes, html_url and creating dataset in tibble and mutating new columns and later binding rows together
-
-
-### Detail Structure of Data
-
-All the data has been scraped and written in csv and later, using the readr function the csv have been read in to R environment.
-
-
-
 
