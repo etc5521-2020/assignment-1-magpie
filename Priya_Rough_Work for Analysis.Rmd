@@ -24,9 +24,55 @@ historical_tuition <- readr::read_csv('https://raw.githubusercontent.com/rfordat
 diversity_school <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/diversity_school.csv')
 ```
 
+```{r, message=FALSE}
+library(ggridges)
+library(ggplot2)
+library(viridis)
+library(hrbrthemes)
+library(gridExtra)
+
+
+ridges_dat <- tuition_cost %>% dplyr::filter(tuition_cost$type != "Other")
+
+
+p1 <- ggplot(ridges_dat, aes(x = in_state_tuition, y = type, fill = stat(x))) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) + 
+  scale_fill_viridis(name = "Range of Tution Fees in USD") + 
+  labs(title = 'Distribution of Tuition Fees of Residents in US') + theme_ridges(font_size = 13, grid = TRUE) +
+  xlab("Tution fee in USD for the residents of USA")+
+   ylab("Type of Insitution")
+
+p2 <- ggplot(ridges_dat, aes(x = out_of_state_tuition, y = type, fill = stat(x))) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) + 
+  scale_fill_viridis(name = "Range of Tution Fees in USD") + 
+  labs(title = 'Distribution of Tuition Fees of Non Residents in US') + theme_ridges(font_size = 13, grid = TRUE) +
+  xlab("Tution fee in USD for the non-residents of USA") +
+  ylab("Type of Insitution")
+
+grid.arrange(p1,p2)
+```
+
+
 ```{r}
 tut_div <- dplyr::left_join(tuition_cost, diversity_school, by = c("name", "state"))
 ```
+
+```{r}
+library(viridis)
+
+diversity_school <- diversity_school %>% mutate(Per = enrollment/total_enrollment*100)
+
+ggplot(diversity_school, aes(category,Per, fill = category)) + theme(axis.text.x = element_text(angle=90)) + 
+  geom_boxplot(outlier.colour="black", outlier.shape=16,
+             outlier.size=0.63, width = 0.75) +
+  theme(legend.position="none") 
+```
+
+
+
+
+
+
 
 
 ```{r}
@@ -83,4 +129,14 @@ p2 <- ggplot(ridges_dat, aes(x = out_of_state_tuition, y = type, fill = stat(x))
 
 grid.arrange(p1,p2)
 ```
+
+```{r}
+library(ggplot2)
+g <- ggplot(historical_tuition, aes(year, tuition_cost, color = tuition_type)) +
+  geom_point() +  
+  facet_wrap(~tuition_type, scales = "free") +  
+  scale_x_log10() 
+g
+```
+
 
