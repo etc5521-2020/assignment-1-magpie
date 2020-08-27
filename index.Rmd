@@ -7,17 +7,21 @@ author:
   - Priya Ravindra Dingorkar
 date: "`r Sys.Date()`"
 output: 
-  bookdown::html_document2: default
+  bookdown::html_document2
 ---
 
 [This assignment is for ETC5521 Assignment 1 by Team `r rmarkdown::metadata$team` comprising of `r knitr::combine_words(rmarkdown::metadata$author)`.]{style="color:#006DAE;"}
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(dplyr)
 library(kableExtra)
-library(bookdown)
+library(ggridges)
+library(ggplot2)
+library(viridis)
+library(hrbrthemes)
+library(gridExtra)
 ```
 
 # Acknowledgements
@@ -140,12 +144,38 @@ head(tuition_income,3) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("
 
 All the information gathered in these different data files was achieved by web scraping using the rvest library, html nodes, html url, and generating data set in tibble, mutating new columns and linking rows together later on. All the data was scraped and written in csv and later, the csv was read in to R environment using the readr function.
 
-# Analysis and findings
+# Analysis and Findings
 
 One of the key reasons students chose to study in the USA is the prestige of the country for renowned higher education programs. Completing a degree from one of the best higher education programs in the world would make you stand out from peers of similar backgrounds and job experiences. 
 
 Let us examine and know the important facts about the US education system. We look at the various aspects when studying, the diversity of education, the history of education, the cost of tuition, income among people people in the United States, the different wages currently on the market, and similar exciting analyses.
 
+## The Distribution of Tution Fees in US.
+
+Let us look at the distribution of the spectrum of tuition fees in the United States for residents and non-residents of the United States across the various types of institutions in the United States
+
+```{r dist-tut, fig.cap="Distribution of Tution Fees in US", fig.align='center', message=FALSE, warning=FALSE}
+
+ridges_dat <- tuition_cost %>% dplyr::filter(tuition_cost$type != "Other")
+
+p1 <- ggplot(ridges_dat, aes(x = in_state_tuition, y = type, fill = stat(x))) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) + 
+  scale_fill_viridis(name = "Range of Tution Fees in USD") + 
+  labs(title = 'Distribution of Tuition Fees for the Residents of US') + theme_ridges(font_size = 13, grid = TRUE) +
+  xlab("Tution fee in USD for the residents of USA")+
+   ylab("Type of Insitution")
+
+p2 <- ggplot(ridges_dat, aes(x = out_of_state_tuition, y = type, fill = stat(x))) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) + 
+  scale_fill_viridis(name = "Range of Tution Fees in USD") + 
+  labs(title = 'Distribution of Tuition Fees for the Non Residents of US') + theme_ridges(font_size = 13, grid = TRUE) +
+  xlab("Tution fee in USD for the non-residents of USA") +
+  ylab("Type of Insitution")
+
+grid.arrange(p1,p2)
+```
+
+In the figure \@ref(fig:dist-tut)  Taking a closer look at the graph, we can observe the distribution of tuition fees, we can conclude that the levels for both residents and non-residents of the United States vary. Some of the important results from this graph are, mainly US non-residents prefer, heading to the country's public or for profit institutions rather than the private university. From the plot it is very apparent that the private rates are exceedingly high, some going up to the $60,000. Let's speak about U.S. residents, we see that U.S. residents prefer public colleges, one of the reasons why tuition may be comparatively less than the other types of institutions. Therefore, we conclude that the expense of private universities is higher for U.S. citizens and non-residents, relative to public and profit institutions, we see more non-residents entering U.S. public universities. Even some people are entering the private institutions.
 
 
 # References

@@ -10,6 +10,11 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 library(tidyverse)
 library(dplyr)
 library(kableExtra)
+library(ggridges)
+library(ggplot2)
+library(viridis)
+library(hrbrthemes)
+library(gridExtra)
 ```
 
 ```{r, message = FALSE, echo=FALSE}
@@ -25,15 +30,8 @@ diversity_school <- readr::read_csv('https://raw.githubusercontent.com/rfordatas
 ```
 
 ```{r, message=FALSE}
-library(ggridges)
-library(ggplot2)
-library(viridis)
-library(hrbrthemes)
-library(gridExtra)
-
 
 ridges_dat <- tuition_cost %>% dplyr::filter(tuition_cost$type != "Other")
-
 
 p1 <- ggplot(ridges_dat, aes(x = in_state_tuition, y = type, fill = stat(x))) +
   geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) + 
@@ -118,8 +116,14 @@ ggplot(salary_potential, aes(x=state_name, y = make_world_better_percent)) +
 DT::datatable(top_colleges, rownames = FALSE, filter="top", options = list(pageLength = 5, scrollX=T) )
 ```
 
+```{r}
 
+tuition_income <- tuition_income %>% mutate(Diff = net_cost/total_price)
 
+ggplot(data = tuition_income, aes(income_lvl,Diff)) + geom_bar(stat = "identity")+ facet_wrap(~year) + 
+    theme(axis.text.x = element_text(angle=65, vjust=0.6))
+
+```
 
 
 
