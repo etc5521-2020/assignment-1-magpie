@@ -105,7 +105,7 @@ dplyr::filter(improvement > 75.00) %>%
   dplyr::select(name, state_name, rank) 
 ```
 
-```{r}
+```{r,fig.height=9, message=FALSE}
 ggplot(salary_potential, aes(x=state_name, y = make_world_better_percent)) +
   geom_bar(stat="identity", fill=alpha("blue", 0.3)) +
   ylim(-100,120) +

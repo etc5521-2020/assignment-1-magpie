@@ -12,7 +12,7 @@
 <meta name="author" content="Junhao Wang" />
 <meta name="author" content="Priya Ravindra Dingorkar" />
 
-<meta name="date" content="2020-08-24" />
+<meta name="date" content="2020-08-27" />
 
 <title>ETC5521 Assignment 1</title>
 
@@ -374,45 +374,52 @@ summary {
 
 
 <h1 class="title toc-ignore">ETC5521 Assignment 1</h1>
-<h3 class="subtitle">Your title</h3>
+<h3 class="subtitle">College Tuition, Diversity, and Pay</h3>
 <h4 class="author">Junhao Wang</h4>
 <h4 class="author">Priya Ravindra Dingorkar</h4>
-<h4 class="date">2020-08-24</h4>
+<h4 class="date">2020-08-27</h4>
 
 </div>
 
 
 <p><span style="color:#006DAE;">This assignment is for ETC5521 Assignment 1 by Team Magpie comprising of Junhao Wang and Priya Ravindra Dingorkar.</span></p>
+<div id="acknowledgements" class="section level1">
+<h1><span class="header-section-number">1</span> Acknowledgements</h1>
+<p>Our sincere gratitude goes out for their guidance and encouragement to Professor Dianne Cook, Dr Emi Tanka, and the tutors Sayani Gupta and Sherry Zhang. Their culminating efforts have placed us in a position where we can generate this report collaboratively.</p>
+</div>
 <div id="introduction-and-motivation" class="section level1">
-<h1>Introduction and motivation</h1>
-<p>[FILL] Give the bigger picture of the data, and inspire the reader to learn more about the problem by reading your analysis.</p>
-<ul>
-<li>Junhao, add the introduction and motivation</li>
-</ul>
+<h1><span class="header-section-number">2</span> Introduction and Motivation</h1>
+<p>Ed, please fill in here</p>
 </div>
 <div id="research-question" class="section level1">
-<h1>Research Question</h1>
-<div id="primary-question" class="section level3">
-<h3>Primary Question</h3>
-<p>How valuable is the investment in education among America universities? Since tuition fee is relatively high for most students, or their families,value for money is of great concern. This question is to decover how highly valued are the tuition fees among universities in America.</p>
+<h1><span class="header-section-number">3</span> Research Question</h1>
+<div id="primary-question" class="section level2">
+<h2><span class="header-section-number">3.1</span> Primary Question</h2>
+<p>How valuable is the investment in education among America universities?</p>
+<p>Since tuition fee is relatively high for most students, or their families,value for money is of great concern. This question is to decover how highly valued are the tuition fees among universities in America.</p>
 </div>
-<div id="secondary-questions" class="section level3">
-<h3>Secondary Questions</h3>
+<div id="secondary-questions" class="section level2">
+<h2><span class="header-section-number">3.2</span> Secondary Questions</h2>
 <ul>
-<li>How does the tution fee vary across the different types of intistutions? This information can be drawn from tuition cost, and can give a point of view of the American education system.</li>
-<li>What is the ratio of net-cost to total cost among America universities? This can show how much burden a student has taken.</li>
-<li>How is student’s career development among America universities? This information can be drawn from salary_potential, if middle-career pay differ a lot from early-career pay, then we believe there is a well career development in that university.</li>
+<li><p>How does the tuition fee vary across the different types of institutions?
+This information can be drawn from tuition cost, and can give a point of view of the American education system.</p></li>
+<li><p>What is the ratio of net-cost to total cost among America universities?
+This can show how much burden a student has taken.</p></li>
+<li><p>How is student’s career development among America universities?
+This information can be drawn from salary_potential, if middle-career pay differ a lot from early-career pay, then we believe there is a well career development in that university.</p></li>
 </ul>
 </div>
 </div>
 <div id="data-description" class="section level1">
-<h1>Data description</h1>
-<p>It is through data collection that a business or management has the quality information that they need for further analysis, study, and research to make informed decisions. We will perform exploratory, data review in this study on the subject of <a href="https:/github.com%20/%20rfordatascience%20/%20tidytuesday%20/%20blob%20/%20master%20/%20data/2020/2020-03-10%20/%20readme.md"><strong>College Tuition, Diversity, and Pay Dataset</strong></a>. This collection of data primarily receives all the information from various sources but originally from the US Department of Education.</p>
+<h1><span class="header-section-number">4</span> Data description</h1>
+<p>It is through data collection that a business or management has the quality information that they need for further analysis, study, and research to make informed decisions.</p>
+<p>We will perform exploratory, data review in this study on the subject of <a href="https:/github.com%20/%20rfordatascience%20/%20tidytuesday%20/%20blob%20/%20master%20/%20data/2020/2020-03-10%20/%20readme.md"><strong>College Tuition, Diversity, and Pay Dataset</strong></a>.</p>
+<p>This collection of data primarily receives all the information from various sources but originally from the US Department of Education.</p>
 <p>The data, taken from the original pages, turned out to be very large in size, which is why the author, for the convenience of the audience and to produce informative results, filtered the data into five comma-separated documents using web scraping in R with the support of the rvest package.</p>
 <p>Let’s look at the small snippets of the various data sets, and get a better understanding of the variables</p>
-<ol style="list-style-type: decimal">
-<li>The diversity_school data set comes <a href="https://www.chronicle.com/article/student-diversity-at-4-725-institutions">The Chronicle of Higher Education</a>.</li>
-</ol>
+<div id="data-on-diversity" class="section level2">
+<h2><span class="header-section-number">4.1</span> Data on Diversity</h2>
+<p>The diversity_school data set comes <a href="https://www.chronicle.com/article/student-diversity-at-4-725-institutions">The Chronicle of Higher Education</a>.</p>
 <table class="table table-hover table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -485,57 +492,6 @@ Asian
 1959
 </td>
 </tr>
-<tr>
-<td style="text-align:left;">
-University of Phoenix-Arizona
-</td>
-<td style="text-align:right;">
-195059
-</td>
-<td style="text-align:left;">
-Arizona
-</td>
-<td style="text-align:left;">
-Black
-</td>
-<td style="text-align:right;">
-31455
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-University of Phoenix-Arizona
-</td>
-<td style="text-align:right;">
-195059
-</td>
-<td style="text-align:left;">
-Arizona
-</td>
-<td style="text-align:left;">
-Hispanic
-</td>
-<td style="text-align:right;">
-13984
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-University of Phoenix-Arizona
-</td>
-<td style="text-align:right;">
-195059
-</td>
-<td style="text-align:left;">
-Arizona
-</td>
-<td style="text-align:left;">
-Native Hawaiian / Pacific Islander
-</td>
-<td style="text-align:right;">
-1019
-</td>
-</tr>
 </tbody>
 </table>
 <ul>
@@ -545,17 +501,10 @@ Native Hawaiian / Pacific Islander
 <li>Category with character properties defining the group Group / Racial / Gender</li>
 <li>Enrollment with double datatype properties specifying the specific enrollment.</li>
 </ul>
-<pre class="r"><code>glimpse(diversity_school)</code></pre>
-<pre><code>## Rows: 50,655
-## Columns: 5
-## $ name             &lt;chr&gt; &quot;University of Phoenix-Arizona&quot;, &quot;University of Ph...
-## $ total_enrollment &lt;dbl&gt; 195059, 195059, 195059, 195059, 195059, 195059, 19...
-## $ state            &lt;chr&gt; &quot;Arizona&quot;, &quot;Arizona&quot;, &quot;Arizona&quot;, &quot;Arizona&quot;, &quot;Arizo...
-## $ category         &lt;chr&gt; &quot;Women&quot;, &quot;American Indian / Alaska Native&quot;, &quot;Asian...
-## $ enrollment       &lt;dbl&gt; 134722, 876, 1959, 31455, 13984, 1019, 58209, 1903...</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>The historical_tution dataset been obtained from <a href="https://nces.ed.gov/fastfacts/display.asp?id=76">U.S. Department of Education, National Center for Education Statistics</a></li>
-</ol>
+</div>
+<div id="data-on-history" class="section level2">
+<h2><span class="header-section-number">4.2</span> Data on History</h2>
+<p>The historical_tuition dataset been obtained from <a href="https://nces.ed.gov/fastfacts/display.asp?id=76">U.S. Department of Education, National Center for Education Statistics</a></p>
 <table class="table table-hover table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -616,48 +565,6 @@ All Institutions
 7508
 </td>
 </tr>
-<tr>
-<td style="text-align:left;">
-All Institutions
-</td>
-<td style="text-align:left;">
-1985-86
-</td>
-<td style="text-align:left;">
-All Current
-</td>
-<td style="text-align:right;">
-4885
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-All Institutions
-</td>
-<td style="text-align:left;">
-1985-86
-</td>
-<td style="text-align:left;">
-4 Year Current
-</td>
-<td style="text-align:right;">
-5504
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-All Institutions
-</td>
-<td style="text-align:left;">
-1985-86
-</td>
-<td style="text-align:left;">
-2 Year Current
-</td>
-<td style="text-align:right;">
-3367
-</td>
-</tr>
 </tbody>
 </table>
 <ul>
@@ -666,16 +573,10 @@ All Institutions
 <li>tuition_type having character datatype refers to duration of the degree, Tuition Type All Constant (dollar inflation adjusted), 4 year degree constant, 2 year constant, Current to year, 4 year current, 2 year current</li>
 <li>tuition_cost having double datatype represents the education fees/Tuition cost in USD</li>
 </ul>
-<pre class="r"><code>glimpse(historical_tuition)</code></pre>
-<pre><code>## Rows: 270
-## Columns: 4
-## $ type         &lt;chr&gt; &quot;All Institutions&quot;, &quot;All Institutions&quot;, &quot;All Instituti...
-## $ year         &lt;chr&gt; &quot;1985-86&quot;, &quot;1985-86&quot;, &quot;1985-86&quot;, &quot;1985-86&quot;, &quot;1985-86&quot;,...
-## $ tuition_type &lt;chr&gt; &quot;All Constant&quot;, &quot;4 Year Constant&quot;, &quot;2 Year Constant&quot;, ...
-## $ tuition_cost &lt;dbl&gt; 10893, 12274, 7508, 4885, 5504, 3367, 13822, 16224, 74...</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Salary_potential data set origins from <a href="https://www.payscale.com/college-salary-report/best-schools-by-state/bachelors/new-hampshire">Payscales</a>.</li>
-</ol>
+</div>
+<div id="data-on-salary-potential" class="section level2">
+<h2><span class="header-section-number">4.3</span> Data on Salary Potential</h2>
+<p>Salary_potential data set origins from <a href="https://www.payscale.com/college-salary-report/best-schools-by-state/bachelors/new-hampshire">Payscales</a>.</p>
 <table class="table table-hover table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -772,98 +673,18 @@ Alabama
 15
 </td>
 </tr>
-<tr>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:left;">
-Tuskegee University
-</td>
-<td style="text-align:left;">
-Alabama
-</td>
-<td style="text-align:right;">
-54500
-</td>
-<td style="text-align:right;">
-93500
-</td>
-<td style="text-align:right;">
-61
-</td>
-<td style="text-align:right;">
-30
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:left;">
-Samford University
-</td>
-<td style="text-align:left;">
-Alabama
-</td>
-<td style="text-align:right;">
-48400
-</td>
-<td style="text-align:right;">
-90500
-</td>
-<td style="text-align:right;">
-52
-</td>
-<td style="text-align:right;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:left;">
-Spring Hill College
-</td>
-<td style="text-align:left;">
-Alabama
-</td>
-<td style="text-align:right;">
-46600
-</td>
-<td style="text-align:right;">
-89100
-</td>
-<td style="text-align:right;">
-53
-</td>
-<td style="text-align:right;">
-12
-</td>
-</tr>
 </tbody>
 </table>
 <ul>
 <li>rank having double datatype properties defines the potential salary rank within state</li>
-<li>name using character datatype explains the Name of school</li>
-<li>state_name having character datatype defines the state name</li>
 <li>early_career_pay having double datatype defines the estimated early career pay in USD</li>
 <li>mid_career_pay having double datatype defines the estimated mid career pay in USD</li>
-<li>make_world_better_percent having double datatype represents the percent of alumni who think they are making the world a better place -stem_percent having double datatype defines the percent of student body in science, technology, engineering and mathematics (STEM)</li>
+<li>make_world_better_percent having double datatype represents the percent of alumni who think they are making the world a better place
+-stem_percent having double datatype defines the percent of student body in science, technology, engineering and mathematics (STEM)</li>
 </ul>
-<pre class="r"><code>glimpse(salary_potential)</code></pre>
-<pre><code>## Rows: 935
-## Columns: 7
-## $ rank                      &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13...
-## $ name                      &lt;chr&gt; &quot;Auburn University&quot;, &quot;University of Alaba...
-## $ state_name                &lt;chr&gt; &quot;Alabama&quot;, &quot;Alabama&quot;, &quot;Alabama&quot;, &quot;Alabama...
-## $ early_career_pay          &lt;dbl&gt; 54400, 57500, 52300, 54500, 48400, 46600,...
-## $ mid_career_pay            &lt;dbl&gt; 104500, 103900, 97400, 93500, 90500, 8910...
-## $ make_world_better_percent &lt;dbl&gt; 51, 59, 50, 61, 52, 53, 48, 57, 56, 58, 6...
-## $ stem_percent              &lt;dbl&gt; 31, 45, 15, 30, 3, 12, 27, 17, 17, 20, 8,...</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Tuition cost</li>
-</ol>
+</div>
+<div id="data-on-the-tuition-cost" class="section level2">
+<h2><span class="header-section-number">4.4</span> Data on the Tuition Cost</h2>
 <p>The Tuition cost data set is obtained from <a href="https://www.chronicle.com/article/tuition-and-fees-1998-99-through-2018-19">the Chronicle of Higher Education.</a></p>
 <table class="table table-hover table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -997,130 +818,15 @@ Public
 21024
 </td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Academy College
-</td>
-<td style="text-align:left;">
-Minnesota
-</td>
-<td style="text-align:left;">
-MN
-</td>
-<td style="text-align:left;">
-For Profit
-</td>
-<td style="text-align:left;">
-2 Year
-</td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:right;">
-17661
-</td>
-<td style="text-align:right;">
-17661
-</td>
-<td style="text-align:right;">
-17661
-</td>
-<td style="text-align:right;">
-17661
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Academy of Art University
-</td>
-<td style="text-align:left;">
-California
-</td>
-<td style="text-align:left;">
-CA
-</td>
-<td style="text-align:left;">
-For Profit
-</td>
-<td style="text-align:left;">
-4 Year
-</td>
-<td style="text-align:right;">
-16648
-</td>
-<td style="text-align:right;">
-27810
-</td>
-<td style="text-align:right;">
-44458
-</td>
-<td style="text-align:right;">
-27810
-</td>
-<td style="text-align:right;">
-44458
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adams State University
-</td>
-<td style="text-align:left;">
-Colorado
-</td>
-<td style="text-align:left;">
-CO
-</td>
-<td style="text-align:left;">
-Public
-</td>
-<td style="text-align:left;">
-4 Year
-</td>
-<td style="text-align:right;">
-8782
-</td>
-<td style="text-align:right;">
-9440
-</td>
-<td style="text-align:right;">
-18222
-</td>
-<td style="text-align:right;">
-20456
-</td>
-<td style="text-align:right;">
-29238
-</td>
-</tr>
 </tbody>
 </table>
 <ul>
-<li>name which has character datatype which represent the School name</li>
-<li>state having character datatype denotes the State name</li>
-<li>state_code having character datatype depicts State Abbreviation</li>
-<li>type having character denotes Type: Public, private, for-profit</li>
-<li>degree_length having character datatype gives us information about the duration of the 4 year or 2 year degree</li>
-<li>room_and_board having double datatype which denote Room and board in USD</li>
 <li>in_state_tuition having double datatype depicts the Tuition fee for in-state residents in USD</li>
 <li>out_of_state_tuition double Tuition for out-of-state residents in USD</li>
 </ul>
-<pre class="r"><code>glimpse(tuition_cost)</code></pre>
-<pre><code>## Rows: 2,973
-## Columns: 10
-## $ name                 &lt;chr&gt; &quot;Aaniiih Nakoda College&quot;, &quot;Abilene Christian U...
-## $ state                &lt;chr&gt; &quot;Montana&quot;, &quot;Texas&quot;, &quot;Georgia&quot;, &quot;Minnesota&quot;, &quot;C...
-## $ state_code           &lt;chr&gt; &quot;MT&quot;, &quot;TX&quot;, &quot;GA&quot;, &quot;MN&quot;, &quot;CA&quot;, &quot;CO&quot;, &quot;NY&quot;, &quot;NY&quot;...
-## $ type                 &lt;chr&gt; &quot;Public&quot;, &quot;Private&quot;, &quot;Public&quot;, &quot;For Profit&quot;, &quot;...
-## $ degree_length        &lt;chr&gt; &quot;2 Year&quot;, &quot;4 Year&quot;, &quot;2 Year&quot;, &quot;2 Year&quot;, &quot;4 Yea...
-## $ room_and_board       &lt;dbl&gt; NA, 10350, 8474, NA, 16648, 8782, 16030, 11660...
-## $ in_state_tuition     &lt;dbl&gt; 2380, 34850, 4128, 17661, 27810, 9440, 38660, ...
-## $ in_state_total       &lt;dbl&gt; 2380, 45200, 12602, 17661, 44458, 18222, 54690...
-## $ out_of_state_tuition &lt;dbl&gt; 2380, 34850, 12550, 17661, 27810, 20456, 38660...
-## $ out_of_state_total   &lt;dbl&gt; 2380, 45200, 21024, 17661, 44458, 29238, 54690...</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Tuition Income</li>
-</ol>
+</div>
+<div id="data-on-tuition-income" class="section level2">
+<h2><span class="header-section-number">4.5</span> Data on Tuition Income</h2>
 <p>The tuition income has been obtained from the dataset <a href="https://www.tuitiontracker.org/">Tution Tracker</a> and <a href="https://priceonomics.com/ranking-the-most-and-least-diverse-colleges-in/">Priceconomics</a></p>
 <table class="table table-hover table-striped" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -1166,7 +872,7 @@ NC
 On Campus
 </td>
 <td style="text-align:right;">
-11475.00
+11475
 </td>
 <td style="text-align:left;">
 0 to 30,000
@@ -1189,7 +895,7 @@ NC
 On Campus
 </td>
 <td style="text-align:right;">
-11451.00
+11451
 </td>
 <td style="text-align:left;">
 30,001 to 48,000
@@ -1212,79 +918,10 @@ NC
 On Campus
 </td>
 <td style="text-align:right;">
-16229.00
+16229
 </td>
 <td style="text-align:left;">
 48_001 to 75,000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Piedmont International University
-</td>
-<td style="text-align:left;">
-NC
-</td>
-<td style="text-align:right;">
-20174
-</td>
-<td style="text-align:right;">
-2016
-</td>
-<td style="text-align:left;">
-On Campus
-</td>
-<td style="text-align:right;">
-15592.00
-</td>
-<td style="text-align:left;">
-75,001 to 110,000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Piedmont International University
-</td>
-<td style="text-align:left;">
-NC
-</td>
-<td style="text-align:right;">
-20514
-</td>
-<td style="text-align:right;">
-2017
-</td>
-<td style="text-align:left;">
-On Campus
-</td>
-<td style="text-align:right;">
-11668.39
-</td>
-<td style="text-align:left;">
-0 to 30,000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Piedmont International University
-</td>
-<td style="text-align:left;">
-NC
-</td>
-<td style="text-align:right;">
-20514
-</td>
-<td style="text-align:right;">
-2017
-</td>
-<td style="text-align:left;">
-On Campus
-</td>
-<td style="text-align:right;">
-11643.99
-</td>
-<td style="text-align:left;">
-30,001 to 48,000
 </td>
 </tr>
 </tbody>
@@ -1294,31 +931,19 @@ On Campus
 <li>net_cost having double datatype denotes Net-cost - average actually paid after scholarship/award</li>
 <li>income_lvl having character datatype gives u information about the Income bracket</li>
 </ul>
-<pre class="r"><code>glimpse(tuition_income)</code></pre>
-<pre><code>## Rows: 209,012
-## Columns: 7
-## $ name        &lt;chr&gt; &quot;Piedmont International University&quot;, &quot;Piedmont Internat...
-## $ state       &lt;chr&gt; &quot;NC&quot;, &quot;NC&quot;, &quot;NC&quot;, &quot;NC&quot;, &quot;NC&quot;, &quot;NC&quot;, &quot;NC&quot;, &quot;NC&quot;, &quot;NC&quot;, &quot;...
-## $ total_price &lt;dbl&gt; 20174, 20174, 20174, 20174, 20514, 20514, 20514, 20514,...
-## $ year        &lt;dbl&gt; 2016, 2016, 2016, 2016, 2017, 2017, 2017, 2017, 2017, 2...
-## $ campus      &lt;chr&gt; &quot;On Campus&quot;, &quot;On Campus&quot;, &quot;On Campus&quot;, &quot;On Campus&quot;, &quot;On...
-## $ net_cost    &lt;dbl&gt; 11475.00, 11451.00, 16229.00, 15592.00, 11668.39, 11643...
-## $ income_lvl  &lt;chr&gt; &quot;0 to 30,000&quot;, &quot;30,001 to 48,000&quot;, &quot;48_001 to 75,000&quot;, ...</code></pre>
-<div id="cleaning-script" class="section level2">
-<h2>Cleaning script</h2>
-<p>All the information that has been gather in these different data files have been done through web scraping using the rvest library, html_nodes, html_url and creating dataset in tibble and mutating new columns and later binding rows together</p>
 </div>
-<div id="detail-structure-of-data" class="section level2">
-<h2>Detail Structure of Data</h2>
+<div id="data-structure-and-cleaning-process" class="section level2">
+<h2><span class="header-section-number">4.6</span> Data Structure and Cleaning Process</h2>
+<p>All the information that has been gather in these different data files have been done through web scraping using the rvest library, html_nodes, html_url and creating dataset in tibble and mutating new columns and later binding rows together.</p>
 <p>All the data has been scraped and written in csv and later, using the readr function the csv have been read in to R environment.</p>
 </div>
 </div>
 <div id="analysis-and-findings" class="section level1">
-<h1>Analysis and findings</h1>
+<h1><span class="header-section-number">5</span> Analysis and findings</h1>
 <p>[FILL] Should include at least one plot or numerical summary for each of your questions, that helps the reader arrive at an answer. You should also write paragraphs describing the methods, summaries and findings.</p>
 </div>
 <div id="references" class="section level1">
-<h1>References</h1>
+<h1><span class="header-section-number">6</span> References</h1>
 </div>
 
 
