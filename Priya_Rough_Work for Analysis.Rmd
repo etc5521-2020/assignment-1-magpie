@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 library(tidyverse)
 library(dplyr)
 library(kableExtra)
@@ -74,10 +74,11 @@ interactive_boxplot
 
 ```
 
-```{r}
+```{r, fig.width=13.5, out.width=1000}
 library(plotly)
 
-barplot <- ggplot(historical_tuition, aes(x = year, y = tuition_cost, fill = tuition_type, width = 0.75), position = "dodge") + 
+barplot <- ggplot(historical_tuition, aes(x = year, y = tuition_cost, fill = tuition_type ,
+    width = 0.75), position = "dodge") + 
    theme(axis.text.x = element_text(angle=65, vjust=0.6)) + 
   geom_bar(stat="identity", position = "dodge", color = "black")
 
@@ -88,10 +89,34 @@ interactive_barplot
 ```
 
 
+```{r, message=FALSE}
+salary_potential <-salary_potential %>% 
+  mutate(improvement= (mid_career_pay-early_career_pay)*100/early_career_pay)
+
+ salary_potential %>%  
+  ggplot(aes(x = reorder(state_name, improvement), y = improvement)) +
+ geom_bar(stat='identity', fill = "blue", width = 0.75) + 
+    theme(axis.text.x = element_text(angle=65, vjust=0.6))
+```
+
+```{r}
+top_colleges <- salary_potential %>% 
+dplyr::filter(improvement > 75.00) %>% 
+  dplyr::select(name, state_name, rank) 
+```
+
+```{r}
+ggplot(salary_potential, aes(x=state_name, y = make_world_better_percent)) +
+  geom_bar(stat="identity", fill=alpha("blue", 0.3)) +
+  ylim(-100,120) +
+  theme_minimal() + theme(axis.title.x = element_blank(), axis.title.y = element_blank(), axis.text.y = element_blank() ) +
+  coord_polar(start = 0) 
+```
 
 
-
-
+```{r}
+DT::datatable(top_colleges, rownames = FALSE, filter="top", options = list(pageLength = 5, scrollX=T) )
+```
 
 
 
