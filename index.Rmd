@@ -1,6 +1,6 @@
 ---
 title: "ETC5521 Assignment 1"
-subtitle: "College Tuition, Diversity, and Pay"
+subtitle: "Education System in the US"
 team: Magpie
 author:
   - Junhao Wang 
@@ -26,8 +26,7 @@ Our sincere gratitude goes out for their guidance and encouragement to Professor
 
 # Introduction and Motivation
 
-Ed, please fill in here
-
+ED, FILL IN HERE
 
 ```{r dat-load, message = FALSE, echo=FALSE}
 tuition_cost <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_cost.csv')
@@ -47,7 +46,7 @@ diversity_school <- readr::read_csv('https://raw.githubusercontent.com/rfordatas
 
 How valuable is the investment in education among America universities? 
 
-Since tuition fee is relatively high for most students, or their families,value for money is of great concern. This question is to decover how highly valued are the tuition fees among universities in America. 
+Since tuition fee is relatively high for most students, or their families, value for money is of great concern. This question is to decover how highly valued are the tuition fees among universities in America, by analyzing the various aspects of the education system in US.
 
 ## Secondary Questions
 
@@ -73,6 +72,7 @@ The data, taken from the original pages, turned out to be very large in size, wh
 Let's look at the small snippets of the various data sets, and get a better understanding of the variables
 
 ## Data on Diversity 
+
 The diversity_school data set comes [The Chronicle of Higher Education](https://www.chronicle.com/article/student-diversity-at-4-725-institutions).
 
 ```{r ds, echo=FALSE}
@@ -86,6 +86,7 @@ head(diversity_school,3) %>% kableExtra::kable() %>% kableExtra::kable_styling(c
 - Enrollment with double datatype properties specifying the specific enrollment.
 
 ## Data on History 
+
 The historical_tuition dataset been obtained from [U.S. Department of Education, National Center for Education Statistics](https://nces.ed.gov/fastfacts/display.asp?id=76)
 
 ```{r ht, echo=FALSE}
@@ -98,6 +99,7 @@ head(historical_tuition,3) %>% kableExtra::kable() %>% kableExtra::kable_styling
 - tuition_cost having	double datatype represents the education fees/Tuition cost in USD
 
 ## Data on Salary Potential
+
 Salary_potential data set origins from [Payscales](https://www.payscale.com/college-salary-report/best-schools-by-state/bachelors/new-hampshire).
 
 ```{r sp, echo=FALSE}
@@ -140,6 +142,10 @@ All the information gathered in these different data files was achieved by web s
 
 # Analysis and findings
 
-[FILL] Should include at least one plot or numerical summary for each of your questions, that helps the reader arrive at an answer. You should also write paragraphs describing the methods, summaries and findings. 
+One of the key reasons students chose to study in the USA is the prestige of the country for renowned higher education programs. Completing a degree from one of the best higher education programs in the world would make you stand out from peers of similar backgrounds and job experiences. 
+
+Let us examine and know the important facts about the US education system. We look at the various aspects when studying, the diversity of education, the history of education, the cost of tuition, income among people people in the United States, the different wages currently on the market, and similar exciting analyses.
+
+
 
 # References
