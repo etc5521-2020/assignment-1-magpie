@@ -64,7 +64,7 @@ This information can be drawn from salary_potential, if middle-career pay differ
 ```{r fig.height=25,fig.width=35}
 salary_potential <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/salary_potential.csv')
 new<-salary_potential%>% mutate(improvement= (mid_career_pay-early_career_pay)/early_career_pay)
-new%>%select(name,improvement,state_name)%>%  ggplot(mapping = aes(x=reorder(state_name,+improvement),y=improvement))+geom_bar(stat='identity') + coord_flip() 
+new%>%select(name,improvement,state_name)%>%  ggplot(mapping = aes(x=reorder(state_name+improvement),y=improvement))+geom_bar(stat='identity') +coord_flip() 
 ```
 
 # Data description
