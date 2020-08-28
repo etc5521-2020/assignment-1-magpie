@@ -89,7 +89,7 @@ interactive_barplot
 
 ```{r, message=FALSE}
 salary_potential <-salary_potential %>% 
-  mutate(improvement= (mid_career_pay-early_career_pay)*100/early_career_pay)
+  mutate(improvement= (mid_career_pay-early_career_pay)/early_career_pay)
 
  salary_potential %>%  
   ggplot(aes(x = reorder(state_name, improvement), y = improvement)) +
@@ -99,7 +99,7 @@ salary_potential <-salary_potential %>%
 
 ```{r}
 top_colleges <- salary_potential %>% 
-dplyr::filter(improvement > 75.00) %>% 
+dplyr::filter(improvement > 10) %>% 
   dplyr::select(name, state_name, rank) 
 ```
 
@@ -117,12 +117,18 @@ DT::datatable(top_colleges, rownames = FALSE, filter="top", options = list(pageL
 ```
 
 ```{r}
+library("scales")
+tuition_income <- tuition_income %>% mutate(diff = total_price - net_cost)
 
-tuition_income <- tuition_income %>% mutate(Diff = net_cost/total_price)
 
-ggplot(data = tuition_income, aes(income_lvl,Diff)) + geom_bar(stat = "identity")+ facet_wrap(~year) + 
-    theme(axis.text.x = element_text(angle=65, vjust=0.6))
-
+ggplot(tuition_income, aes(income_lvl, diff)) +
+  geom_bar(stat='identity', fill="forest green") +
+  facet_wrap(~year) + 
+  theme(axis.text.x = element_text(angle=65, vjust=0.6)) + 
+  labs(y="Difference in the Fees after Scholarship", 
+       x="Income Level of the University Applicants"
+      ) +  scale_y_continuous(labels = comma_format(big.mark = ".",
+                                           decimal.mark = ","))
 ```
 
 

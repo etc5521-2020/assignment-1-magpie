@@ -22,6 +22,7 @@ library(ggplot2)
 library(viridis)
 library(hrbrthemes)
 library(gridExtra)
+library(scales)
 ```
 
 # Acknowledgements
@@ -177,5 +178,25 @@ grid.arrange(p1,p2)
 
 In the figure \@ref(fig:dist-tut)  Taking a closer look at the graph, we can observe the distribution of tuition fees, we can conclude that the levels for both residents and non-residents of the United States vary. Some of the important results from this graph are, mainly US non-residents prefer, heading to the country's public or for profit institutions rather than the private university. From the plot it is very apparent that the private rates are exceedingly high, some going up to the $60,000. Let's speak about U.S. residents, we see that U.S. residents prefer public colleges, one of the reasons why tuition may be comparatively less than the other types of institutions. Therefore, we conclude that the expense of private universities is higher for U.S. citizens and non-residents, relative to public and profit institutions, we see more non-residents entering U.S. public universities. Even some people are entering the private institutions.
 
+## Difference in fees for any Scholarship / Awards Earned
+
+As we know, students are providing grants for their education in various colleges, which lowers the pressure of the tuition fess by several inches. Let us understand if the amount of income is at the criterion when deciding on the student grants.
+
+```{r tut-income-diff, fig.cap="Difference in tution fees after Scholarships/Awards", fig.align='center', message=FALSE, warning=FALSE}
+tuition_income <- tuition_income %>% mutate(diff = total_price - net_cost)
+
+ggplot(tuition_income, aes(income_lvl, diff)) +
+  geom_bar(stat='identity', fill="forest green") +
+  facet_wrap(~year) + 
+  theme(axis.text.x = element_text(angle=65, vjust=0.6)) + 
+  labs(y="Difference in the Fees after Scholarship", 
+       x="Income Level of the University Applicants"
+      ) +  scale_y_continuous(labels = comma_format(big.mark = ".",
+                                           decimal.mark = ","))
+```
+
+In the figure \@ref(fig:tut-income-diff) After earning any scholarships / awards we note a decrease in tuition fees. A popular aspect that we find over the years is that the scholarship earned by the various applicants is often judged much of the time , based on the applicant's income level and certainly a strong profile that the applicant would already have. Looking closely at the graph, we see that for applicants with income level above USD 110,000, there is a smaller gap in the scholarship relative to the other level of income. Applicants with income rates ranging from 0 to 30,000 USD, have a significant gap between the real tuition costs and the amount charged for the scholarship by the applicants. We also note that the gap in these patterns from the year 2010 has been showing and upward trend. We may therefore confidently state that applicants with lower incomes earn more scholarship grants when they are compared with applicants with higher incomes
+
+## Difference in fees for any Scholarship / Awards Earned
 
 # References
