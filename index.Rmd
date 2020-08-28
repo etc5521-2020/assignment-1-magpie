@@ -37,7 +37,7 @@ Attending a university course is a big decision for students, because it will ha
 
 Since everyone knows that the US is one of the most popular yet costly higher education destinations in the world, and the cost range is wide (for example: tuition fees range from $5,000 to $50,000 (£4,074-£ 40,746) per annual). Most undergraduate degrees last four years, so on average students graduate with a debt worth $132,860 (£101,505), we are interested in how good the investment in American education is.
 
-In this article , we will look at the various factors that influence the U.S. education and whether studying at the renowned U.S. universities is really worth the investment. On thorough analysis of the we realised there are several variables in the dataset that enabled us to assess the cost and expenditure of studying in the United States. We have tried our best to cover most of the important variable which allows us to evaluate and analyse efficiently. Since most variables have character datatypes, and a few in numeric, the visualisation scope is very limited.
+In this article , we will look at the various factors that influence the U.S. education and whether studying at the renowned U.S. universities is really worth the investment. On thorough analysis of this we have realized there are several variables in the dataset that enabled us to assess the cost and expenditure of studying in the United States. We have tried our best to cover most of the important variable which allows us to evaluate and analyse efficiently. Since most variables have character datatypes, and a few in numeric, the visualisation scope is very limited.
 
 ```{r dat-load, message = FALSE, echo=FALSE}
 tuition_cost <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_cost.csv')
@@ -190,7 +190,7 @@ In the figure \@ref(fig:dist-tut) taking a closer look at the graph, we can obse
 
 ## Difference in fees after any Scholarship / Awards Earned
 
-As we know, students are providing grants for their education in various colleges, which lowers the pressure of the tuition fess by several inches. Let us understand if the amount of income is at the criterion when deciding on the student grants.
+As we know, students are provided grants for their education in various colleges, which lowers the pressure of the tuition fess by several inches. Let us understand if the amount of income is at the criterion when deciding on the student grants.
 
 ```{r tut-income-diff, fig.cap="Difference in tution fees after Scholarships/Awards", fig.align='center', message=FALSE, warning=FALSE}
 tuition_income <- tuition_income %>% mutate(diff = total_price - net_cost)
@@ -292,8 +292,8 @@ So we get to the point and answer our primary research question, Yes, U.S. educa
 
 # References
 
-* [Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source
-  Software, 4(43), 1686] (https://doi.org/10.21105/joss.01686)
+* Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source
+  Software, 4(43), 1686. https://doi.org/10.21105/joss.01686
   
 * Hadley Wickham, Romain François, Lionel Henry and Kirill Müller (2020). dplyr: A
   Grammar of Data Manipulation. R package version 1.0.1.
@@ -328,6 +328,10 @@ So we get to the point and answer our primary research question, Yes, U.S. educa
   
 * C. Sievert. Interactive Web-Based Data Visualization with R, plotly, and shiny.
   Chapman and Hall/CRC Florida, 2020.
+
+* Top 50 ggplot2 Visualizations - The Master List (With Full R Code). (2020). Retrieved 28 August 2020, from http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
+
+* Holtz, Y. (2020). The R Graph Gallery – Help and inspiration for R charts. Retrieved 28 August 2020, from https://www.r-graph-gallery.com/
 
 
 
