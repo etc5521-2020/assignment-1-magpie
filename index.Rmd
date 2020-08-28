@@ -333,5 +333,13 @@ So we get to the point and answer our primary research question, Yes, U.S. educa
 
 * Holtz, Y. (2020). The R Graph Gallery – Help and inspiration for R charts. Retrieved 28 August 2020, from https://www.r-graph-gallery.com/
 
+* rfordatascience/tidytuesday. (2020). Retrieved 28 August 2020, from https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-03-10/readme.md
+
+* Tuition Tracker. (2020). Retrieved 28 August 2020, from https://www.tuitiontracker.org/
+
+* Fast Facts: Tuition costs of colleges and universities (76). (2020). Retrieved 28 August 2020, from https://nces.ed.gov/fastfacts/display.asp?id=76
+
+* Tuition and Fees, 1998-99 Through 2018-19. (2020). Retrieved 28 August 2020, from https://www.chronicle.com/article/tuition-and-fees-1998-99-through-2018-19/
+
 
 
