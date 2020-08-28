@@ -56,7 +56,6 @@ tut_div <- dplyr::left_join(tuition_cost, diversity_school, by = c("name", "stat
 ```
 
 ```{r}
-library(viridis)
 library(plotly)
 
 diversity_school <- diversity_school %>% mutate(Per = enrollment/total_enrollment*100)
@@ -64,26 +63,27 @@ diversity_school <- diversity_school %>% mutate(Per = enrollment/total_enrollmen
 boxplot <- ggplot(diversity_school, aes(category,Per, fill = category)) + theme(axis.text.x = element_text(angle=90)) + 
   geom_boxplot(outlier.colour="black", outlier.shape=16,
              outlier.size=0.5, width = 0.75) +
-  theme(legend.position="none") 
-
-interactive_boxplot <- ggplotly(boxplot)
-
-interactive_boxplot
+  theme(legend.position="none") +  
+  labs(y="Different Categories enrolled across US", 
+       x="Percentage of Enrollment"
+      ) 
+boxplot
 
 ```
 
-```{r, fig.width=13.5, out.width=1000}
+```{r, fig.width=12}
 library(plotly)
 
-barplot <- ggplot(historical_tuition, aes(x = year, y = tuition_cost, fill = tuition_type ,
+hist_tut <- historical_tuition %>% dplyr::filter(type == "All Institutio")
+
+barplot <- ggplot(hist_tut, aes(x = year, y = tuition_cost, fill = type ,
     width = 0.75), position = "dodge") + 
    theme(axis.text.x = element_text(angle=65, vjust=0.6)) + 
-  geom_bar(stat="identity", position = "dodge", color = "black")
+  geom_bar(stat="identity", position = "dodge", color = "black") 
 
 interactive_barplot <- ggplotly(barplot)
 
 interactive_barplot
-
 ```
 
 

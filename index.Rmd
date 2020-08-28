@@ -24,6 +24,7 @@ library(hrbrthemes)
 library(gridExtra)
 library(scales)
 library(DT)
+library(plotly)
 ```
 
 # Acknowledgements
@@ -65,6 +66,10 @@ This can show how much burden a student has taken.
 
 * How is student's career development among America universities? 
 This information can be drawn from salary_potential, if middle-career pay differ a lot from early-career pay, then we believe there is a well career development in that university.
+
+* How does the tuition rate vary over the various years for the various types of courses?
+
+* What is percentage of enrollment diverse population studying, across the US ?
  
 # Data description
 
@@ -247,7 +252,30 @@ ggplot(salary_potential, aes(x=state_name, y = make_world_better_percent)) +
   theme(plot.title = element_text(hjust = 0.5)) +
   coord_polar(start = 0) 
 ```
-Mane, Montana, Oklahoma, Hawaii and Florida alumni contribute to making this planet a better place to stay.
+In the figure \@ref(fig:bcc) We can clearly distinguish that that students passed out from the universities of the following state Mane, Montana, Oklahoma, Hawaii and Florida contribute the most to making this world survive better than the majority of the alumni in different states in the United States. 
+
+## Diversity in Education in US
+
+US is one of the country with the highest rankings, showing cultural diversity. US has student coming from around the world. Let's evaluate the various groups and the percentage of US university enrollment.
+
+```{r boxplot, fig.cap="Percentage of Enrollment among different universities throughout US", fig.align='center', message=FALSE, warning=FALSE, fig.width=10}
+
+diversity_school <- diversity_school %>% mutate(Per = enrollment/total_enrollment*100)
+
+boxplot <- ggplot(diversity_school, aes(category,Per, fill = category)) + theme(axis.text.x = element_text(angle=90)) + 
+  geom_boxplot(outlier.colour="black", outlier.shape=16,
+             outlier.size=0.5, width = 0.75) +
+  theme(legend.position="none") +  
+  labs(y="Percentage of Enrollment", 
+       x="Different Categories enrolled across US"
+      ) 
+
+interactive_boxplot <- ggplotly(boxplot)
+
+interactive_boxplot
+
+```
+In the figure \@ref(fig:boxplot) helps us in  finding out the different groups of people who have enrolled in the various universities in the US. The figure makes us understand that white is the majority of people enrolled in American universities, followed by a complete group of minorities. Using the interactive hover function, we can see the different quartiles of people enrolled in that university. The boxplot tells us the the different values of the people enrolled, thus giving us the a good indication of spread out values. The hover over function helps us to understand the different intervals and the number of students enrolled in the US. This graphs allows us to conclude that the we can witness the different cultural divesity in terms of education.
 
 # References
 
@@ -284,6 +312,9 @@ Mane, Montana, Oklahoma, Hawaii and Florida alumni contribute to making this pla
 * Yihui Xie, Joe Cheng and Xianying Tan (2020). DT: A Wrapper of the JavaScript
   Library 'DataTables'. R package version 0.15.
   https://CRAN.R-project.org/package=DT
+  
+* C. Sievert. Interactive Web-Based Data Visualization with R, plotly, and shiny.
+  Chapman and Hall/CRC Florida, 2020.
 
 
 
