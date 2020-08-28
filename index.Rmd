@@ -24,7 +24,6 @@ library(hrbrthemes)
 library(gridExtra)
 library(scales)
 library(DT)
-library(ggeasy)
 ```
 
 # Acknowledgements
@@ -33,7 +32,8 @@ Our sincere gratitude goes out for their guidance and encouragement to Professor
 
 # Introduction and Motivation
 
-ED, FILL IN HERE
+Attending a university course is a big decision for students, because it will have a large effect on the advancement of a person's future, with a huge cost to both money and time, based on the above evidence, we can conclude that going to university is indeed an investment and the return on investment is very worrying. Since everyone knows that the US is one of the most popular yet costly higher education destinations in the world, and the cost range is wide (for example: tuition fees range from $5,000 to $50,000 (£4,074-£ 40,746) per annum). Most undergraduate degrees last four years, so on average students graduate with a debt worth $132,860 (£101,505), we are interested in how good the investment in education in America is.
+
 
 ```{r dat-load, message = FALSE, echo=FALSE}
 tuition_cost <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_cost.csv')
@@ -250,3 +250,40 @@ ggplot(salary_potential, aes(x=state_name, y = make_world_better_percent)) +
 Mane, Montana, Oklahoma, Hawaii and Florida alumni contribute to making this planet a better place to stay.
 
 # References
+
+* [Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source
+  Software, 4(43), 1686] (https://doi.org/10.21105/joss.01686)
+  
+* Hadley Wickham, Romain François, Lionel Henry and Kirill Müller (2020). dplyr: A
+  Grammar of Data Manipulation. R package version 1.0.1.
+  https://CRAN.R-project.org/package=dplyr
+  
+* Hao Zhu (2019). kableExtra: Construct Complex Table with 'kable' and Pipe
+  Syntax. R package version 1.1.0. https://CRAN.R-project.org/package=kableExtra
+
+* Claus O. Wilke (2020). ggridges: Ridgeline Plots in 'ggplot2'. R package version
+  0.5.2. https://CRAN.R-project.org/package=ggridges
+  
+* H. Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New
+  York, 2016.
+
+* Simon Garnier (2018). viridis: Default Color Maps from 'matplotlib'. R package
+  version 0.5.1. https://CRAN.R-project.org/package=viridis
+
+* Bob Rudis (2020). hrbrthemes: Additional Themes, Theme Components and Utilities
+  for 'ggplot2'. R package version 0.8.0.
+  https://CRAN.R-project.org/package=hrbrthemes
+
+* Baptiste Auguie (2017). gridExtra: Miscellaneous Functions for "Grid" Graphics.
+  R package version 2.3. https://CRAN.R-project.org/package=gridExtra
+
+* Hadley Wickham and Dana Seidel (2020). scales: Scale Functions for
+  Visualization. R package version 1.1.1.
+  https://CRAN.R-project.org/package=scales
+
+* Yihui Xie, Joe Cheng and Xianying Tan (2020). DT: A Wrapper of the JavaScript
+  Library 'DataTables'. R package version 0.15.
+  https://CRAN.R-project.org/package=DT
+
+
+
