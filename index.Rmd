@@ -32,7 +32,7 @@ Our sincere gratitude goes out for their guidance and encouragement to Professor
 
 # Introduction and Motivation
 
-Attending a university course is a big decision for students, because it will have a large effect on the advancement of a person's future, with a huge cost to both money and time, based on the above evidence, we can conclude that going to university is indeed an investment and the return on investment is very worrying. Since everyone knows that the US is one of the most popular yet costly higher education destinations in the world, and the cost range is wide (for example: tuition fees range from $5,000 to $50,000 (£4,074-£ 40,746) per annum). Most undergraduate degrees last four years, so on average students graduate with a debt worth $132,860 (£101,505), we are interested in how good the investment in education in America is.
+Attending a university course is a big decision for students, because it will have a large effect on the advancement of a person's future, with a huge cost to both money and time, based on the above evidence, we can conclude that going to university is indeed an investment and the return on investment is very worrying. Since everyone knows that the US is one of the most popular yet costly higher education destinations in the world, and the cost range is wide (for example: tuition fees range from $5,000 to $50,000 (£4,074-£ 40,746) per annum). Most undergraduate degrees last four years, so on average students graduate with a debt worth $132,860 (£101,505), we are interested in how good the investment in American education is.
 
 
 ```{r dat-load, message = FALSE, echo=FALSE}
