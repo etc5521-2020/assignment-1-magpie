@@ -23,6 +23,8 @@ library(viridis)
 library(hrbrthemes)
 library(gridExtra)
 library(scales)
+library(DT)
+library(ggeasy)
 ```
 
 # Acknowledgements
@@ -176,9 +178,9 @@ p2 <- ggplot(ridges_dat, aes(x = out_of_state_tuition, y = type, fill = stat(x))
 grid.arrange(p1,p2)
 ```
 
-In the figure \@ref(fig:dist-tut)  Taking a closer look at the graph, we can observe the distribution of tuition fees, we can conclude that the levels for both residents and non-residents of the United States vary. Some of the important results from this graph are, mainly US non-residents prefer, heading to the country's public or for profit institutions rather than the private university. From the plot it is very apparent that the private rates are exceedingly high, some going up to the $60,000. Let's speak about U.S. residents, we see that U.S. residents prefer public colleges, one of the reasons why tuition may be comparatively less than the other types of institutions. Therefore, we conclude that the expense of private universities is higher for U.S. citizens and non-residents, relative to public and profit institutions, we see more non-residents entering U.S. public universities. Even some people are entering the private institutions.
+In the figure \@ref(fig:dist-tut) taking a closer look at the graph, we can observe the distribution of tuition fees, we can conclude that the levels for both residents and non-residents of the United States vary. Some of the important results from this graph are, mainly US non-residents prefer, heading to the country's public or for profit institutions rather than the private university. From the plot it is very apparent that the private rates are exceedingly high, some going up to the $60,000. Let's speak about U.S. residents, we see that U.S. residents prefer public colleges, one of the reasons why tuition may be comparatively less than the other types of institutions. Therefore, we conclude that the expense of private universities is higher for U.S. citizens and non-residents, relative to public and profit institutions, we see more non-residents entering U.S. public universities. Even some people are entering the private institutions.
 
-## Difference in fees for any Scholarship / Awards Earned
+## Difference in fees after any Scholarship / Awards Earned
 
 As we know, students are providing grants for their education in various colleges, which lowers the pressure of the tuition fess by several inches. Let us understand if the amount of income is at the criterion when deciding on the student grants.
 
@@ -195,8 +197,56 @@ ggplot(tuition_income, aes(income_lvl, diff)) +
                                            decimal.mark = ","))
 ```
 
-In the figure \@ref(fig:tut-income-diff) After earning any scholarships / awards we note a decrease in tuition fees. A popular aspect that we find over the years is that the scholarship earned by the various applicants is often judged much of the time , based on the applicant's income level and certainly a strong profile that the applicant would already have. Looking closely at the graph, we see that for applicants with income level above USD 110,000, there is a smaller gap in the scholarship relative to the other level of income. Applicants with income rates ranging from 0 to 30,000 USD, have a significant gap between the real tuition costs and the amount charged for the scholarship by the applicants. We also note that the gap in these patterns from the year 2010 has been showing and upward trend. We may therefore confidently state that applicants with lower incomes earn more scholarship grants when they are compared with applicants with higher incomes
+In the figure \@ref(fig:tut-income-diff) we see that after earning any scholarships / awards we note a decrease in tuition fees. A popular aspect that we find over the years is that the scholarship earned by the various applicants is often judged much of the time , based on the applicant's income level and certainly a strong profile that the applicant would already have. Looking closely at the graph, we see that for applicants with income level above USD 110,000, there is a smaller gap in the scholarship relative to the other level of income. Applicants with income rates ranging from 0 to 30,000 USD, have a significant gap between the real tuition costs and the amount charged for the scholarship by the applicants. We also note that the gap in these patterns from the year 2010 has been showing and upward trend. We may therefore confidently state that applicants with lower incomes earn more scholarship grants when they are compared with applicants with higher incomes.
 
-## Difference in fees for any Scholarship / Awards Earned
+## Student's Career Development among America Universities
+
+After graduation, a student's improvement can be calculated in terms of his wage growth. Let's look at the various states, where we see the greatest change in the wage growth.
+
+```{r stud-develop, fig.cap="Students Career Development", fig.align='center', message=FALSE, warning=FALSE}
+
+salary_potential <-salary_potential %>% 
+  mutate(improvement= (mid_career_pay-early_career_pay)*100/early_career_pay)
+
+ salary_potential %>%  
+  ggplot(aes(x = reorder(state_name, improvement), y = improvement)) +
+ geom_bar(stat='identity', fill = "blue", width = 0.75) + 
+    theme(axis.text.x = element_text(angle=65, vjust=0.6)) + 
+  labs(y="Sum of Improvement of Salaries", 
+       x="States of the US"
+      ) 
+
+```
+In the figure \@ref(fig:stud-develop) we note wage increases in various US states. We conclude that graduates, who have completed their California education, showed the greatest increase in their employment and mid-life incomes. We note, on close observation, that New Jersey, Pennsylvania, Massachusetts, Ohio and New York all show great levels of wage growth. Most of the States in the US, shows a decent growth of salaries in their existence excluding a handful. From the above graph we have reported a few states that show strong improvement levels in the salary. Furthermore, this leads us to believe that students who have completed their education in these states have increased their salaries over the years, which allows us to understand the student's career development over the years.
+
+After researching salary increases, our interests in terms of which universities in the United States, in which state shows an improved amount of more than 75% and their corresponding rank in that state. The table helps the user find the university's preferred option, its ranking, in which state the university is situated.
+
+```{r improvement-rate}
+top_colleges <- salary_potential %>% 
+dplyr::filter(improvement > 0.75) %>% 
+  dplyr::select(name, state_name, rank) 
+```
+
+```{r imp, fig.cap="Institutions showing more than 75% Improvement Rate in salaries after Education", fig.align='center'}
+DT::datatable(top_colleges, 
+              rownames = FALSE,
+              filter="top", 
+              options = list(pageLength = 5, scrollX=T))
+```
+
+## Alumini of US that Make World a Better Place to Live
+
+Alumni serve many important positions, such as helping create and develop the brand of an organization through word-of-mouth marketing. Alumni play an significant role in promoting organizations that benefit students and their activities. Let us look at alumni from which state a better place to stay in a world
+
+```{r bcc, fig.cap="Alumini that make the world a better place to Live", fig.align='center', fig.height=9, fig.width=9, message=FALSE, warning=FALSE}
+
+ggplot(salary_potential, aes(x=state_name, y = make_world_better_percent)) +
+  geom_bar(stat="identity", fill=alpha("blue", 0.3)) +
+  ylim(-100,120) +
+  theme_minimal() + theme(axis.title.x = element_blank(), axis.title.y = element_blank(), axis.text.y = element_blank()) + ggtitle("Alumni that contribute to make a world a better place to Live") + 
+  theme(plot.title = element_text(hjust = 0.5)) +
+  coord_polar(start = 0) 
+```
+Mane, Montana, Oklahoma, Hawaii and Florida alumni contribute to making this planet a better place to stay.
 
 # References

@@ -89,21 +89,24 @@ interactive_barplot
 
 ```{r, message=FALSE}
 salary_potential <-salary_potential %>% 
-  mutate(improvement= (mid_career_pay-early_career_pay)/early_career_pay)
+  mutate(improvement= (mid_career_pay-early_career_pay)*100/early_career_pay)
 
  salary_potential %>%  
   ggplot(aes(x = reorder(state_name, improvement), y = improvement)) +
  geom_bar(stat='identity', fill = "blue", width = 0.75) + 
-    theme(axis.text.x = element_text(angle=65, vjust=0.6))
+    theme(axis.text.x = element_text(angle=65, vjust=0.6)) + 
+  labs(y="Sum of Improvement of Salaries", 
+       x="States of the US"
+      ) 
 ```
 
 ```{r}
 top_colleges <- salary_potential %>% 
-dplyr::filter(improvement > 10) %>% 
+dplyr::filter(improvement > 0.75) %>% 
   dplyr::select(name, state_name, rank) 
 ```
 
-```{r,fig.height=9, message=FALSE}
+```{r,fig.height=9, message=FALSE, warning=FALSE}
 ggplot(salary_potential, aes(x=state_name, y = make_world_better_percent)) +
   geom_bar(stat="identity", fill=alpha("blue", 0.3)) +
   ylim(-100,120) +
