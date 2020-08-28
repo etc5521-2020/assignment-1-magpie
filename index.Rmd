@@ -33,8 +33,11 @@ Our sincere gratitude goes out for their guidance and encouragement to Professor
 
 # Introduction and Motivation
 
-Attending a university course is a big decision for students, because it will have a large effect on the advancement of a person's future, with a huge cost to both money and time, based on the above evidence, we can conclude that going to university is indeed an investment and the return on investment is very worrying. Since everyone knows that the US is one of the most popular yet costly higher education destinations in the world, and the cost range is wide (for example: tuition fees range from $5,000 to $50,000 (£4,074-£ 40,746) per annum). Most undergraduate degrees last four years, so on average students graduate with a debt worth $132,860 (£101,505), we are interested in how good the investment in American education is.
+Attending a university course is a big decision for students, because it will have a large effect on the advancement of a person's future, with a huge cost to both money and time, based on the above evidence, we can conclude that going to university is indeed an investment and the return on investment is very worrying. 
 
+Since everyone knows that the US is one of the most popular yet costly higher education destinations in the world, and the cost range is wide (for example: tuition fees range from $5,000 to $50,000 (£4,074-£ 40,746) per annual). Most undergraduate degrees last four years, so on average students graduate with a debt worth $132,860 (£101,505), we are interested in how good the investment in American education is.
+
+In this article , we will look at the various factors that influence the U.S. education and whether studying at the renowned U.S. universities is really worth the investment. On thorough analysis of the we realised there are several variables in the dataset that enabled us to assess the cost and expenditure of studying in the United States. We have tried our best to cover most of the important variable which allows us to evaluate and analyse efficiently. Since most variables have character datatypes, and a few in numeric, the visualisation scope is very limited.
 
 ```{r dat-load, message = FALSE, echo=FALSE}
 tuition_cost <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_cost.csv')
@@ -69,7 +72,7 @@ This information can be drawn from salary_potential, if middle-career pay differ
 
 * How does the tuition rate vary over the various years for the various types of courses?
 
-* What is percentage of enrollment diverse population studying, across the US ?
+* What is percentage of enrollment of the diverse population studying, across the US ?
  
 # Data description
 
@@ -275,7 +278,17 @@ interactive_boxplot <- ggplotly(boxplot)
 interactive_boxplot
 
 ```
-In the figure \@ref(fig:boxplot) helps us in  finding out the different groups of people who have enrolled in the various universities in the US. The figure makes us understand that white is the majority of people enrolled in American universities, followed by a complete group of minorities. Using the interactive hover function, we can see the different quartiles of people enrolled in that university. The boxplot tells us the the different values of the people enrolled, thus giving us the a good indication of spread out values. The hover over function helps us to understand the different intervals and the number of students enrolled in the US. This graphs allows us to conclude that the we can witness the different cultural divesity in terms of education.
+In the figure \@ref(fig:boxplot) helps us in  finding out the different groups of people who have enrolled in the various universities in the US. The figure makes us understand that white is the majority of people enrolled in American universities, followed by a complete group of minorities. Using the interactive hover function, we can see the different quartiles of people enrolled in that university. The boxplot tells us the the different values of the people enrolled, thus giving us the a good indication of spread out values. The hover over function helps us to understand the different intervals and the number of students enrolled in the US. This graphs allows us to conclude that the we can witness the different cultural diversity in terms of education.
+
+# Conclusion
+
+The standard of U.S. education is of highly remarkable. Through our study, we saw distribution of tuition fees in the U.S. and concluded that residents and non-residents tend to go to public and prosperous universities with good tuition fees. Furthermore, we witnessed that the US education system provides various grants and scholarships in the case of applicants having a strong profile and a lower income level to enable the student enter to the desired university.
+
+On admission we saw the numerous states across the USA showing great progress in the growth of the student career in terms of their salary potential. Through our study we found that students' growth is mostly above 50 percent. We also saw alumni contributions from the various states around the US. Finally, we've seen the various diverse populace found in the US.
+
+Through the exploration of the dataset, therefore, we infer that, if you study in the U.S., you will mainly enter a public and private university, you will earn various scholarships and grants according to your level of income and profile. Upon completion of your schooling, we saw the breadth of the career growth of the applicant, which showed promising results, and witnessed the U.S. schooling in global diversity while making you more global and providing the right exposure.
+
+So we get to the point and answer our primary research question, Yes, U.S. education is value-for-money and the investment really is worth it. The returns from these investments are compelling, too.
 
 # References
 
