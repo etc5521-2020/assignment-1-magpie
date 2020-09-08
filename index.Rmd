@@ -190,7 +190,7 @@ In the figure \@ref(fig:dist-tut) taking a closer look at the graph, we can obse
 
 ## Difference in fees after any Scholarship / Awards Earned
 
-As we know, students are provided grants for their education in various colleges, which lowers the pressure of the tuition fess by several inches. Let us understand if the amount of income is at the criterion when deciding on the student grants.
+As we know, students are provided grants for their education in various colleges, which lowers the pressure of the tuition fess by several inches. Let us understand if the amount of income is at the criterion when deciding on the student grants. 
 
 ```{r tut-income-diff, fig.cap="Difference in tution fees after Scholarships/Awards", fig.align='center', message=FALSE, warning=FALSE}
 tuition_income <- tuition_income %>% mutate(diff = total_price - net_cost)
