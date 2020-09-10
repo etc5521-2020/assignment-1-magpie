@@ -74,7 +74,7 @@ This information can be drawn from salary_potential, if middle-career pay differ
 
 * What is percentage of enrollment of the diverse population studying, across the US ?
 
-* Is diversity amongst students in the United States the same across all states and universities?
+* Are all States and universities accommodative of students of different ethnic and economic backgrounds?
 
 * Does paying high tuition guarantee a higher salary? Which college has more potential in career growth on the basis of initial salary offered? 
  
