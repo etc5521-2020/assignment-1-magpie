@@ -78,7 +78,7 @@ This information can be drawn from salary_potential, if middle-career pay differ
 
 * Does paying high tuition guarantee a higher salary? Which college has more potential in career growth on the basis of initial salary offered? 
  
-# Data description
+# Data description 
 
 It is through data collection that a business or management has the quality information that they need for further analysis, study, and research to make informed decisions. 
 
