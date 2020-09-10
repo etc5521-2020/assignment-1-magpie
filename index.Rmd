@@ -86,7 +86,7 @@ We will perform exploratory, data review in this study on the subject of [**Coll
 
 This collection of data primarily receives all the information from various sources but originally from the US Department of Education.
 
-The data, taken from the original pages, turned out to be very large in size, which is why the author, for the convenience of the audience and to produce informative results, filtered the data into five comma-separated documents using web scraping in R with the support of the rvest package.
+The data, taken from the original pages, turned out to be very large in size, which is why the author, for the convenience of the audience and to produce informative results, filtered the data into five comma-separated documents using web scraping in R with the support of the rvest package. 
 
 Let's look at the small snippets of the various data sets, and get a better understanding of the variables
 
