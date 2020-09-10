@@ -15,7 +15,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
-library(dplyr)
+library(dplyr) 
 library(kableExtra)
 library(ggridges)
 library(ggplot2)
