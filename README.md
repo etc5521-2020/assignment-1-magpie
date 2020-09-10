@@ -6,6 +6,8 @@ Team members:
 
 * Junhao Wang
 * Priya Ravindra Dingorkar
+* Aarathy Babu
+* Siddhant Tirodkar
 
 # Steps
 
@@ -29,3 +31,5 @@ Team members:
 - [ ] Contributed step 4-5 to the team github repo **due 21st Aug**
 - [ ] Final report available on repo **due 28th Aug**
 - [ ] Peer feedback provided as an issue on your assigned group's repo **due 4th Sep**
+
+ # 
