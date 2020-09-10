@@ -53,7 +53,7 @@ diversity_school <- readr::read_csv('https://raw.githubusercontent.com/rfordatas
 
 # Research Question
 
-## Primary Question
+## Primary Question 
 
 How valuable is the investment in education among America universities? 
 
