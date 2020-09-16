@@ -79,4 +79,48 @@ head(diversity_school,3) %>% kableExtra::kable() %>% kableExtra::kable_styling(c
 - State with character datatype representing the various states.
 - Category with character properties defining the group Group / Racial / Gender.
 - Enrolment with double datatype properties specifying the specific enrollment.
+## Data on History 
+
+The *historical_tuition* dataset been obtained from [U.S. Department of Education, National Center for Education Statistics.](https://nces.ed.gov/fastfacts/display.asp?id=76)
+
+```{r}
+vis_miss(historical_tuition)
+```
+
+
+
+```{r ht, echo=FALSE}
+head(historical_tuition,3) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("hover" , "striped"))
+```
+
+- type variable having character datatype describes the Type of school (All, Public, Private).
+- year having character format describes the corresponding Academic year.
+- tuition_type having	character datatype refers to duration of the degree, Tuition Type All Constant (dollar inflation adjusted), 4 year degree constant, 2 year constant, Current to year, 4 year current, 2 year current.
+- tuition_cost having	double datatype represents the education fees/Tuition cost in USD.
+
+## Data on Salary Potential
+
+*Salary_potential* data set origins from [Payscales](https://www.payscale.com/college-salary-report/best-schools-by-state/bachelors/new-hampshire).
+
+```{r}
+vis_miss(salary_potential) 
+```
+
+```{r}
+salary_potential <- salary_potential %>%
+  filter(!is.na(make_world_better_percent))
+```
+
+
+
+```{r sp, echo=FALSE}
+head(salary_potential,3) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("hover" , "striped"))
+```
+
+- rank having	double datatype properties defines the potential salary rank within state.
+- early_career_pay having double datatype defines the	estimated early career pay in USD.
+- mid_career_pay having double datatype defines the	estimated mid career pay in USD.
+- make_world_better_percent having double datatype represents the	percent of alumni who think they are making the world a better place.
+-stem_percent having double datatype defines the percent of student body in science, technology, engineering and mathematics (STEM).
+
 
