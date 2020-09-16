@@ -51,6 +51,27 @@ historical_tuition <- readr::read_csv('https://raw.githubusercontent.com/rfordat
 diversity_school <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/diversity_school.csv')
 ```
 
+
+```{r animate, fig.cap="*The animation tracks the change in tuition fees in instituitions in the US.An increasing trend is seen in both public and private universities and among the two, private instituitions are more expensive.*"}
+library(gganimate)
+  historical_tuition$year<- gsub("-.*","",historical_tuition$year)
+   historical_tuition1<-  historical_tuition %>%
+    mutate(year=as.Date(year,format='%Y'),
+           year=lubridate::year(year))
+   
+  historical_tuition1 %>%
+     filter(tuition_type=="All Constant")%>%
+     filter(type!="All Institutions") %>%
+     ggplot(aes(x=year,y=tuition_cost,color=type))+
+     geom_line()+
+    labs(color = "Type")+
+    xlab("Tuition")+
+    ylab("Year")+ggtitle("Tuition Cost across the years")+
+  transition_reveal(year)
+   
+   
+```
+
 # Data description 
 
 It is through data collection that a business or management has the quality information that they need for further analysis, study, and research to make informed decisions. 
@@ -184,7 +205,7 @@ All the information gathered in these different data files was achieved by web s
 
 After graduating, a student's improvement can be calculated in terms of his salary growth. Let's look at the various states, where we see the greatest change in the salary growth.
 
-```{r stud-develop, fig.cap="Students Career Development", fig.align='center',fig.height=6.5, message=FALSE, warning=FALSE}
+```{r studdevelop, fig.cap="*The bar chart depicts the average salary growth of students in the states of US with states ordered according to the improvement rates. Students from Wyoming,New Mexico,California showcase high career growth where as Delaware,Alaska show relatively less growth.*", fig.align='center',fig.height=6.5, message=FALSE, warning=FALSE}
 # changes made --> instead of sum, grouped and took average
 salary_potential <-salary_potential %>% 
   mutate(improvement= (mid_career_pay-early_career_pay)*100/early_career_pay)
@@ -203,17 +224,17 @@ salary_potential <-salary_potential %>%
 
 To compute the improvement in a student's career, we calculated the percentage increase in an individuals salary through his career and grouped by the states and summarised using the mean to arrive at the increase in salaries across various states and reordered them.
 
-In figure \@ref(fig:) we can clearly see that individuals graduating from universities in the states of Wyoming, New-Mexico, California, New-York and Ohio show the highest growth in mid-career salaries and the states of Delaware, North-Dakota, Alaska, Idaho and New-Hampshire show the least growth in mid-career salaries. Though there is not a huge difference between the state offering the highest growth and the state offering the least growth, figure \@ref(fig:) is a great tool to understand  student's career growth in different states.
+In figure \@ref(fig:studdevelop) we can clearly see that individuals graduating from universities in the states of Wyoming, New-Mexico, California, New-York and Ohio show the highest growth in mid-career salaries and the states of Delaware, North-Dakota, Alaska, Idaho and New-Hampshire show the least growth in mid-career salaries. Though there is not a huge difference between the state offering the highest growth and the state offering the least growth, figure \@ref(fig:studdevelop) is a great tool to understand  student's career growth in different states.
 
-Furthermore, we have created a table \@ref(tab:) wherein all the universities whose alumni experienced a career growth of more than 75%. We have also ranked the universities state-wise in terms of the improvement. The table enables the user to find the top universities in any state and the improvement percentage as well.
+Furthermore, we have created a table \@ref(fig:imp) wherein all the universities whose alumni experienced a career growth of more than 75%. We have also ranked the universities state-wise in terms of the improvement. The table enables the user to find the top universities in any state and the improvement percentage as well.
 
-```{r improvement-rate}
+```{r improvementrate}
 top_colleges <- salary_potential %>% 
 dplyr::filter(improvement >75) %>%  # changed 0.75 to 75
   dplyr::select(name, state_name, rank,improvement) 
 ```
 
-```{r imp, fig.cap="Institutions showing more than 75% Improvement Rate in salaries after Education", fig.align='center'}
+```{r imp, fig.cap="*The interactive table shows the list of Instituitions whose alumni experienced a career growth of more than 75 % along with the rank of the university in each state.*", fig.align='center'}
 DT::datatable(top_colleges, 
               rownames = FALSE,
               filter="top", 
@@ -225,7 +246,7 @@ DT::datatable(top_colleges,
 
 Alumni serve many important positions, such as helping create and develop the brand of an organization through word-of-mouth marketing. Alumni play a significant role in promoting organizations that benefit students and their activities. Let us look at alumni from which state a better place to stay in a world.
 
-```{r bcc, fig.cap="Alumini that make the world a better place to Live", fig.align='center', fig.height=9, fig.width=9, message=FALSE, warning=FALSE}
+```{r bcc, fig.cap="*The circular bar plot depicts the average percentage of Alumni of instituitions in each state of the US, who believe they are making the world a better place.Ordered according to the proportion,the plot shows that alumni from New Mexico believe they make a positive impact on the world*", fig.align='center', fig.height=9, fig.width=9, message=FALSE, warning=FALSE}
 
 na <- salary_potential %>%
   filter(is.na(make_world_better_percent)) # 33 na values 
@@ -251,23 +272,26 @@ ggplot(aes(x=reorder(state_name,mean), y= mean,fill=mean)) +
    theme_minimal() + 
  scale_fill_viridis_c()+
   theme(axis.title.x = element_blank(), axis.title.y = element_blank(), axis.text.y = element_blank()) + 
-  ggtitle("Alumni that contribute to make a world a better place to Live")   +
+  ggtitle("Alumni who believe they make the world a better place to Live")   +
   theme(axis.text.x = element_text(hjust = 5))+
   theme(plot.title = element_text(hjust = 0.5)) +
+    labs(fill = "Percentage of Alumni")+
+   theme(legend.position ="bottom",
+          legend.direction = "horizontal")+
  # scale_x_discrete(guide = guide_axis(n.dodge = 2))+
   coord_polar(start = 0)
   
 ```
 
-To arrive at figure  \@ref(fig:) we first removed all the missing values which were present in the variable *make_world_better_place* and grouped by the state and summarised using the mean and plotted the circular bar chart using the mean value to color the bars to distinguish appropriately. We also reordered it to clearly display the best and the worst state.
+To arrive at figure  \@ref(fig:bcc) we first removed all the missing values which were present in the variable *make_world_better_place* and grouped by the state and summarised using the mean and plotted the circular bar chart using the mean value to color the bars to distinguish appropriately. We also reordered it to clearly display the best and the worst state.
 
-It is clear from figure \@ref(fig:) that the states New-Mexico, Mississippi and Louisana contibute the most and the states of Nevada, Rhode-Island and New-Jersey contibute the least towards making the world a better place.
+It is clear from figure \@ref(fig:bcc) that the states New-Mexico, Mississippi and Louisana contibute the most and the states of Nevada, Rhode-Island and New-Jersey contibute the least towards making the world a better place.
 
 ## Diversity in Education in US
 
 US is ranked amongst the top countries, showing cultural diversity. US has students coming from around the world. Let's evaluate the various groups and the percentage of US university enrolment.
 
-```{r boxplot, fig.cap="Percentage of Enrollment among different universities throughout US", fig.align='center', message=FALSE, warning=FALSE,fig.height=6}
+```{r lvplot, fig.cap="*The Percentage of Enrollment across different universities in the US is depicted in the Letter Value plot.Half of the enrolments across US see 60 % of the total enrollment of an instituion as White where as overwhelmingly low percentage of American Indian and Native Hawaiian enrolment is seen*", fig.align='center', message=FALSE, warning=FALSE,fig.height=6}
 
 # total minority  is the sum of all minority sections like asian , black etc so removed that 
 # used letter value plot instead of box plot to deal with outliers
@@ -282,13 +306,16 @@ diversity_school_excludedtm$category <- recode(diversity_school_excludedtm$categ
 ggplot(data=diversity_school_excludedtm) + 
  geom_lv(aes(x=category,y=Per,fill=..LV..)) +
 scale_fill_viridis_d() + 
+  ggtitle("Diversity in Education")+
+  xlab("Category")+
+  ylab("Percentage of Enrollment")+
   scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, by = 10))+
   
   theme(axis.text.x = element_text(angle=90))
 
 ```
 
-To calculate the percentage of US university enrolment amongst various ethinic groups, first we removed the Total Minority as it was a summation of all minority sections classfied as  'asian', 'black' etc. Besides we added *Two Or More Races*, *Unknown* and *Non-Resident Foreign* to the other category. Then to plot the values, we utilized a *Letter Value Boxplot* using the *lvplot* R package instead of a traditional boxplot as can be seen in figure \@ref(fig:)
+To calculate the percentage of US university enrolment amongst various ethinic groups, first we removed the Total Minority as it was a summation of all minority sections classfied as  'asian', 'black' etc. Besides we added *Two Or More Races*, *Unknown* and *Non-Resident Foreign* to the other category. Then to plot the values, we utilized a *Letter Value Boxplot* using the *lvplot* R package instead of a traditional boxplot as can be seen in figure \@ref(fig:lvplot)
 
 A letter value boxplot overcomes the shortcomings of a coventional boxplot and conveys more information in the the tails or the outliers using letter values. The legend besides the letter value plot mentions certain alphabets and the color they represent on the letter value plot.
 
@@ -304,14 +331,14 @@ A letter value boxplot overcomes the shortcomings of a coventional boxplot and c
 - X denotes roughly 0.1% of the observations.
 - W denotes roughly 0.05% of the observations.
 
-It is clear from figure \@ref(fig:) that white people form the majority of students enrolled in American universities followed by black people and other minorities.
+It is clear from figure \@ref(fig:lvplot) that white people form the majority of students enrolled in American universities followed by black people and other minorities.
 
 ## Is diversity amongst students in the United States the same across all states and universities?
 
 
 
 ### states
-```{r}
+```{r mincal}
 library(leaflet)
 
 min <- diversity_school %>% 
@@ -327,7 +354,7 @@ min$meanminority <- round(min$meanminority,2)
 ```
 
 
-```{r}
+```{r leaflet, fig.cap="*The figure is an interactive map by leaflet which shows the average percentage of minority in schools of each state.Hawaii has the most accomodative instituions in the US with and average 71.67% minority whereas the least accomodative is Maine with 9.92%.*"}
 
 states <- geojsonio::geojson_read("json/us-states.geojson", what = "sp")
 
@@ -338,13 +365,13 @@ hawaii <- min %>%
   filter(state=="Hawaii")
 labels <- sprintf(
   "<strong>%s</strong><br/>%g Percent",
-  #"<strong>%s</strong><br/>%g Percent",
+
   min$state, min$meanminority
 ) %>% lapply(htmltools::HTML)
 
 content <- sprintf(
   "<strong>%s</strong><br/>%g Percent",
-  #"<strong>%s</strong><br/>%g Percent",
+
   hawaii$state,hawaii$meanminority
 ) %>% lapply(htmltools::HTML)
 
@@ -383,7 +410,7 @@ leaflet(states,options = leafletOptions(minZoom = 3)) %>%
 ## universities
 
 
-```{r}
+```{r averagecal}
 averagecal <- tuition_cost %>% 
   group_by(name) %>%
   summarise(avg_fee=mean(in_state_total))
@@ -397,7 +424,7 @@ inex <- averagecal%>%
 ```
 
 
-```{r, fig.width=10}
+```{r stack, fig.width=10, fig.cap="*The horizontal stacked bar plot depicts the proportion of enrolments in the top 50 expensive educational instituitions in the US, according to ethnicity. An overwhemingly large population of people having White ethnicity  is seen where Hispanic,Black ,Asian population form the minority.*"}
 
 econ <- diversity_school
 econ$category <- recode(econ$category,
@@ -433,7 +460,11 @@ diversity_cost_ex <-diversity_cost_ex %>%
    ylab("Top 50 Expensive Instituitions") +
    xlab("Proportion of Enrollment") +
    ggtitle("Enrollment in Expensive Educational Instituitions")
- 
+```
+
+
+```{r stackin, fig.width=10, fig.cap="*The horizontal stacked bar plot shown here depicts the proportion of enrolments in the top 50 inexpensive educational instituitions in the US, according to ethnicity.Majority of the enrolments in inexpensive schools are Hispanic population followed by Black and Asian population.The Native Hawaiian and American Indian population remain a minorty in these schools as well.The inexpensive instituitions are mostly community colleges.*"}
+
  diversity_cost_inex <- econ  %>%
   
   inner_join(inex,by="name") 
