@@ -248,3 +248,9 @@ ggplot(aes(x=reorder(state_name,mean), y= mean,fill=mean)) +
   coord_polar(start = 0)
   
 ```
+
+To arrive at figure  \@ref(fig:) we first removed all the missing values which were present in the variable *make_world_better_place* and grouped by the state and summarised using the mean and plotted the circular bar chart using the mean value to color the bars to distinguish appropriately. We also reordered it to clearly display the best and the worst state.
+
+It is clear from figure \@ref(fig:) that the states New-Mexico, Mississippi and Louisana contibute the most and the states of Nevada, Rhode-Island and New-Jersey contibute the least towards making the world a better place.
+
+
