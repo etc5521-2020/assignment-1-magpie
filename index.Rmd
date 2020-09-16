@@ -217,7 +217,7 @@ Figure \@ref(fig:) displays the distribution of tuition fees for the residents a
 
 ## Difference in fees after any Scholarship / Awards Earned
 
-As we know, students are provided grants for their education in various colleges, which lowers the pressure of the tuition fess by several inches. Let us understand if the amount of income is at the criterion when deciding on the student grants.
+A lot of students receive grants and scholarships of various kinds. Through this section, we will understand how the grants/scholarships are awarded to students of various income groups how much cost students end up paying across various income groups.
 
 ```{r, fig.height=6}
 # changes made --> instead of sum, grouped and took average . campus is also taken into consideration 
@@ -243,7 +243,29 @@ plo
 
 ```
 
-Figure \@ref(fig:) displays the distribution of tuition fees for the residents and non-residents of US. Majorly the universities in the US offer two types of degree courses, which are a 2-Year degree course and a 4-Year degree courses. 2-Year degree courses are predominantly for students enrolled in a master's degree and 4-Year degree courses are generally offered to students pursuing a bachelor's degree. We have separated the two and plotted two different graphs as tuition fee varies majorly for the two different types of courses offered. As seen in \@ref(fig:), the red density plot depicts the tuition fee for non-residents and the histogram depicts the tuition fee for residents. We observe that for both 2-Year degrees and 4-Year degrees citizens and non-residents prefer going to public universities or profit organisations instead of private universities. The density in private universities is low as compared to the other two as this may be due to the higher expense of fees in private universities. It is clear from the above figure that both citizens and non-residents of the US prefer going to for profit or public universities to pursue higher education.
+```{r tut-income-diff, fig.height=6,fig.cap="Difference in tuition fees after Scholarships/Awards", fig.align='center', message=FALSE, warning=FALSE}
+# changes made --> instead of sum, grouped and took average. campus is also taken into consideration 
+ tuition_income %>% 
+  mutate(diff = total_price - net_cost) %>%
+  group_by(year,campus,income_lvl)%>%
+  summarise(eachscho=mean(diff))  %>%
+
+ggplot( aes(x=income_lvl, y=eachscho, fill= campus)) +
+  geom_col(position ='dodge') +
+  facet_wrap(~year) + 
+  theme(axis.text.x = element_text(angle=90)) + 
+  labs(y="Scholarship", 
+       x="Income Level of the University Applicants"
+      ) +
+  ggtitle("Average Scholarship Received by each Income Group")
+
+```
+
+In the US, university courses are broadly offered on campus and off campus. Though there is only a little difference between the cost of both on campus and off campus courses, we have displayed them independent of each other as it is incorrect to show them together. In figure \@ref(fig:) we have the average cost that a student incurs across various income groups and in figure \@ref(fig:) we have the scholarships earned by students across various income groups. A point to note is that the variable net_cost has a lot of *negative values*. One may wonder how can the tuition paid be negative. Upon further probing we found out that a lot of universities provide financial assistance to students and extend it to their families as well. This is the reason the variable net_cost shows negative values. Also, the data for on campus courses for the year 2010 is missing. Besides we have also recoded the category of income level of *48,001 to 75,000* which earlier was *48_000 to 75,000*.
+
+In Figure \@ref(fig:) we group by the year, net cost and the income levels and summarise using the mean to arrive at the average tuition cost students pay across various income groups. It is clear from the figure that students in lower income groups tend to pay less tuition fee as compared to students with higher income groups over the years.
+
+In figure \@ref(fig:) we obtain the amount of scholarship earned by the students by finding out the difference between the total_cost an net_cost. Then we summarise using the mean to arrive at the average scholarship earned by each income group. Clearly, students in lower income groups earn more scholarships as compared to those in higher income groups over the years.
 
 ## Student's Career Development among America Universities
 
