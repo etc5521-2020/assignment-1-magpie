@@ -67,7 +67,7 @@ diversity_school <- readr::read_csv('https://raw.githubusercontent.com/rfordatas
 
 How valuable is the investment in education among America universities? 
 
-Since tuition fee is relatively high for most students, or their families, value for money is of great concern. This question is to decover how highly valued are the tuition fees among universities in America, by analyzing the various aspects of the education system in US.
+Since tuition fee is relatively high for most students, or their families, value for money is of great concern. This question is to decover how highly valued are the tuition fees among universities in America, by analysing the various aspects of the education system in US.
 
 ## Secondary Questions
 
@@ -78,27 +78,15 @@ This information can be drawn from tuition cost, and can give a point of view of
 This can show how much burden a student has taken.
 
 * How is student's career development among America universities? 
-This information can be drawn from salary_potential, if middle-career pay differ a lot from early-career pay, then we believe there is a well career development in that university.
+This information can be drawn from *salary_potential*, if middle-career pay differ a lot from early-career pay, then we believe there is a well career development in that university.
 
 * How does the tuition rate vary over the various years for the various types of courses?
 
-* What is percentage of enrollment of the diverse population studying, across the US ?
+* What is percentage of enrolment of the diverse population studying, across the US ?
 
-* Are all States and universities accommodative of students of different ethnic and economic backgrounds?
+* *Are all States and universities accommodative of students of different ethnic and economic backgrounds?*
 
-* Does paying high tuition guarantee a higher salary? Which college has more potential in career growth on the basis of initial salary offered? 
- 
-# Data description
-
-It is through data collection that a business or management has the quality information that they need for further analysis, study, and research to make informed decisions. 
-
-We will perform exploratory, data review in this study on the subject of [**College Tuition, Diversity, and Pay Dataset**](https:/github.com / rfordatascience / tidytuesday / blob / master / data/2020/2020-03-10 / readme.md). 
-
-This collection of data primarily receives all the information from various sources but originally from the US Department of Education.
-
-The data, taken from the original pages, turned out to be very large in size, which is why the author, for the convenience of the audience and to produce informative results, filtered the data into five comma-separated documents using web scraping in R with the support of the rvest package. 
-
-Let's look at the small snippets of the various data sets, and get a better understanding of the variables.
+* *Does paying high tuition guarantee a higher salary? Which college has more potential in career growth on the basis of initial salary offered?*
 
 ## Data on Diversity 
 
