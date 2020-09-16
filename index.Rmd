@@ -167,33 +167,6 @@ Let us examine and know the important facts about the US education system. We lo
 
 Let us look at the distribution of the spectrum of tuition fees in the United States for residents and non-residents of the United States across the various types of institutions in the United States
 
-```{r dist-tut, fig.cap="Distribution of Tution Fees in US", fig.align='center', message=FALSE, warning=FALSE}
-
-ridges_dat <- tuition_cost %>% dplyr::filter(tuition_cost$type != "Other")
-
-p1 <- ggplot(ridges_dat, aes(x = in_state_tuition, y = type, fill = stat(x))) +
-  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) + 
-  scale_fill_viridis(name = "Range of Tution Fees in USD") + 
-  labs(title = 'Distribution of Tuition Fees for the Residents of US') + theme_ridges(font_size = 13, grid = TRUE) +
-  xlab("Tution fee in USD for the residents of USA")+
-   ylab("Type of Insitution")
-
-p2 <- ggplot(ridges_dat, aes(x = out_of_state_tuition, y = type, fill = stat(x))) +
-  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) + 
-  scale_fill_viridis(name = "Range of Tution Fees in USD") + 
-  labs(title = 'Distribution of Tuition Fees for the Non Residents of US') + theme_ridges(font_size = 13, grid = TRUE) +
-  xlab("Tution fee in USD for the non-residents of USA") +
-  ylab("Type of Insitution")
-
-grid.arrange(p1,p2)
-```
-
-In the figure \@ref(fig:dist-tut) taking a closer look at the graph, we can observe the distribution of tuition fees, we can conclude that the levels for both residents and non-residents of the United States vary. Some of the important results from this graph are, mainly US non-residents prefer, heading to the country's public or for profit institutions rather than the private university. From the plot it is very apparent that the private rates are exceedingly high, some going up to the $60,000. Let's speak about U.S. residents, we see that U.S. residents prefer public colleges, one of the reasons why tuition may be comparatively less than the other types of institutions. Therefore, we conclude that the expense of private universities is higher for U.S. citizens and non-residents, relative to public and profit institutions, we see more non-residents entering U.S. public universities. Even some people are entering the private institutions.
-
-## Difference in fees after any Scholarship / Awards Earned
-
-As we know, students are provided grants for their education in various colleges, which lowers the pressure of the tuition fess by several inches. Let us understand if the amount of income is at the criterion when deciding on the student grants.
-
 ```{r dist-tut, fig.cap="Distribution of Tuition Fees in US", fig.align='center', message=FALSE, warning=FALSE}
 
 library(gridExtra)
@@ -238,6 +211,36 @@ four <- ridges_dat %>%
 
 ```{r, message=FALSE, warning=FALSE}
 grid_arrange_shared_legend(two,four,ncol=1, nrow=2)
+```
+
+Figure \@ref(fig:) displays the distribution of tuition fees for the residents and non-residents of US. Majorly the universities in the US offer two types of degree courses, which are a 2-Year degree course and a 4-Year degree courses. 2-Year degree courses are predominantly for students enrolled in a master's degree and 4-Year degree courses are generally offered to students pursuing a bachelor's degree. We have separated the two and plotted two different graphs as tuition fee varies majorly for the two different types of courses offered. As seen in \@ref(fig:), the red density plot depicts the tuition fee for non-residents and the histogram depicts the tuition fee for residents. We observe that for both 2-Year degrees and 4-Year degrees citizens and non-residents prefer going to public universities or profit organisations instead of private universities. The density in private universities is low as compared to the other two as this may be due to the higher expense of fees in private universities. It is clear from the above figure that both citizens and non-residents of the US prefer going to for profit or public universities to pursue higher education.
+
+## Difference in fees after any Scholarship / Awards Earned
+
+As we know, students are provided grants for their education in various colleges, which lowers the pressure of the tuition fess by several inches. Let us understand if the amount of income is at the criterion when deciding on the student grants.
+
+```{r, fig.height=6}
+# changes made --> instead of sum, grouped and took average . campus is also taken into consideration 
+tuition_income$income_lvl <- recode(tuition_income$income_lvl,
+                                  "48_001 to 75,000"="48,001 to 75,000") 
+tuition_incometest <- tuition_income %>%
+  mutate(net_cost=round(net_cost,2)) %>%
+
+  
+  group_by(year,campus,income_lvl)%>%
+  summarise(each=mean(net_cost))
+
+plo <- ggplot(tuition_incometest, aes(income_lvl,each, fill=campus)) +
+  geom_col(position = 'dodge') +
+  facet_wrap(~year) + 
+  theme(axis.text.x = element_text(angle=90)) +
+  ggtitle("Average Cost incurred after Scholarship for each Income group") +  
+  xlab("Income Level of the University Applicants")+
+  ylab("Difference in the Fees after Scholarship")
+plo
+
+
+
 ```
 
 Figure \@ref(fig:) displays the distribution of tuition fees for the residents and non-residents of US. Majorly the universities in the US offer two types of degree courses, which are a 2-Year degree course and a 4-Year degree courses. 2-Year degree courses are predominantly for students enrolled in a master's degree and 4-Year degree courses are generally offered to students pursuing a bachelor's degree. We have separated the two and plotted two different graphs as tuition fee varies majorly for the two different types of courses offered. As seen in \@ref(fig:), the red density plot depicts the tuition fee for non-residents and the histogram depicts the tuition fee for residents. We observe that for both 2-Year degrees and 4-Year degrees citizens and non-residents prefer going to public universities or profit organisations instead of private universities. The density in private universities is low as compared to the other two as this may be due to the higher expense of fees in private universities. It is clear from the above figure that both citizens and non-residents of the US prefer going to for profit or public universities to pursue higher education.
