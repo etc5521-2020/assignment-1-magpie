@@ -257,4 +257,24 @@ It is clear from figure \@ref(fig:) that the states New-Mexico, Mississippi and 
 
 US is ranked amongst the top countries, showing cultural diversity. US has students coming from around the world. Let's evaluate the various groups and the percentage of US university enrolment.
 
+```{r boxplot, fig.cap="Percentage of Enrollment among different universities throughout US", fig.align='center', message=FALSE, warning=FALSE,fig.height=6}
+
+# total minority  is the sum of all minority sections like asian , black etc so removed that 
+# used letter value plot instead of box plot to deal with outliers
+
+diversity_school_excludedtm <- diversity_school %>% mutate(Per = enrollment/total_enrollment*100) %>%
+  filter(category!="Total Minority")
+diversity_school_excludedtm$category <- recode(diversity_school_excludedtm$category,
+                                  "Two Or More Races"="Other",
+                                  "Unknown"="Other",
+                                  "Non-Resident Foreign"="Other") 
+
+ggplot(data=diversity_school_excludedtm) + 
+ geom_lv(aes(x=category,y=Per,fill=..LV..)) +
+scale_fill_viridis_d() + 
+  scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, by = 10))+
+  
+  theme(axis.text.x = element_text(angle=90))
+
+```
 
