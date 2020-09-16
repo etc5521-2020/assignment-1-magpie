@@ -191,3 +191,8 @@ salary_potential <-salary_potential %>%
 
 ```
 
+To compute the improvement in a student's career, we calculated the percentage increase in an individuals salary through his career and grouped by the states and summarised using the mean to arrive at the increase in salaries across various states and reordered them.
+
+In figure \@ref(fig:) we can clearly see that individuals graduating from universities in the states of Wyoming, New-Mexico, California, New-York and Ohio show the highest growth in mid-career salaries and the states of Delaware, North-Dakota, Alaska, Idaho and New-Hampshire show the least growth in mid-career salaries. Though there is not a huge difference between the state offering the highest growth and the state offering the least growth, figure \@ref(fig:) is a great tool to understand  student's career growth in different states.
+
+Furthermore, we have created a table \@ref(tab:) wherein all the universities whose alumni experienced a career growth of more than 75%. We have also ranked the universities state-wise in terms of the improvement. The table enables the user to find the top universities in any state and the improvement percentage as well.
