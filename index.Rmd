@@ -370,6 +370,30 @@ ggpairs(salary_tuition,columnLabels = c("Tuition", "Initial Pay", "Mid Pay","Imp
 
 ```
 
+Tuition and pay has positive correlation 
+
+STEM has positive correlation with everything except impact perentage. There are values which are contradictory. Initial pay 81,000,mid pay 144k,stem percent=2 and impct is 82. 
+
+
+some unis with lower tuition (7k) have above average initial (66k) and mid pay(120k). 
+
+
+```{r,fig.height=8}
+
+
+top_pay_uni <- salary_potential %>%
+  arrange(desc(early_career_pay)) %>%
+  head(25)
+
+ggplot(top_pay_uni, aes(x=early_career_pay, xend=mid_career_pay, y=reorder(name,early_career_pay))) + 
+        geom_dumbbell(color="#a3c4dc", 
+                      size=0.75, 
+                      point.colour.l="#0e668b")+
+  xlim(50000,165000)+
+        geom_text(color="red", size=4,hjust=-0.5,
+                  aes(x=mid_career_pay, label=paste0(round(top_pay_uni$improvement,2),"%"))) 
+```
+
 # Conclusion
 
 The standard of U.S. education is of highly remarkable. Through our study, we saw distribution of tuition fees in the U.S. and concluded that residents and non-residents tend to go to public and prosperous universities with good tuition fees. Furthermore, we witnessed that the US education system provides various grants and scholarships in the case of applicants having a strong profile and a lower income level to enable the student enter to the desired university.
