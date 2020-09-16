@@ -165,4 +165,29 @@ head(tuition_income,3) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("
 
 All the information gathered in these different data files was achieved by web scraping using the rvest library, html nodes, html url, and generating data set in tibble, mutating new columns and linking rows together later on. All the data was scraped and written in csv and later, the csv was read in to R environment using the readr function.
 
+# Analysis and Findings
+
+
+## Student's Career Development among American States
+
+
+
+After graduating, a student's improvement can be calculated in terms of his salary growth. Let's look at the various states, where we see the greatest change in the salary growth.
+
+```{r stud-develop, fig.cap="Students Career Development", fig.align='center',fig.height=6.5, message=FALSE, warning=FALSE}
+# changes made --> instead of sum, grouped and took average
+salary_potential <-salary_potential %>% 
+  mutate(improvement= (mid_career_pay-early_career_pay)*100/early_career_pay)
+
+ salary_potential %>% 
+     group_by(state_name) %>%
+   summarise(mean=mean(improvement)) %>%
+  ggplot(aes(y = reorder(state_name, mean), x = mean)) +
+ geom_bar(stat='identity', fill = "blue",alpha=0.5, width = 0.75) + 
+
+  labs(x="Improvement of Salaries (%) ", 
+       y="States of the US"
+      ) + ggtitle("Salary Improvement")
+
+```
 
