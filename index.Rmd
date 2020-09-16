@@ -296,3 +296,59 @@ A letter value boxplot overcomes the shortcomings of a coventional boxplot and c
 
 It is clear from figure \@ref(fig:) that white people form the majority of students enrolled in American universities followed by black people and other minorities.
 
+## Is diversity amongst students in the United States the same across all states and universities?
+
+
+
+### states
+
+```{r}
+library(leaflet)
+
+library(usmap)
+states <- geojsonio::geojson_read("json/us-states.geojson", what = "sp")
+
+min <- diversity_school %>% 
+  filter(category=="Total Minority") %>% 
+  mutate(minoritypercent = (enrollment/total_enrollment)*100) %>%
+  group_by(state) %>% 
+  summarise(meanminority=mean(minoritypercent,na.rm = T)) 
+
+min$meanminority <- round(min$meanminority,2)
+
+
+ qpal <- colorNumeric("viridis", min$meanminority)
+ qpalWithoutNA <- colorNumeric("viridis",min$meanminority, na.color=rgb(0,0,0,0))
+
+labels <- sprintf(
+  "<strong>%s</strong><br/>%g Percent",
+  min$state, min$meanminority
+) %>% lapply(htmltools::HTML)
+
+leaflet(states,options = leafletOptions(minZoom = 4,maxZoom = 2)) %>%
+  setView(-96, 37.8, 4) %>%
+  addTiles() %>%
+  addPolygons(
+    fillColor = ~qpal(min$meanminority),
+    weight = 2,
+    opacity = 1,
+    color = "white",
+    dashArray = "3",
+    fillOpacity = 0.7,
+    highlight = highlightOptions(
+      weight = 5,
+      color = "#666",
+      dashArray = "",
+      fillOpacity = 0.7,
+      bringToFront = TRUE),
+    label = labels,
+    labelOptions = labelOptions(
+      style = list("font-weight" = "normal", padding = "3px 8px"),
+      textsize = "15px",
+      direction = "auto")) %>% 
+  addLegend(pal = qpalWithoutNA, values = ~ min$meanminority, opacity = 0.7, title = "Percentage of Minority",
+    position = "bottomright")
+
+
+```
+
