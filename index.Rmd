@@ -13,7 +13,7 @@ output:
 [This assignment is for ETC5521 Assignment 1 by Team `r rmarkdown::metadata$team` comprising of `r knitr::combine_words(rmarkdown::metadata$author)`.]{style="color:#006DAE;"}
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE,message = FALSE,warning = F)
 library(tidyverse)
 library(dplyr)
 library(kableExtra)
@@ -25,6 +25,16 @@ library(gridExtra)
 library(scales)
 library(DT)
 library(plotly)
+library(grid)
+library(lemon)
+library(lvplot)
+library(visdat)
+# devtools::install_github("hrbrmstr/ggalt")
+#install.packages("lvplot")
+#devtools::install_github("josiahpjking/jkr")
+library(jkr)
+library(ggalt)
+library(gganimate)
 ```
 
 
@@ -301,12 +311,8 @@ It is clear from figure \@ref(fig:) that white people form the majority of stude
 
 
 ### states
-
 ```{r}
 library(leaflet)
-
-library(usmap)
-states <- geojsonio::geojson_read("json/us-states.geojson", what = "sp")
 
 min <- diversity_school %>% 
   filter(category=="Total Minority") %>% 
@@ -317,19 +323,39 @@ min <- diversity_school %>%
 min$meanminority <- round(min$meanminority,2)
 
 
- qpal <- colorNumeric("viridis", min$meanminority)
- qpalWithoutNA <- colorNumeric("viridis",min$meanminority, na.color=rgb(0,0,0,0))
+ 
+```
 
+
+```{r}
+
+states <- geojsonio::geojson_read("json/us-states.geojson", what = "sp")
+
+
+pal <- colorNumeric("viridis", domain = states$density)
+
+hawaii <- min %>%
+  filter(state=="Hawaii")
 labels <- sprintf(
   "<strong>%s</strong><br/>%g Percent",
+  #"<strong>%s</strong><br/>%g Percent",
   min$state, min$meanminority
 ) %>% lapply(htmltools::HTML)
 
-leaflet(states,options = leafletOptions(minZoom = 4,maxZoom = 2)) %>%
-  setView(-96, 37.8, 4) %>%
-  addTiles() %>%
+content <- sprintf(
+  "<strong>%s</strong><br/>%g Percent",
+  #"<strong>%s</strong><br/>%g Percent",
+  hawaii$state,hawaii$meanminority
+) %>% lapply(htmltools::HTML)
+
+
+leaflet(states,options = leafletOptions(minZoom = 3)) %>%
+  setView(-120.233256, 41, 3) %>%
+  addProviderTiles("MapBox", options = providerTileOptions(
+    id = "mapbox.light",
+    accessToken = Sys.getenv('MAPBOX_ACCESS_TOKEN'))) %>%
   addPolygons(
-    fillColor = ~qpal(min$meanminority),
+    fillColor = ~pal(density),
     weight = 2,
     opacity = 1,
     color = "white",
@@ -345,11 +371,96 @@ leaflet(states,options = leafletOptions(minZoom = 4,maxZoom = 2)) %>%
     labelOptions = labelOptions(
       style = list("font-weight" = "normal", padding = "3px 8px"),
       textsize = "15px",
-      direction = "auto")) %>% 
-  addLegend(pal = qpalWithoutNA, values = ~ min$meanminority, opacity = 0.7, title = "Percentage of Minority",
-    position = "bottomright")
-
+      direction = "auto")) %>%
+  addPopups(-155.634835,21.948267, content,
+    options = popupOptions(closeButton = FALSE)
+  ) %>%
+  addLegend(pal = pal, values = ~density, opacity = 0.9, title = "Percentage of Minority",
+    position = "topright")
 
 ```
 
+## universities
 
+
+```{r}
+averagecal <- tuition_cost %>% 
+  group_by(name) %>%
+  summarise(avg_fee=mean(in_state_total))
+ex <- averagecal %>%
+  arrange(desc(avg_fee)) %>%
+  head(50) 
+
+inex <- averagecal%>% 
+  arrange((avg_fee)) %>%
+  head(50) 
+```
+
+
+```{r, fig.width=10}
+
+econ <- diversity_school
+econ$category <- recode(econ$category,
+                                  "Two Or More Races"="Other",
+                                  "Unknown"="Other",
+                                  "Non-Resident Foreign"="Other") 
+
+econ <- econ %>% 
+  filter(category!="Total Minority") %>%
+  filter(category!="Other") %>%
+  filter(category!="Women")
+ 
+ diversity_cost_ex <- econ  %>%
+  
+  inner_join(ex,by="name") 
+ 
+ 
+diversity_cost_ex <-diversity_cost_ex %>% 
+  mutate(proportion=(enrollment/total_enrollment)*100)
+
+  propor_cat_ex <- diversity_cost_ex %>%
+   filter(category=="White") %>%
+   select(proportion,name) %>%
+   arrange(desc(proportion))
+ 
+ 
+ diversity_cost_ex %>% 
+ ggplot(aes(x=proportion,y=factor(reorder(name,proportion),levels=propor_cat_ex$name),fill=category))+
+  geom_bar(position = "stack",stat="identity") +
+   theme(legend.position = "top") +
+   scale_fill_viridis_d()+
+   scale_x_continuous(breaks = c(0,25,50,75,100)) +
+   ylab("Top 50 Expensive Instituitions") +
+   xlab("Proportion of Enrollment") +
+   ggtitle("Enrollment in Expensive Educational Instituitions")
+ 
+ diversity_cost_inex <- econ  %>%
+  
+  inner_join(inex,by="name") 
+ 
+ 
+
+diversity_cost_inex <-diversity_cost_inex%>%
+  mutate(proportion=(enrollment/total_enrollment)*100) %>%
+   arrange(desc(proportion))
+
+propor_cat_inex <- diversity_cost_inex %>%
+   filter(category=="White") %>%
+   select(proportion,name) %>%
+   arrange(desc(proportion))
+ 
+
+ diversity_cost_inex %>% 
+ ggplot(aes(x=proportion,y=factor(reorder(name,proportion),levels=propor_cat_inex$name),fill=category))+
+  geom_bar(position = "stack",stat="identity") +
+   theme(legend.position = "top")+
+   scale_fill_viridis_d()+
+   scale_x_continuous(breaks = c(0,25,50,75,100))+
+   ylab("Top 50 Inexpensive Instituitions") +
+   xlab("Proportion of Enrollment") +
+   ggtitle("Enrollment in Inexpensive Educational Instituitions")
+
+ 
+
+
+```
