@@ -55,4 +55,28 @@ Upon futher inspection, we also found out that some of the datasets have a few *
 
 Let's look at the small snippets of the various data sets and the percentage of missing values in the variables, and get a better understanding of the variables.
 
+## Data on Diversity 
+
+The *diversity_school* data set comes [The Chronicle of Higher Education](https://www.chronicle.com/article/student-diversity-at-4-725-institutions).
+
+```{r}
+vis_miss(diversity_school)
+```
+
+```{r}
+diversity_school <- diversity_school %>%
+  filter(!is.na(name)) %>%
+  filter(!is.na(state))
+```
+
+
+```{r ds, echo=FALSE}
+head(diversity_school,3) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("hover" , "striped"))
+```
+
+- Name has data type character properties that describe the school name.
+- Total Enrolment has double datatype properties representing the total number of students enrolled.
+- State with character datatype representing the various states.
+- Category with character properties defining the group Group / Racial / Gender.
+- Enrolment with double datatype properties specifying the specific enrollment.
 
