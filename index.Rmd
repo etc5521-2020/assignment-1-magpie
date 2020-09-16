@@ -253,4 +253,8 @@ To arrive at figure  \@ref(fig:) we first removed all the missing values which w
 
 It is clear from figure \@ref(fig:) that the states New-Mexico, Mississippi and Louisana contibute the most and the states of Nevada, Rhode-Island and New-Jersey contibute the least towards making the world a better place.
 
+## Diversity in Education in US
+
+US is ranked amongst the top countries, showing cultural diversity. US has students coming from around the world. Let's evaluate the various groups and the percentage of US university enrolment.
+
 
