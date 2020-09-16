@@ -278,3 +278,21 @@ scale_fill_viridis_d() +
 
 ```
 
+To calculate the percentage of US university enrolment amongst various ethinic groups, first we removed the Total Minority as it was a summation of all minority sections classfied as  'asian', 'black' etc. Besides we added *Two Or More Races*, *Unknown* and *Non-Resident Foreign* to the other category. Then to plot the values, we utilized a *Letter Value Boxplot* using the *lvplot* R package instead of a traditional boxplot as can be seen in figure \@ref(fig:)
+
+A letter value boxplot overcomes the shortcomings of a coventional boxplot and conveys more information in the the tails or the outliers using letter values. The legend besides the letter value plot mentions certain alphabets and the color they represent on the letter value plot.
+
+- M represents the median and roughly 50% of the observations.
+- F represents the quartiles and roughly 25% of the observations.
+- E denotes roughly 12.5% of the observations.
+- D denotes roughly 6.25% of the observations.
+- C denotes roughly 3.13% of the observations.
+- B denotes roughly 1.56% of the observations.
+- A denotes roughly 0.8% of the observations.
+- Z denotes roughly 0.4% of the observations.
+- Y denotes roughly 0.2% of the observations.
+- X denotes roughly 0.1% of the observations.
+- W denotes roughly 0.05% of the observations.
+
+It is clear from figure \@ref(fig:) that white people form the majority of students enrolled in American universities followed by black people and other minorities.
+
