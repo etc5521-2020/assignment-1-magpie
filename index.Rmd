@@ -209,3 +209,42 @@ DT::datatable(top_colleges,
               filter="top", 
               options = list(pageLength = 5, scrollX=T))
 ```
+
+
+## Alumni of US that Make World a Better Place to Live
+
+Alumni serve many important positions, such as helping create and develop the brand of an organization through word-of-mouth marketing. Alumni play a significant role in promoting organizations that benefit students and their activities. Let us look at alumni from which state a better place to stay in a world.
+
+```{r bcc, fig.cap="Alumini that make the world a better place to Live", fig.align='center', fig.height=9, fig.width=9, message=FALSE, warning=FALSE}
+
+na <- salary_potential %>%
+  filter(is.na(make_world_better_percent)) # 33 na values 
+
+# changes made --> instead of sum, grouped and took average & used average value to color so as to distinguish properly
+alumni <- salary_potential %>%
+  filter(!is.na(make_world_better_percent)) %>%
+  group_by(state_name) %>%
+  summarise(mean=mean(make_world_better_percent))
+empty_bar <- 40
+ 
+
+to_add <- matrix("", empty_bar, ncol(alumni))
+colnames(to_add) <- colnames(alumni)
+data <- rbind(alumni, to_add)
+data <- data %>%
+  mutate(mean=as.numeric(mean))
+
+
+data %>%
+ggplot(aes(x=reorder(state_name,mean), y= mean,fill=mean)) +
+  geom_bar(stat="identity") +
+   theme_minimal() + 
+ scale_fill_viridis_c()+
+  theme(axis.title.x = element_blank(), axis.title.y = element_blank(), axis.text.y = element_blank()) + 
+  ggtitle("Alumni that contribute to make a world a better place to Live")   +
+  theme(axis.text.x = element_text(hjust = 5))+
+  theme(plot.title = element_text(hjust = 0.5)) +
+ # scale_x_discrete(guide = guide_axis(n.dodge = 2))+
+  coord_polar(start = 0)
+  
+```
