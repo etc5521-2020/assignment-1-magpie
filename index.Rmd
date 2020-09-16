@@ -194,17 +194,50 @@ In the figure \@ref(fig:dist-tut) taking a closer look at the graph, we can obse
 
 As we know, students are provided grants for their education in various colleges, which lowers the pressure of the tuition fess by several inches. Let us understand if the amount of income is at the criterion when deciding on the student grants.
 
-```{r tut-income-diff, fig.cap="Difference in tution fees after Scholarships/Awards", fig.align='center', message=FALSE, warning=FALSE}
-tuition_income <- tuition_income %>% mutate(diff = total_price - net_cost)
+```{r dist-tut, fig.cap="Distribution of Tuition Fees in US", fig.align='center', message=FALSE, warning=FALSE}
 
-ggplot(tuition_income, aes(income_lvl, diff)) +
-  geom_bar(stat='identity', fill="forest green") +
-  facet_wrap(~year) + 
-  theme(axis.text.x = element_text(angle=65, vjust=0.6)) + 
-  labs(y="Difference in the Fees after Scholarship", 
-       x="Income Level of the University Applicants"
-      ) +  scale_y_continuous(labels = comma_format(big.mark = ".",
-                                           decimal.mark = ","))
+library(gridExtra)
+ridges_dat <- tuition_cost %>% dplyr::filter(tuition_cost$type != "Other") 
+
+```
+
+
+```{r,message=FALSE, warning=FALSE}
+
+# a histogram (probability densities instead of frequencies) + density is plotted to distinguish between non residents and residents. campus & degree length is also taken into consideration 
+
+cols <- c("Residents"="#457b9d","Non Residents"="red")
+two <- ridges_dat %>%
+  filter(degree_length=="2 Year")%>%
+  ggplot()+
+  geom_histogram(aes(x = in_state_tuition,y=..density..,fill="Residents"))+
+  geom_density(aes(x=out_of_state_tuition,color="Non Residents"))+
+  facet_wrap(~type)+
+  xlab("Tuition")+ylab("Density")+
+  ggtitle("2 Year Degree")+
+  scale_colour_manual(name="",values=cols) + scale_fill_manual(name="",values=cols) 
+
+four <- ridges_dat %>%
+  filter(degree_length=="4 Year")%>%
+  ggplot()+
+  geom_histogram(aes(x = in_state_tuition,y=..density..,fill="Residents"))+
+  geom_density(aes(x=out_of_state_tuition,color="Non Residents"))+
+  facet_wrap(~type)+
+  xlab("Tuition")+
+  ylab("Density")+
+  ggtitle("4 Year Degree")+
+  scale_colour_manual(name="",values=cols) + 
+  scale_fill_manual(name="",values=cols)
+
+
+
+
+```
+
+
+
+```{r, message=FALSE, warning=FALSE}
+grid_arrange_shared_legend(two,four,ncol=1, nrow=2)
 ```
 
 In the figure \@ref(fig:tut-income-diff) we see that after earning any scholarships / awards we note a decrease in tuition fees. A popular aspect that we find over the years is that the scholarship earned by the various applicants is often judged much of the time , based on the applicant's income level and certainly a strong profile that the applicant would already have. Looking closely at the graph, we see that for applicants with income level above USD 110,000, there is a smaller gap in the scholarship relative to the other level of income. Applicants with income rates ranging from 0 to 30,000 USD, have a significant gap between the real tuition costs and the amount charged for the scholarship by the applicants. We also note that the gap in these patterns from the year 2010 has been showing and upward trend. We may therefore confidently state that applicants with lower incomes earn more scholarship grants when they are compared with applicants with higher incomes.
