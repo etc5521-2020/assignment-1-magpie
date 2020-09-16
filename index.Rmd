@@ -340,6 +340,36 @@ interactive_boxplot
 ```
 In the figure \@ref(fig:boxplot) helps us in  finding out the different groups of people who have enrolled in the various universities in the US. The figure makes us understand that white is the majority of people enrolled in American universities, followed by a complete group of minorities. Using the interactive hover function, we can see the different quartiles of people enrolled in that university. The boxplot tells us the the different values of the people enrolled, thus giving us the a good indication of spread out values. The hover over function helps us to understand the different intervals and the number of students enrolled in the US. This graphs allows us to conclude that the we can witness the different cultural diversity in terms of education.
 
+## Does paying high tuition guarantee a higher salary? Which college has more potential in career growth on the basis of initial salary offered? 
+
+```{r , fig.height=5}
+library(plotly)
+salary_tuition <- salary_potential %>%
+  inner_join(tuition_cost,by="name") %>%
+  select(in_state_tuition,early_career_pay,mid_career_pay,make_world_better_percent,stem_percent)
+
+mean(salary_tuition$in_state_tuition)
+mean(salary_tuition$early_career_pay)
+mean(salary_tuition$mid_career_pay)
+
+lowerFn <- function(data, mapping, method = "lm", ...) {
+  p <- ggplot(data = data, mapping = mapping) +
+    geom_point(colour = "blue",size=0.5) +
+    geom_smooth(method = method, color = "red", ...)
+  p
+}
+
+p <- highlight_key(salary_tuition) %>%
+ggpairs(salary_tuition,columnLabels = c("Tuition", "Initial Pay", "Mid Pay","Impact","STEM"),lower = list(continuous = wrap(lowerFn,method="lm")),title = "Relationship between Tuition ,Salary,Impact and STEM Percent") +
+  
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+  ggplotly(p) %>%
+  highlight("plotly_selected") %>%
+    layout(margin=list(l = 100,t=50), yaxis=list(tickprefix=""))
+
+```
+
 # Conclusion
 
 The standard of U.S. education is of highly remarkable. Through our study, we saw distribution of tuition fees in the U.S. and concluded that residents and non-residents tend to go to public and prosperous universities with good tuition fees. Furthermore, we witnessed that the US education system provides various grants and scholarships in the case of applicants having a strong profile and a lower income level to enable the student enter to the desired university.
