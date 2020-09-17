@@ -204,8 +204,9 @@ All the information gathered in these different data files was achieved by web s
 ## Student's Career Development among American States
 
 
-
 After graduating, a student's improvement can be calculated in terms of his salary growth. Let's look at the various states, where we see the greatest change in the salary growth.
+To compute the improvement in a student's career, we calculated the percentage of increase in an individual's salary through his career and grouped by the states and summarized using the mean to arrive at the average increase in salaries across various states and reordered them.
+
 
 ```{r studdevelop, fig.cap="*The bar chart depicts the average salary growth of students in the states of US with states ordered according to the improvement rates. Students from Wyoming,New Mexico,California showcase high career growth where as Delaware,Alaska show relatively less growth.*", fig.align='center',fig.height=6.5, message=FALSE, warning=FALSE}
 # changes made --> instead of sum, grouped and took average
@@ -224,16 +225,16 @@ salary_potential <-salary_potential %>%
 
 ```
 
-To compute the improvement in a student's career, we calculated the percentage increase in an individuals salary through his career and grouped by the states and summarised using the mean to arrive at the increase in salaries across various states and reordered them.
+In figure \@ref(fig:studdevelop) we can clearly see that individuals graduating from universities in the states of Wyoming, New-Mexico, California, New-York and Ohio show the highest growth in mid-career salaries and the states of Delaware, North-Dakota, Alaska, Idaho and New-Hampshire show the least growth in mid-career salaries. Though there is not a huge difference between the state offering the highest growth and the state offering the least growth, figure \@ref(fig:studdevelop) is a great tool to understand a student's career growth in different states.
 
-In figure \@ref(fig:studdevelop) we can clearly see that individuals graduating from universities in the states of Wyoming, New-Mexico, California, New-York and Ohio show the highest growth in mid-career salaries and the states of Delaware, North-Dakota, Alaska, Idaho and New-Hampshire show the least growth in mid-career salaries. Though there is not a huge difference between the state offering the highest growth and the state offering the least growth, figure \@ref(fig:studdevelop) is a great tool to understand  student's career growth in different states.
+Furthermore, we have created a table,table \@ref(fig:imp) wherein all the universities whose alumni experienced a career growth of more than 75%. We have also ranked the universities state-wise in terms of the improvement. The table enables the user to find the top universities in any state and the improvement percentage as well.
 
-Furthermore, we have created a table \@ref(fig:imp) wherein all the universities whose alumni experienced a career growth of more than 75%. We have also ranked the universities state-wise in terms of the improvement. The table enables the user to find the top universities in any state and the improvement percentage as well.
 
 ```{r improvementrate}
 top_colleges <- salary_potential %>% 
 dplyr::filter(improvement >75) %>%  # changed 0.75 to 75
-  dplyr::select(name, state_name, rank,improvement) 
+  dplyr::select(name, state_name, rank,improvement) %>%
+  arrange(desc(improvement))
 ```
 
 ```{r imp, fig.cap="*The interactive table shows the list of Instituitions whose alumni experienced a career growth of more than 75 % along with the rank of the university in each state.*", fig.align='center'}
@@ -246,7 +247,7 @@ DT::datatable(top_colleges,
 
 ## Alumni of US that Make World a Better Place to Live
 
-Alumni serve many important positions, such as helping create and develop the brand of an organization through word-of-mouth marketing. Alumni play a significant role in promoting organizations that benefit students and their activities. Let us look at alumni from which state a better place to stay in a world.
+Alumni serve many important positions, such as helping create and develop the brand of an organization through word-of-mouth marketing. Alumni play a significant role in promoting organizations that benefit students and their activities. Let us look at alumni from different US states who make an impact in the world.
 
 ```{r bcc, fig.cap="*The circular bar plot depicts the average percentage of Alumni of instituitions in each state of the US, who believe they are making the world a better place.Ordered according to the proportion,the plot shows that alumni from New Mexico believe they make a positive impact on the world*", fig.align='center', fig.height=9, fig.width=9, message=FALSE, warning=FALSE}
 
@@ -285,13 +286,13 @@ ggplot(aes(x=reorder(state_name,mean), y= mean,fill=mean)) +
   
 ```
 
-To arrive at figure  \@ref(fig:bcc) we first removed all the missing values which were present in the variable *make_world_better_place* and grouped by the state and summarised using the mean and plotted the circular bar chart using the mean value to color the bars to distinguish appropriately. We also reordered it to clearly display the best and the worst state.
+To arrive at figure  \@ref(fig:bcc) we grouped by the state and summarized using the mean to calculate at the average percentage of alumni who think they make the world a better place.Later we plotted the circular bar chart using the mean value to colour the bars to distinguish the states appropriately. We also reordered it to clearly display the state in which students think they make the most impact and the least impact.
 
-It is clear from figure \@ref(fig:bcc) that the states New-Mexico, Mississippi and Louisana contibute the most and the states of Nevada, Rhode-Island and New-Jersey contibute the least towards making the world a better place.
+It is clear from figure \@ref(fig:bcc) that more alumni from states, New-Mexico, Mississippi and Louisana think they contribute towards making greater impact in the world where as the alumni from states of Nevada, Rhode-Island and New-Jersey believe they do not contribute enough. 
 
 ## Diversity in Education in US
 
-US is ranked amongst the top countries, showing cultural diversity. US has students coming from around the world. Let's evaluate the various groups and the percentage of US university enrolment.
+To calculate the percentage of US university enrolment amongst various ethnic groups, first we removed the Total Minority as it was a summation of all minority ethnic categories like 'Asian','Black' etc. Besides we added *Two Or More Races*, *Unknown* and *Non-Resident Foreign* to the other category as they individually contribute very little to the enrolment data.To plot the values, we utilized a *Letter Value Boxplot* using the *lvplot* R package instead of a traditional boxplot as can be seen in figure \@ref(fig:lvplot)
 
 ```{r lvplot, fig.cap="*The Percentage of Enrollment across different universities in the US is depicted in the Letter Value plot.Half of the enrolments across US see 60 % of the total enrollment of an instituion as White where as overwhelmingly low percentage of American Indian and Native Hawaiian enrolment is seen*", fig.align='center', message=FALSE, warning=FALSE,fig.height=6}
 
@@ -317,9 +318,7 @@ scale_fill_viridis_d() +
 
 ```
 
-To calculate the percentage of US university enrolment amongst various ethinic groups, first we removed the Total Minority as it was a summation of all minority sections classfied as  'asian', 'black' etc. Besides we added *Two Or More Races*, *Unknown* and *Non-Resident Foreign* to the other category. Then to plot the values, we utilized a *Letter Value Boxplot* using the *lvplot* R package instead of a traditional boxplot as can be seen in figure \@ref(fig:lvplot)
-
-A letter value boxplot overcomes the shortcomings of a coventional boxplot and conveys more information in the the tails or the outliers using letter values. The legend besides the letter value plot mentions certain alphabets and the color they represent on the letter value plot.
+A letter value boxplot overcomes the shortcomings of a conventional boxplot and conveys more information in the tails or the outliers using letter values. The legend besides the letter value plot mentions certain alphabets and the colour they represent on the letter value plot.
 
 - M represents the median and roughly 50% of the observations.
 - F represents the quartiles and roughly 25% of the observations.
@@ -333,13 +332,17 @@ A letter value boxplot overcomes the shortcomings of a coventional boxplot and c
 - X denotes roughly 0.1% of the observations.
 - W denotes roughly 0.05% of the observations.
 
-It is clear from figure \@ref(fig:lvplot) that white people form the majority of students enrolled in American universities followed by black people and other minorities.
+It is clear from figure \@ref(fig:lvplot) that people of White race form the majority of students enrolled in American universities followed by Black race  and other minorities. Native Hawaiian/Pacific Islander and American Indian/Alaska Native category of ethnic groups observe least enrolment in American universities.
+
 
 ## Is diversity amongst students in the United States the same across all states and universities?
 
+In this section we will investigate how accomodative are different states are of various minorities in their universities and to do so,we explored the percentage of different minorities enrolled in universities across the US.
 
+To plot the minorities across various US states, first we calculated the enrolment percentage for all minorities in US universities and then made use of a leaflet plot in the R leaflet package to plot the minority percentages across different US states as seen in figure \@ref(fig:leaflet). This was done withe help of a geojson file which contains the geographical information. The figure or the choropleth map is interactive and hovering over individual states show the percentage of minorities enrolled in universities in those states.
 
-### states
+From the figure it is visible that the universities in the state of Hawaii harbours the most amount of minority groups and the state of Maine harbours the least.
+
 ```{r mincal}
 library(leaflet)
 
@@ -409,8 +412,10 @@ leaflet(states,options = leafletOptions(minZoom = 3)) %>%
 
 ```
 
-## universities
 
+After looking at the states and their accommodative nature of accepting different ethnic backgrounds, we now shift our focus to look at how expensive and inexpensive universities accommodate students of different ethnic backgrounds.
+
+To categorise universities into the economic groups,*Expensive* and *Inexpensive*, we first grouped all the universities by their name, summarized them to find the mean tuition cost and reordered them according to the top 50 colleges with the highest tuition fees and the bottom 50 colleges with the lowest tuition fees.Later, we joined the dataset showing tuition with the diversity dataset using the name of the universities and filtered out the total minorities, women and other categories to showcase the distribuition better. We also calculated the enrolment percentages for the top 50 expensive and bottom 50 inexpensive colleges and rendered two separate plots as shown below,to display the percentage of students of various ethnic groups enrolled in US universities.
 
 ```{r averagecal}
 averagecal <- tuition_cost %>% 
@@ -426,7 +431,7 @@ inex <- averagecal%>%
 ```
 
 
-```{r stack, fig.width=10, fig.cap="*The horizontal stacked bar plot depicts the proportion of enrolments in the top 50 expensive educational instituitions in the US, according to ethnicity. An overwhemingly large population of people having White ethnicity  is seen where Hispanic,Black ,Asian population form the minority.*"}
+```{r stack, fig.width=10,fig.height=8, fig.cap="*The horizontal stacked bar plot depicts the proportion of enrolments in the top 50 expensive educational instituitions in the US, according to ethnicity. An overwhemingly large population of people having White ethnicity  is seen where Hispanic,Black ,Asian population form the minority.*"}
 
 econ <- diversity_school
 econ$category <- recode(econ$category,
@@ -464,8 +469,9 @@ diversity_cost_ex <-diversity_cost_ex %>%
    ggtitle("Enrollment in Expensive Educational Instituitions")
 ```
 
-
-```{r stackin, fig.width=10, fig.cap="*The horizontal stacked bar plot shown here depicts the proportion of enrolments in the top 50 inexpensive educational instituitions in the US, according to ethnicity.Majority of the enrolments in inexpensive schools are Hispanic population followed by Black and Asian population.The Native Hawaiian and American Indian population remain a minorty in these schools as well.The inexpensive instituitions are mostly community colleges.*"}
+In Figure \@ref(fig:stack) it is clearly seen that the majority of enrolment in the top 50 expensive colleges in the US is that of white ethnicity followed by Hispanic, black and Asian ethnicities which form the minority.
+ 
+```{r stackin, fig.width=10,fig.height=8, fig.cap="*The horizontal stacked bar plot shown here depicts the proportion of enrolments in the top 50 inexpensive educational instituitions in the US, according to ethnicity.Majority of the enrolments in inexpensive schools are Hispanic population followed by Black and Asian population.The Native Hawaiian and American Indian population remain a minorty in these schools as well.The inexpensive instituitions are mostly community colleges.*"}
 
  diversity_cost_inex <- econ  %>%
   
@@ -497,3 +503,8 @@ propor_cat_inex <- diversity_cost_inex %>%
 
 
 ```
+
+
+In Figure \@ref(fig:stackin) it is observed that the majority of enrolment in the top 50 inexpensive colleges in the US is that of Hispanic, black and Asian population followed by white ethnic groups. The Native Hawaiian and American Indian students again form the minority amongst other groups in US universities. One of the reasons why the overwhelming enrolment of these ethnic groups in least expensive colleges could be that the majority of least expensive colleges are community colleges.
+
+
