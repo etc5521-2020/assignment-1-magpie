@@ -219,7 +219,7 @@ Figure \@ref(fig:tuitiondist) displays the distribution of tuition fees for the 
 
 A lot of students receive grants and scholarships of various kinds. Through this section, we will understand how the grants/scholarships are awarded to students of various income groups how much cost students end up paying across various income groups.
 
-```{r, fig.height=6}
+```{r stunetfee, fig.cap="*The stacked barplot shows the average net cost students pay across various income groups over the years for off campus and on campus education in US universities.*", fig.align='center', fig.height=9, fig.width=9, message=FALSE, warning=FALSE}
 # changes made --> instead of sum, grouped and took average . campus is also taken into consideration 
 tuition_income$income_lvl <- recode(tuition_income$income_lvl,
                                   "48_001 to 75,000"="48,001 to 75,000") 
@@ -243,7 +243,7 @@ plo
 
 ```
 
-```{r tut-income-diff, fig.height=6,fig.cap="Difference in tuition fees after Scholarships/Awards", fig.align='center', message=FALSE, warning=FALSE}
+```{r stuscholar, fig.cap="*The stacked barplot show the amount of scholarships students earn across various income groups in US universities over the yearsfor on campus and off campus education.*", fig.align='center', fig.height=9, fig.width=9, message=FALSE, warning=FALSE}
 # changes made --> instead of sum, grouped and took average. campus is also taken into consideration 
  tuition_income %>% 
   mutate(diff = total_price - net_cost) %>%
