@@ -229,7 +229,6 @@ In figure \@ref(fig:studdevelop) we can clearly see that individuals graduating 
 
 Furthermore, we have created a table,table \@ref(fig:imp) wherein all the universities whose alumni experienced a career growth of more than 75%. We have also ranked the universities state-wise in terms of the improvement. The table enables the user to find the top universities in any state and the improvement percentage as well.
 
-
 ```{r improvementrate}
 top_colleges <- salary_potential %>% 
 dplyr::filter(improvement >75) %>%  # changed 0.75 to 75
