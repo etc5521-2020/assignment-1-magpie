@@ -163,7 +163,7 @@ One of the key reasons students chose to study in the USA is the prestige of the
 
 Let us examine and know the important facts about the US education system. We look at the various aspects when studying, the diversity of education, the history of education, the cost of tuition, income among people people in the United States, the different wages currently on the market, and similar exciting analyses.
 
-## The Distribution of Tution Fees in US.
+## The Distribution of Tuition Fees in US.
 
 Let us look at the distribution of the spectrum of tuition fees in the United States for residents and non-residents of the United States across the various types of institutions in the United States
 
@@ -209,11 +209,11 @@ four <- ridges_dat %>%
 
 
 
-```{r, message=FALSE, warning=FALSE}
+```{r tuitiondist, fig.cap="*The histogram and density distribution shows the distribution of tuition feesof residents and non-residents of US across 2-Year and 4-Year degree courses. Though both residents and non-residents enrol more in public universities, non-residents end up paying more.*", fig.align='center', fig.height=6.5, message=FALSE, warning=FALSE}
 grid_arrange_shared_legend(two,four,ncol=1, nrow=2)
 ```
 
-Figure \@ref(fig:) displays the distribution of tuition fees for the residents and non-residents of US. Majorly the universities in the US offer two types of degree courses, which are a 2-Year degree course and a 4-Year degree courses. 2-Year degree courses are predominantly for students enrolled in a master's degree and 4-Year degree courses are generally offered to students pursuing a bachelor's degree. We have separated the two and plotted two different graphs as tuition fee varies majorly for the two different types of courses offered. As seen in \@ref(fig:), the red density plot depicts the tuition fee for non-residents and the histogram depicts the tuition fee for residents. We observe that for both 2-Year degrees and 4-Year degrees citizens and non-residents prefer going to public universities or profit organisations instead of private universities. The density in private universities is low as compared to the other two as this may be due to the higher expense of fees in private universities. It is clear from the above figure that both citizens and non-residents of the US prefer going to for profit or public universities to pursue higher education.
+Figure \@ref(fig:tuitiondist) displays the distribution of tuition fees for the residents and non-residents of US. Majorly the universities in the US offer two types of degree courses, which are a 2-Year degree course and a 4-Year degree courses. 2-Year degree courses are predominantly for students enrolled in a master's degree and 4-Year degree courses are generally offered to students pursuing a bachelor's degree. We have separated the two and plotted two different graphs as tuition fee varies majorly for the two different types of courses offered. As seen in \@ref(fig:), the red density plot depicts the tuition fee for non-residents and the histogram depicts the tuition fee for residents. We observe that the density in private universities is low as compared to the other two as this may be due to the higher expense of fees in private universities. It is clear from the above figure that both citizens and non-residents of the US enrol in for profit or public universities to pursue higher education. Another noticeable fact is that, in public universities, non-residents end up paying more than citizens of the US.
 
 ## Difference in fees after any Scholarship / Awards Earned
 
