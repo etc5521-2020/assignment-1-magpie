@@ -233,17 +233,17 @@ ggpairs(salary_tuition,columnLabels = c("Tuition", "Initial Pay", "Mid Pay","Imp
 
 ```
 
-To find out if there is any relation between tuition and career growth, we first joined the tuition and the salary datasets with the help of universitiy names. Then we have produced a matrix scatter plot using the ggpairs function of GGALLY package.
+To find out if there is any relation between tuition and career growth, we first joined the tuition and the salary datasets with the help of university names. Then we have produced a matrix scatter plot using the ggpairs function of GGALLY package.
 
-A matrix scatter plot is a powerful tool for visualising the correlation between various variables in a dataset. As can be seen from figure \@ref(fig:tiplot) apart from the Impact variable, which is a percentage provided by students who think they are making the world a better place all the other variables show a positive correlation amongst each other. This suggests that paying a higher tuition fee does mean that a greater initial salary, mid career salary can be expected by the students. Another intersting point to note is that the presence of STEM students escalates the possibility of getting a better initial and mid career pay. STEM is an acronym for science, technology, engineering and maths. Having STEM courses in a university boosts the prospects of the university and thus the students. 
+A matrix scatter plot is a powerful tool for visualising the correlation between various variables in a dataset. As can be seen from figure \@ref(fig:tiplot) apart from the Impact variable, which is a percentage provided by students who think they are making the world a better place all the other variables show a positive correlation amongst each other. This suggests that paying a higher tuition fee does mean that a greater initial salary, mid career salary can be expected by the students. Another interesting point to note is that the presence of STEM students escalates the possibility of getting a better initial and mid career pay. STEM is an acronym for science, technology, engineering and maths. Having STEM courses in a university boosts the prospects of the university and thus the students. 
 
 There are also some values which are contradictory to the correlation. These can be found by hovering over the plot as the plot has been made interactive using the plotly package in R. 
 
-One such observation is where the initial pay is 81k, mid career pay is around 144k whereas the stem percent is only 2 and impact is 82. Another being where tuition is just 7k with above average intial pay of 62k and mid career pay of 120k.
+One such observation is where the initial pay is 81k, mid career pay is around 144k whereas the stem percent is only 2 and impact is 82. Another being where tuition is just 7k with above average initial pay of 62k and mid career pay of 120k.
 
 ### Universities offering Highest Initial Salary
 
-After observing the corrrelation between tuition and initial salary, let us now look at the universities which offer the highest initial payment and check if they support the growth throughout the career.
+After observing the correlation between tuition and initial salary, let us now look at the universities which offer the highest initial payment and check if they support the growth throughout the career.
 
 ```{r icgiplot, stack, fig.width=10, fig.cap="*Universities Offering the highest initial pay and whether the trend continues throughout the careers.*"}
 
@@ -260,6 +260,11 @@ ggplot(top_pay_uni, aes(x=early_career_pay, xend=mid_career_pay, y=reorder(name,
         geom_text(color="red", size=4,hjust=-0.5,
                   aes(x=mid_career_pay, label=paste0(round(top_pay_uni$improvement,2),"%"))) 
 ```
+
+Figure \@ref(fig:icgiplot) shows the top 25 highest initial salary offering universities. It appears that the universities offering the highest initial salary does not guarantee career growth. Samuel Merritt University offers highest initial salary but a career growth of only 68.97%. Career growth is the percentage increase in the salary of an individual half way through his career as compared to the initial salary.
+
+The highest career growth is observed in Harvard University where the mid career salary almost doubles and a career growth of 96.26% is observed. Almost all except Samuel Merritt university show a career growth of more than 75% which is a satisfactory indication.
+
 
 # Conclusion
 
