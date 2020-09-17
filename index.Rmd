@@ -241,9 +241,11 @@ There are also some values which are contradictory to the correlation. These can
 
 One such observation is where the initial pay is 81k, mid career pay is around 144k whereas the stem percent is only 2 and impact is 82. Another being where tuition is just 7k with above average intial pay of 62k and mid career pay of 120k.
 
+### Universities offering Highest Initial Salary
 
+After observing the corrrelation between tuition and initial salary, let us now look at the universities which offer the highest initial payment and check if they support the growth throughout the career.
 
-```{r,fig.height=8}
+```{r icgiplot, stack, fig.width=10, fig.cap="*Universities Offering the highest initial pay and whether the trend continues throughout the careers.*"}
 
 
 top_pay_uni <- salary_potential %>%
