@@ -295,7 +295,7 @@ four <- ridges_dat %>%
 grid_arrange_shared_legend(two,four,ncol=1, nrow=2)
 ```
 
-Figure \@ref(fig:tuitiondist) displays the distribution of tuition fees for the residents and non-residents of US. Majorly the universities in the US offer two types of degree courses, which are a 2-Year degree course and a 4-Year degree courses. 2-Year degree courses are predominantly for students enrolled in a master's degree and 4-Year degree courses are generally offered to students pursuing a bachelor's degree. We have separated the two and plotted two different graphs as tuition fee varies majorly for the two different types of courses offered. As seen in \@ref(fig:), the red density plot depicts the tuition fee for non-residents and the histogram depicts the tuition fee for residents. We observe that the density in private universities is low as compared to the other two as this may be due to the higher expense of fees in private universities. It is clear from the above figure that both citizens and non-residents of the US enrol in for profit or public universities to pursue higher education. Another noticeable fact is that, in public universities, non-residents end up paying more than citizens of the US.
+Figure \@ref(fig:tuitiondist) displays the distribution of tuition fees for the residents and non-residents of US. Majorly the universities in the US offer two types of degree courses, which are a 2-Year degree course and a 4-Year degree courses. 2-Year degree courses are predominantly for students enrolled in a master's degree and 4-Year degree courses are generally offered to students pursuing a bachelor's degree. We have separated the two and plotted two different graphs as tuition fee varies majorly for the two different types of courses offered. As seen in \@ref(fig:tuitiondist), the red density plot depicts the tuition fee for non-residents and the histogram depicts the tuition fee for residents. We observe that the density in private universities is low as compared to the other two as this may be due to the higher expense of fees in private universities. It is clear from the above figure that both citizens and non-residents of the US enroll in for profit or public universities to pursue higher education. Another noticeable fact is that, in public universities, non-residents end up paying more than citizens of the US.
 
 ## Difference in fees after any Scholarship / Awards Earned
 
@@ -656,7 +656,7 @@ In Figure \@ref(fig:stackin) it is observed that the majority of enrolment in th
 
 As we have seen from the earlier sections, students make a huge investment in tuition fees to propel their careers. Through this section we intend to find out if this investment does indeed bear the expected results?
 
-```{r tiplot, fig.height=6, fig.width=10, fig.cap="*Interactive Matrix scatter-plots showing correlation between the variables tuition, initial salary, mid-career pay, STEM and Impact.*"}
+```{r tiplot, fig.height=6, fig.width=10, fig.cap="*Interactive Matrix scatter-plots showing correlation between the variables tuition, initial salary, mid-career pay, STEM and Impact. Institutes with higher tuition fee seem to produce alumni who earn high salary. *"}
 library(plotly)
 salary_tuition <- salary_potential %>%
   inner_join(tuition_cost,by="name") %>%
@@ -686,7 +686,7 @@ A matrix scatter plot is a powerful tool for visualising the correlation between
 
 There are also some values which are contradictory to the correlation. These can be found by hovering over the plot as the plot has been made interactive using the plotly package in R. 
 
-One such observation is where the initial pay is 81k, mid career pay is around 144k whereas the stem percent is only 2% and impact is 82%. Another being where tuition is just $7000 with above average initial pay of 62k and mid career pay of 120k.
+One such observation is where the initial pay is USD 81K , mid career pay is around USD 144k whereas the stem percent is only 2% and impact is 82%. Another being where tuition is just USD 7000 with above average initial pay of USD 62K and mid career pay of USD 120K.This differs from what is observed in the figure above where stem percentage and higher tuition cost aligns with higher initial and mid career salary.
 
 
 After observing the correlation between tuition and initial salary, let us now look at the universities which offer the highest initial payment and check if they support the growth throughout the career.
@@ -726,7 +726,7 @@ We also probed into how alumni from different states think that they are contrib
 
 We then understood that US is accommodative towards different ethnic groups who want to live the American dream. We then examined how different states accommodate the minority groups in their prestigious  universities. We also studied how the most expensive and the most inexpensive colleges embrace the multi-cultural population. Finally, we scrutinized the correlation between the tuition cost, initial salary offered and the mid-career salary, all of which asserted a positive correlation. This authenticated the worthiness of the heavy investment students have to make in the form of tuition fees.
 
-After diligent and rigorous exploration we can safely say that pursuing a university degree from the US is definitely worth every penny which a student pays for a better future. Nothing is guaranteed in life, but a degree from a university in the US can certainly award a sufficient return on the investment made in the form of tuition fees. After all, who doesn't want to live the American dream. Right? 
+After diligent and rigorous exploration we can safely say that pursuing a university degree from the US is definitely worth every penny which a student pays for a better future. 
 
 
 
