@@ -205,7 +205,7 @@ In figure \@ref(fig:stuscholar) we obtain the amount of scholarship earned by th
 
 As we have seen from the earlier sections, students make a huge investment in tuition fees to propel their careers. Through this section we intend to find out if this investment does indeed bear the expected results?
 
-```{r , fig.height=5}
+```{r tiplot, stack, fig.width=10, fig.cap="*Interactive Matrix scatter-plots showing correlation between the variables tuition, initial salary, mid-career pay, STEM and Impact.*"}
 library(plotly)
 salary_tuition <- salary_potential %>%
   inner_join(tuition_cost,by="name") %>%
