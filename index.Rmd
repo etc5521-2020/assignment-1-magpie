@@ -29,6 +29,7 @@ library(grid)
 library(lemon)
 library(lvplot)
 library(visdat)
+library(GGally)
 # devtools::install_github("hrbrmstr/ggalt")
 #install.packages("lvplot")
 #devtools::install_github("josiahpjking/jkr")
@@ -200,13 +201,15 @@ In Figure \@ref(fig:stunetfee) we group by the year, net cost and the income lev
 In figure \@ref(fig:stuscholar) we obtain the amount of scholarship earned by the students by finding out the difference between the total_cost an net_cost. Then we summarise using the mean to arrive at the average scholarship earned by each income group. Clearly, students in lower income groups earn more scholarships as compared to those in higher income groups over the years. An interesting point to note is that in 2017 and 2018 the income group of over 110,000 the off campus students have received more scholarships than on campus students.
 
 
-## Does paying high tuition guarantee a higher salary? Which college has more potential in career growth on the basis of initial salary offered? 
+## Tuition, Initial and Career Growth on the basis of Initial Salary
+
+As we have seen from the earlier sections, students make a huge investment in tuition fees to propel their careers. Through this section we intend to find out if this investment does indeed bear the expected results?
 
 ```{r , fig.height=5}
 library(plotly)
 salary_tuition <- salary_potential %>%
   inner_join(tuition_cost,by="name") %>%
-  select(in_state_tuition,early_career_pay,mid_career_pay,make_world_better_percent,stem_percent)
+  dplyr::select(in_state_tuition,early_career_pay,mid_career_pay,make_world_better_percent,stem_percent)
 
 mean(salary_tuition$in_state_tuition)
 mean(salary_tuition$early_career_pay)
@@ -229,6 +232,9 @@ ggpairs(salary_tuition,columnLabels = c("Tuition", "Initial Pay", "Mid Pay","Imp
     layout(margin=list(l = 100,t=50), yaxis=list(tickprefix=""))
 
 ```
+
+
+
 
 Tuition and pay has positive correlation 
 
