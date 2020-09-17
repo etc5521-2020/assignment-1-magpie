@@ -263,7 +263,7 @@ ggplot(top_pay_uni, aes(x=early_career_pay, xend=mid_career_pay, y=reorder(name,
 
 Figure \@ref(fig:icgiplot) shows the top 25 highest initial salary offering universities. It appears that the universities offering the highest initial salary does not guarantee career growth. Samuel Merritt University offers highest initial salary but a career growth of only 68.97%. Career growth is the percentage increase in the salary of an individual half way through his career as compared to the initial salary.
 
-The highest career growth is observed in Harvard University where the mid career salary almost doubles and a career growth of 96.26% is observed. Almost all except Samuel Merritt university show a career growth of more than 75% which is a satisfactory indication.
+The highest career growth is observed in Harvard University where the mid career salary almost doubles and a career growth of 96.26% is observed. Almost all except Samuel Merritt university show a career growth of more than 75% which is a satisfactory.
 
 
 # Conclusion
