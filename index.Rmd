@@ -5,15 +5,23 @@ team: Magpie
 author:
   - Junhao Wang 
   - Priya Ravindra Dingorkar
+  - Aarathy Babu
+  - Siddhant Tirodkar
 date: "`r Sys.Date()`"
 output: 
-  bookdown::html_document2
+  bookdown::html_document2:
+    toc: true
+    toc_float: true
 ---
 
 [This assignment is for ETC5521 Assignment 1 by Team `r rmarkdown::metadata$team` comprising of `r knitr::combine_words(rmarkdown::metadata$author)`.]{style="color:#006DAE;"}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE,message = FALSE,warning = F)
+
+# devtools::install_github("hrbrmstr/ggalt")
+#install.packages("lvplot")
+#devtools::install_github("josiahpjking/jkr")
 library(tidyverse)
 library(dplyr)
 library(kableExtra)
@@ -29,19 +37,12 @@ library(grid)
 library(lemon)
 library(lvplot)
 library(visdat)
-
 library(GGally)
-
-# devtools::install_github("hrbrmstr/ggalt")
-#install.packages("lvplot")
-#devtools::install_github("josiahpjking/jkr")
 library(jkr)
 library(ggalt)
 library(gganimate)
-
 library(png)
 library(gifski)
-
 
 ```
 
@@ -56,6 +57,19 @@ Attending a university course is a big decision for students, because it will ha
 Since everyone knows that the US is one of the most popular yet costly higher education destinations in the world, and the cost range is wide (for example: tuition fees range from $5,000 to $50,000 (£4,074-£ 40,746) per annual). Most undergraduate degrees last four years, so on average students graduate with a debt worth $132,860 (£101,505), we are interested in how good the investment in American education is.
 
 In this report , we will look at the various factors that influence the U.S. education and whether studying at the renowned U.S. universities is really worth the investment. On thorough analysis of this we have realized there are several variables in the dataset that enabled us to assess the cost and expenditure of studying in the United States. We have tried our best to cover most of the important variables which allows us to evaluate and analyse efficiently. Since most variables have character datatypes, and a few in numeric, the visualisation scope is very limited.
+
+
+```{r dat-load, message = FALSE, echo=FALSE}
+tuition_cost <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_cost.csv')
+
+tuition_income <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_income.csv') 
+
+salary_potential <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/salary_potential.csv')
+
+historical_tuition <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/historical_tuition.csv')
+
+diversity_school <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/diversity_school.csv')
+```
 
 ```{r animate, fig.cap="*The animation tracks the change in tuition fees in instituitions in the US.An increasing trend is seen in both public and private universities and among the two, private instituitions are more expensive.*"}
 library(gganimate)
@@ -76,20 +90,6 @@ library(gganimate)
    
    
 ```
-
-
-```{r dat-load, message = FALSE, echo=FALSE}
-tuition_cost <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_cost.csv')
-
-tuition_income <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_income.csv') 
-
-salary_potential <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/salary_potential.csv')
-
-historical_tuition <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/historical_tuition.csv')
-
-diversity_school <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/diversity_school.csv')
-```
-
 
 # Research Question
 
@@ -599,7 +599,7 @@ diversity_cost_ex <-diversity_cost_ex %>%
 
   propor_cat_ex <- diversity_cost_ex %>%
    filter(category=="White") %>%
-   select(proportion,name) %>%
+   dplyr::select(proportion,name) %>%
    arrange(desc(proportion))
  
  
@@ -630,7 +630,7 @@ diversity_cost_inex <-diversity_cost_inex%>%
 
 propor_cat_inex <- diversity_cost_inex %>%
    filter(category=="White") %>%
-   select(proportion,name) %>%
+   dplyr::select(proportion,name) %>%
    arrange(desc(proportion))
  
 
@@ -656,15 +656,11 @@ In Figure \@ref(fig:stackin) it is observed that the majority of enrolment in th
 
 As we have seen from the earlier sections, students make a huge investment in tuition fees to propel their careers. Through this section we intend to find out if this investment does indeed bear the expected results?
 
-```{r tiplot, stack, fig.width=10, fig.cap="*Interactive Matrix scatter-plots showing correlation between the variables tuition, initial salary, mid-career pay, STEM and Impact.*"}
+```{r tiplot, fig.height=6, fig.width=10, fig.cap="*Interactive Matrix scatter-plots showing correlation between the variables tuition, initial salary, mid-career pay, STEM and Impact.*"}
 library(plotly)
 salary_tuition <- salary_potential %>%
   inner_join(tuition_cost,by="name") %>%
   dplyr::select(in_state_tuition,early_career_pay,mid_career_pay,make_world_better_percent,stem_percent)
-
-mean(salary_tuition$in_state_tuition)
-mean(salary_tuition$early_career_pay)
-mean(salary_tuition$mid_career_pay)
 
 lowerFn <- function(data, mapping, method = "lm", ...) {
   p <- ggplot(data = data, mapping = mapping) +
@@ -695,7 +691,7 @@ One such observation is where the initial pay is 81k, mid career pay is around 1
 
 After observing the correlation between tuition and initial salary, let us now look at the universities which offer the highest initial payment and check if they support the growth throughout the career.
 
-```{r icgiplot, stack, fig.width=10, fig.cap="*Universities Offering the highest initial pay and whether the trend continues throughout the careers.*"}
+```{r icgiplot, fig.width=10, fig.cap="*The dumbell chart depicts Universities Offering the highest initial pay and whether the trend continues throughout the careers. Samuel Merritt University offers highest initial salary but a career growth of only 68.97%.*"}
 
 
 top_pay_uni <- salary_potential %>%
@@ -708,7 +704,10 @@ ggplot(top_pay_uni, aes(x=early_career_pay, xend=mid_career_pay, y=reorder(name,
                       point.colour.l="#0e668b")+
   xlim(50000,165000)+
         geom_text(color="red", size=4,hjust=-0.5,
-                  aes(x=mid_career_pay, label=paste0(round(top_pay_uni$improvement,2),"%"))) 
+                  aes(x=mid_career_pay, label=paste0(round(top_pay_uni$improvement,2),"%"))) +
+  xlab("Salary")+
+  ylab("Educational Institutions")+
+  ggtitle("Career growth in Universities offering highest initial salary")
 ```
 
 Figure \@ref(fig:icgiplot) shows the top 25 highest initial salary offering universities. It appears that the universities offering the highest initial salary does not guarantee career growth. Samuel Merritt University offers highest initial salary but a career growth of only 68.97%. Career growth is the percentage increase in the salary of an individual half way through his career as compared to the initial salary.
