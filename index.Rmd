@@ -35,6 +35,8 @@ library(visdat)
 library(jkr)
 library(ggalt)
 library(gganimate)
+library(png)
+library(gifski)
 ```
 
 
