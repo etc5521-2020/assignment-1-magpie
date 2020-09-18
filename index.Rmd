@@ -48,15 +48,15 @@ library(gifski)
 
 # Acknowledgements
 
-Our sincere gratitude goes out for their guidance and encouragement to Professor Dianne Cook, Dr Emi Tanka, and the tutors Sayani Gupta and Sherry Zhang. Their culminating efforts have placed us in a position where we can generate this report collaboratively.
+Our sincere gratitude goes out to Professor Dianne Cook, Dr Emi Tanka, and the tutors Sayani Gupta and Sherry Zhang for their guidance and encouragement. Their cumulative efforts have placed us in a position where we can generate this report collaboratively.
 
 # Introduction and Motivation
 
-Attending a university course is a big decision for students, because it will have a large effect on the advancement of a person's future, with a huge cost to both money and time, based on the above evidence, we can conclude that going to university is indeed an investment and the return on investment is very worrying. 
+Attending a university course is a big decision for students because it will have a large effect on the advancement of a person’s future with a huge cost of both, money and time. It is safe to say that attending university is indeed an investment and the return on investment is very worrying.
 
-Since everyone knows that the US is one of the most popular yet costly higher education destinations in the world, and the cost range is wide (for example: tuition fees range from $5,000 to $50,000 (£4,074-£ 40,746) per annual). Most undergraduate degrees last four years, so on average students graduate with a debt worth $132,860 (£101,505), we are interested in how good the investment in American education is.
+Everyone knows that the US is one of the most popular yet costly higher education destinations in the world, and the cost range is wide (for example: tuition fees range from $5,000 to $50,000 (£4,074-£ 40,746) per annum). Most undergraduate degrees last four years, so on an average students graduate with a debt of $132,860 (£101,505). Also, the tuition cost in US universities have been on the rise since the very beginning as can be seen in figure \@ref(fig:animate). Given this, we are interested in evaluating the quality of investment in American education.
 
-In this report , we will look at the various factors that influence the U.S. education and whether studying at the renowned U.S. universities is really worth the investment. On thorough analysis of this we have realized there are several variables in the dataset that enabled us to assess the cost and expenditure of studying in the United States. We have tried our best to cover most of the important variables which allows us to evaluate and analyse efficiently. Since most variables have character datatypes, and a few in numeric, the visualisation scope is very limited.
+In this report , we will look at the various factors that influence the US education and whether studying at the renowned US universities is really worth the investment. On thorough analysis of this we have realized that there are several variables in the dataset that enabled us to assess the cost and expenditure of studying in the US. We have tried our best to cover most of the important variables which allow us to evaluate and analyse efficiently. Since most variables have character datatypes, and a few in numeric, the visualisation scope is very limited.
 
 
 ```{r dat-load, message = FALSE, echo=FALSE}
@@ -71,13 +71,14 @@ historical_tuition <- readr::read_csv('https://raw.githubusercontent.com/rfordat
 diversity_school <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/diversity_school.csv')
 ```
 
-```{r animate, fig.cap="*The animation tracks the change in tuition fees in instituitions in the US.An increasing trend is seen in both public and private universities and among the two, private instituitions are more expensive.*"}
+```{r animate, fig.cap="*The animation tracks the change in tuition fees in institutions in the US. An increasing trend is seen in both public and private universities and among the two, private institutions are more expensive.*"}
+# using the gsub function to match the pattern and mutating year using the lubridate package
 library(gganimate)
   historical_tuition$year<- gsub("-.*","",historical_tuition$year)
    historical_tuition1<-  historical_tuition %>%
     mutate(year=as.Date(year,format='%Y'),
            year=lubridate::year(year))
-   
+# using filter to choose appropriate years and using gganimate library to show a animation
   historical_tuition1 %>%
      filter(tuition_type=="All Constant")%>%
      filter(type!="All Institutions") %>%
@@ -97,7 +98,7 @@ library(gganimate)
 
 How valuable is the investment in education among American universities? 
 
-Since tuition fee is relatively high for most students, or their families, value for money is of great concern. This question is to decover how highly valued are the tuition fees among universities in America, by analysing the various aspects of the education system in US.
+Since tuition fee is relatively high for most students or their families, value for money is of great concern. This question is to discover how highly the tuition fees are valued among universities in America by analysing the various aspects of the education system in US.
 
 ## Secondary Questions
 
@@ -120,23 +121,24 @@ This information can be drawn from *salary_potential*, if middle-career pay diff
 
 # Data description 
 
-It is through data collection that a business or management has the quality information that they need for further analysis, study, and research to make informed decisions.
+It is through data collection that a business or management has quality information that they need for further analysis, studies and research to make informed decisions.
 
-We will perform exploratory, data review in this study on the subject of [**College Tuition, Diversity, and Pay Dataset**](https:/github.com / rfordatascience / tidytuesday / blob / master / data/2020/2020-03-10 / readme.md). 
+We will perform exploratory data analysis in this study on the subject of [**College Tuition, Diversity and Pay Dataset**](https:/github.com / rfordatascience / tidytuesday / blob / master / data/2020/2020-03-10 / readme.md). 
 
 This collection of data primarily receives all the information from various sources but originally from the US Department of Education.
 
-The data, taken from the original pages, turned out to be very large in size, which is why the author, for the convenience of the audience and to produce informative results, filtered the data into five comma-separated documents using web scraping in R with the support of the rvest package.
+The data taken from the original pages turned out to be very large in size which is why the author has, for the convenience of the audience and to produce informative results, filtered the data into five comma-separated documents using web scraping in R with the support of the *rvest package 2020*.
 
-Upon futher inspection, we also found out that some of the datasets have a few *missing values* using the visdat package. We have dealt with all of them and removed all the missing values.
+Upon further inspection, we also found out that some of the datasets have a few *missing values* using the *visdat package 2020*. We have dealt with all of them and removed all the missing values.
 
-Let's look at the small snippets of the various data sets and the percentage of missing values in the variables, and get a better understanding of the variables.
+Let’s look at the small snippets of the various data sets and the percentage of missing values in the variables to get a better understanding of the variables.
 
 ## Data on Diversity
 
 The *diversity_school* data set comes [The Chronicle of Higher Education](https://www.chronicle.com/article/student-diversity-at-4-725-institutions).
 
 ```{r}
+# using vis_miss to show missing values in the diversity dataset
 vis_miss(diversity_school)
 ```
 
@@ -148,15 +150,16 @@ diversity_school <- diversity_school %>%
 
 - Name has data type character properties that describe the school name.
 - Total Enrolment has double datatype properties representing the total number of students enrolled.
-- State with character datatype representing the various states.
-- Category with character properties defining the group Group / Racial / Gender.
-- Enrolment with double datatype properties specifying the specific enrollment.
+- State has character datatype representing the various states.
+- Category has character properties defining the group Group / Race / Gender.
+- Enrolment has double datatype properties specifying the specific enrolment.
 
 ## Data on History 
 
 The *historical_tuition* dataset been obtained from [U.S. Department of Education, National Center for Education Statistics.](https://nces.ed.gov/fastfacts/display.asp?id=76)
 
 ```{r}
+# using vis_miss to show missing values in the history dataset
 vis_miss(historical_tuition)
 ```
 
@@ -174,7 +177,7 @@ head(historical_tuition,3) %>% kableExtra::kable() %>% kableExtra::kable_styling
 *Salary_potential* data set origins from [Payscales](https://www.payscale.com/college-salary-report/best-schools-by-state/bachelors/new-hampshire).
 
 ```{r,message=FALSE, warning=FALSE}
-
+# using vis_miss to show missing values in the salary potential dataset
 vis_miss(salary_potential) 
 ```
 
@@ -198,6 +201,7 @@ head(salary_potential,3) %>% kableExtra::kable() %>% kableExtra::kable_styling(c
 The Tuition cost data set is obtained from [the Chronicle of Higher Education.](https://www.chronicle.com/article/tuition-and-fees-1998-99-through-2018-19)
 
 ```{r}
+# using vis_miss to show missing values in the tuition cost dataset
 vis_miss(tuition_cost)
 ```
 
@@ -212,13 +216,14 @@ head(tuition_cost,3) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("ho
 ```
 
 - in_state_tuition having double datatype depicts the Tuition fee for in-state residents in USD.
-- out_of_state_tuition	double	Tuition for out-of-state residents in USD.
+- out_of_state_tuition having double datatype	Tuition for out-of-state residents in USD.
 
 ## Data on Tuition Income
 
 The tuition income has been obtained from the dataset [Tuition Tracker](https://www.tuitiontracker.org/) and [Priceconomics.](https://priceonomics.com/ranking-the-most-and-least-diverse-colleges-in/).
 
 ```{r}
+# using vis_miss to show missing values in the tuition income dataset
 vis_miss(tuition_income,warn_large_data = F)
 ```
 
@@ -228,7 +233,7 @@ head(tuition_income,3) %>% kableExtra::kable() %>% kableExtra::kable_styling(c("
  
 - campus having	character datatype depicts whether the school is	On or off-campus.
 - net_cost having double datatype denotes Net-cost - average actually paid after scholarship/award.
-- income_lvl having	character datatype gives u information about the	Income bracket.
+- income_lvl having	character datatype provides information about the	Income bracket.
 
 ## Data Structure and Cleaning Process
 
@@ -236,15 +241,13 @@ All the information gathered in these different data files was achieved by web s
 
 # Analysis and Findings
 
-One of the key reasons students chose to study in the USA is the prestige of the country for renowned higher education programs. Completing a degree from one of the best higher education programs in the world would make you stand out from peers of similar backgrounds and job experiences. 
+One of the key reasons students chose to study in the US is the prestige of the country for renowned higher education programs. Completing a degree from one of the best higher education programs in the world would make you stand out from peers of similar backgrounds and job experiences. 
 
-Let us examine and know the important facts about the US education system. We look at the various aspects when studying, the diversity of education, the history of education, the cost of tuition, income among people people in the United States, the different wages currently on the market, and similar exciting analyses.
+Let us examine and know the important facts about the US education system. We look at the various aspects when studying, the diversity of education, the history of education, the cost of tuition, income among people in the US, the different wages currently on the market, and similar exciting analyses.
 
 ## The Distribution of Tuition Fees in US.
 
-One of the key reasons students chose to study in the USA is the prestige of the country for renowned higher education programs. Completing a degree from one of the best higher education programs in the world would make you stand out from peers of similar backgrounds and job experiences. 
-
-Let us look at the distribution of the spectrum of tuition fees in the United States for residents and non-residents of the United States across the various types of institutions in the United States
+Let us look at the distribution of the spectrum of tuition fees in the US for residents and non-residents of the US across the various types of institutions in the US.
 
 ```{r dist-tut, fig.cap="Distribution of Tuition Fees in US", fig.align='center', message=FALSE, warning=FALSE}
 
@@ -291,27 +294,28 @@ four <- ridges_dat %>%
 ```
 
 
-```{r tuitiondist, fig.cap="*The histogram and density distribution shows the distribution of tuition feesof residents and non-residents of US across 2-Year and 4-Year degree courses. Though both residents and non-residents enrol more in public universities, non-residents end up paying more.*", fig.align='center', fig.height=6.5, message=FALSE, warning=FALSE}
+```{r tuitiondist, fig.cap="*The histogram and density distribution show the distribution of tuition feesof residents and non-residents of US across 2-Year and 4-Year degree courses. Though both residents and non-residents enrol more in public universities, non-residents end up paying more.*", fig.align='center', fig.height=6.5, message=FALSE, warning=FALSE}
+# using grid arrange to show the two plots together
 grid_arrange_shared_legend(two,four,ncol=1, nrow=2)
 ```
 
-Figure \@ref(fig:tuitiondist) displays the distribution of tuition fees for the residents and non-residents of US. Majorly the universities in the US offer two types of degree courses, which are a 2-Year degree course and a 4-Year degree courses. 2-Year degree courses are predominantly for students enrolled in a master's degree and 4-Year degree courses are generally offered to students pursuing a bachelor's degree. We have separated the two and plotted two different graphs as tuition fee varies majorly for the two different types of courses offered. As seen in \@ref(fig:tuitiondist), the red density plot depicts the tuition fee for non-residents and the histogram depicts the tuition fee for residents. We observe that the density in private universities is low as compared to the other two as this may be due to the higher expense of fees in private universities. It is clear from the above figure that both citizens and non-residents of the US enroll in for profit or public universities to pursue higher education. Another noticeable fact is that, in public universities, non-residents end up paying more than citizens of the US.
+Figure \@ref(fig:tuitiondist) displays the distribution of tuition fees for the residents and non-residents of US. Majorly the universities in the US offer two types of degree courses, 2-Year degree courses and 4-Year degree courses. 2-Year degree courses are predominantly for students enrolled in a master's degree and 4-Year degree courses are generally offered to students pursuing a bachelor's degree. We have separated the two and plotted two different graphs as tuition fee varies majorly for the two different types of courses offered. As seen in \@ref(fig:tuitiondist), the red density plot depicts the tuition fee for non-residents and the histogram depicts the tuition fee for residents. We observe that the density in private universities is low as compared to the other two as this may be due to the higher expense of fees in private universities. It is clear from the above figure that both citizens and non-residents of the US enrol in for profit or public universities to pursue higher education. Another noticeable fact is that, in public universities, non-residents end up paying more than citizens of the US.
 
 ## Difference in fees after any Scholarship / Awards Earned
 
-A lot of students receive grants and scholarships of various kinds. Through this section, we will understand how the grants/scholarships are awarded to students of various income groups how much cost students end up paying across various income groups.
+A lot of students receive grants and scholarships of various kinds. Through this section, we will understand how the grants/scholarships are awarded to students of various income groups how much cost students end up bearing across various income groups.
 
 ```{r stunetfee, fig.cap="*The stacked barplot shows the average net cost students pay across various income groups over the years for off campus and on campus education in US universities.*", fig.align='center', fig.height=9, fig.width=9, message=FALSE, warning=FALSE}
-# changes made --> instead of sum, grouped and took average . campus is also taken into consideration 
+# first recoded the inappropriate value, then mutated netcost variable to round it off to 2 decimal points 
 tuition_income$income_lvl <- recode(tuition_income$income_lvl,
                                   "48_001 to 75,000"="48,001 to 75,000") 
 tuition_incometest <- tuition_income %>%
   mutate(net_cost=round(net_cost,2)) %>%
 
-  
+# grouped by year campus and income_lvl and summarised using mean of net_cost
   group_by(year,campus,income_lvl)%>%
   summarise(each=mean(net_cost))
-
+# plotted a stacked histogram using ggplot
 plo <- ggplot(tuition_incometest, aes(income_lvl,each, fill=campus)) +
   geom_col(position = 'dodge') +
   facet_wrap(~year) + 
@@ -326,7 +330,7 @@ plo
 ```
 
 ```{r stuscholar, fig.cap="*The stacked barplot show the amount of scholarships students earn across various income groups in US universities over the yearsfor on campus and off campus education.*", fig.align='center', fig.height=9, fig.width=9, message=FALSE, warning=FALSE}
-# changes made --> instead of sum, grouped and took average. campus is also taken into consideration 
+# followed similar steps and calculated the scholarship as the difference between total cost and net cost 
  tuition_income %>% 
   mutate(diff = total_price - net_cost) %>%
   group_by(year,campus,income_lvl)%>%
@@ -345,16 +349,16 @@ ggplot( aes(x=income_lvl, y=eachscho, fill= campus)) +
 
 In the US, university courses are broadly offered on campus and off campus. Though there is only a little difference between the net_cost of both on campus and off campus courses, the total_cost varies significantly and hence we have displayed them independent of each other. In figure \@ref(fig:stunetfee) we have the average cost that a student incurs across various income groups and in figure \@ref(fig:stuscholar) we have the scholarships earned by students across various income groups. A point to note is that the variable net_cost has a lot of *negative values*. One may wonder how can the tuition paid be negative. Upon further probing we found out that a lot of universities provide financial assistance to students and extend it to their families as well. This is the reason the variable net_cost shows negative values. Also, the data for on campus courses for the year 2010 is missing. Besides we have also recoded the category of income level of *48,001 to 75,000* which earlier was *48_000 to 75,000*.
 
-In Figure \@ref(fig:stunetfee) we group by the year, net cost and the income levels and summarise using the mean to arrive at the average tuition cost students pay across various income groups. It is clear from the figure that students in lower income groups tend to tae less burden of tuition fee as compared to students with higher income groups over the years.
+In Figure \@ref(fig:stunetfee) we group by the year, net cost and the income levels and summarise using the mean to arrive at the average tuition cost students pay across various income groups. It is clear from the figure that students in lower income groups tend to take less burden of tuition fee as compared to students with higher income groups over the years.
 
-In figure \@ref(fig:stuscholar) we obtain the amount of scholarship earned by the students by finding out the difference between the total_cost an net_cost. Then we summarise using the mean to arrive at the average scholarship earned by each income group. Clearly, students in lower income groups earn more scholarships as compared to those in higher income groups over the years. An interesting point to note is that in 2017 and 2018 the income group of over 110,000 the off campus students have received more scholarships than on campus students.
+In figure \@ref(fig:stuscholar) we obtain the amount of scholarship earned by the students by finding out the difference between the total_cost and net_cost. Then we summarise using the mean to arrive at the average scholarship earned by each income group. Clearly, students in lower income groups earn more scholarships as compared to those in higher income groups over the years. An interesting point to note is that in 2017 and 2018 the income group of over USD 110,000 the off campus students have received more scholarships than on campus students.
 
 ## Student's Career Development among American States
 
 After graduating, a student's improvement can be calculated in terms of his salary growth. Let's look at the various states, where we see the greatest change in the salary growth.
 
-```{r studdevelop, fig.cap="*The bar chart depicts the average salary growth of students in the states of US with states ordered according to the improvement rates. Students from Wyoming,New Mexico,California showcase high career growth where as Delaware,Alaska show relatively less growth.*", fig.align='center',fig.height=6.5, message=FALSE, warning=FALSE}
-# changes made --> instead of sum, grouped and took average
+```{r studdevelop, fig.cap="*The bar chart depicts the average salary growth of students in the states of US with states ordered according to the improvement rates. Students from Wyoming, New Mexico,California showcase high career growth whereas Delaware, Alaska show relatively less growth.*", fig.align='center',fig.height=6.5, message=FALSE, warning=FALSE}
+# calculated the improvement percentage using mutate then grouped by state and summarised using mean for the improvement %
 salary_potential <-salary_potential %>% 
   mutate(improvement= (mid_career_pay-early_career_pay)*100/early_career_pay)
 
@@ -374,16 +378,18 @@ To compute the improvement in a student's career, we calculated the percentage o
 
 In figure \@ref(fig:studdevelop) we can clearly see that individuals graduating from universities in the states of Wyoming, New-Mexico, California, New-York and Ohio show the highest growth in mid-career salaries and the states of Delaware, North-Dakota, Alaska, Idaho and New-Hampshire show the least growth in mid-career salaries. Though there is not a huge difference between the state offering the highest growth and the state offering the least growth, figure \@ref(fig:studdevelop) is a great tool to understand a student's career growth in different states.
 
-Furthermore, we have created a table,table \@ref(fig:imp) wherein all the universities whose alumni experienced a career growth of more than 75%. We have also ranked the universities state-wise in terms of the improvement. The table enables the user to find the top universities in any state and the improvement percentage as well. 
+Furthermore, we have created a table,table \@ref(fig:imp), to depict all the universities whose alumni experienced a career growth of more than 75%. We have also ranked the universities state-wise in terms of the improvement. The table enables the user to find the top universities in any state and the improvement percentage as well. 
 
 ```{r improvementrate}
+# filtering the colleges with more than 75% improvement and arranging in a descending order using arrange()
 top_colleges <- salary_potential %>% 
-dplyr::filter(improvement >75) %>%  # changed 0.75 to 75
+dplyr::filter(improvement >75) %>%  
   dplyr::select(name, state_name, rank,improvement) %>%
   arrange(desc(improvement))
 ```
 
-```{r imp, fig.cap="*The interactive table shows the list of Instituitions whose alumni experienced a career growth of more than 75 % along with the rank of the university in each state.*", fig.align='center'}
+```{r imp, fig.cap="*The interactive table shows the list of Institutions whose alumni experienced a career growth of more than 75 % along with the rank of the university in each state.*", fig.align='center'}
+# using the DT package to display an interactive table
 DT::datatable(top_colleges, 
               rownames = FALSE,
               filter="top", 
@@ -395,12 +401,12 @@ DT::datatable(top_colleges,
 
 Alumni serve many important positions, such as helping create and develop the brand of an organization through word-of-mouth marketing. Alumni play a significant role in promoting organizations that benefit students and their activities. Let us look at alumni from different US states who make an impact in the world.
 
-```{r bcc, fig.cap="*The circular bar plot depicts the average percentage of Alumni of instituitions in each state of the US, who believe they are making the world a better place.Ordered according to the proportion,the plot shows that alumni from New Mexico believe they make a positive impact on the world*", fig.align='center', fig.height=9, fig.width=9, message=FALSE, warning=FALSE}
-
+```{r bcc, fig.cap="*The circular bar plot depicts the average percentage of Alumni of institutions in each state of the US, who believe they are making the world a better place. Ordered according to the proportion, the plot shows that alumni from New Mexico believe they make a positive impact on the world*", fig.align='center', fig.height=9, fig.width=9, message=FALSE, warning=FALSE}
+# first removed all the missing values from the variable make_world_a_better_place
 na <- salary_potential %>%
   filter(is.na(make_world_better_percent)) # 33 na values 
 
-# changes made --> instead of sum, grouped and took average & used average value to color so as to distinguish properly
+# grouped by using the state name and summarised using mean of make_world_a_better_place
 alumni <- salary_potential %>%
   filter(!is.na(make_world_better_percent)) %>%
   group_by(state_name) %>%
@@ -414,7 +420,7 @@ data <- rbind(alumni, to_add)
 data <- data %>%
   mutate(mean=as.numeric(mean))
 
-
+# reordered using state name and plotedd a histogram
 data %>%
 ggplot(aes(x=reorder(state_name,mean), y= mean,fill=mean)) +
   geom_bar(stat="identity") +
@@ -432,18 +438,17 @@ ggplot(aes(x=reorder(state_name,mean), y= mean,fill=mean)) +
   
 ```
 
-To arrive at figure  \@ref(fig:bcc) we grouped by the state and summarized using the mean to calculate at the average percentage of alumni who think they make the world a better place.Later we plotted the circular bar chart using the mean value to colour the bars to distinguish the states appropriately. We also reordered it to clearly display the state in which students think they make the most impact and the least impact.
+To arrive at figure  \@ref(fig:bcc) we grouped by the state and summarized using the mean to calculate at the average percentage of alumni who think they make the world a better place. Later, we plotted the circular bar chart using the mean value to colour the bars to distinguish the states appropriately. We also reordered it to clearly display the state in which students think they make the most impact and the least impact.
 
-It is clear from figure \@ref(fig:bcc) that more alumni from states, New-Mexico, Mississippi and Louisana think they contribute towards making greater impact in the world where as the alumni from states of Nevada, Rhode-Island and New-Jersey believe they do not contribute enough. 
+It is clear from figure \@ref(fig:bcc) that more alumni from states, New-Mexico, Mississippi and Louisiana think they contribute towards making greater impact in the world where as the alumni from states of Nevada, Rhode-Island and New-Jersey believe they do not contribute enough. 
 
 ## Diversity in Education in US
 
-US is ranked amongst the top countries, showing cultural diversity. US has students coming from around the world. Let's evaluate the various groups and their percentage of US university enrolment.
+US is ranked amongst the top countries, showing cultural diversity owing to students coming from around the world. Let's evaluate the various groups and their percentage of US university enrolment.
 
-```{r lvplot, fig.cap="*The Percentage of Enrollment across different universities in the US is depicted in the Letter Value plot.Half of the enrolments across US see 60 % of the total enrollment of an instituion as White where as overwhelmingly low percentage of American Indian and Native Hawaiian enrolment is seen*", fig.align='center', message=FALSE, warning=FALSE,fig.height=6}
+```{r lvplot, fig.cap="*The Percentage of Enrolment across different universities in the US is depicted in the Letter Value plot. Half of the enrolments across US see 60 % of the total enrolment of an institution as White where as overwhelmingly low percentage of American Indian and Native Hawaiian enrolment is seen.*", fig.align='center', message=FALSE, warning=FALSE,fig.height=6}
 
-# total minority  is the sum of all minority sections like asian , black etc so removed that 
-# used letter value plot instead of box plot to deal with outliers
+# first removed total minority, then added few categories to other then used  an LV plot from LVplot to render a LVplot
 
 diversity_school_excludedtm <- diversity_school %>% mutate(Per = enrollment/total_enrollment*100) %>%
   filter(category!="Total Minority")
@@ -464,7 +469,7 @@ scale_fill_viridis_d() +
 
 ```
 
-To calculate the percentage of US university enrolment amongst various ethnic groups, first we removed the Total Minority as it was a summation of all minority ethnic categories like 'Asian','Black' etc. Besides we added *Two Or More Races*, *Unknown* and *Non-Resident Foreign* to the other category as they individually contribute very little to the enrolment data.To plot the values, we utilized a *Letter Value Boxplot* using the *lvplot* R package instead of a traditional boxplot as can be seen in figure \@ref(fig:lvplot)
+To calculate the percentage of US university enrolment amongst various ethnic groups, first we removed the Total Minority as it was a summation of all minority ethnic categories like 'Asian', 'Black' etc. Besides we added *Two Or More Races*, *Unknown* and *Non-Resident Foreign* to the other category as they individually contribute very little to the enrolment data. To plot the values, we utilized a *Letter Value Boxplot* using the *lvplot R package 2020* instead of a traditional boxplot as can be seen in figure \@ref(fig:lvplot)
 
 A letter value boxplot overcomes the shortcomings of a conventional boxplot and conveys more information in the tails or the outliers using letter values. The legend besides the letter value plot mentions certain alphabets and the colour they represent on the letter value plot.
 
@@ -485,11 +490,11 @@ It is clear from figure \@ref(fig:lvplot) that people of White race form the maj
 
 ## Is diversity amongst students in the United States the same across all states and universities?
 
-In this section we will investigate how accomodative are different states are of various minorities in their universities and to do so, we explored the percentage of different minorities enrolled in universities across the US.
+In this section, we will investigate how accommodative different states are of various minorities in their universities and to do so, we have explored the percentage of different minorities enrolled in universities across the US.
 
 ```{r mincal}
 library(leaflet)
-
+#filtered for total minority and calculated minority % using mutate and summarised using the mean
 min <- diversity_school %>% 
   filter(category=="Total Minority") %>% 
   mutate(minoritypercent = (enrollment/total_enrollment)*100) %>%
@@ -500,8 +505,9 @@ min$meanminority <- round(min$meanminority,2)
 
 ```
 
-```{r leaflet, fig.cap="*The figure is an interactive map by leaflet which shows the average percentage of minority in schools of each state.Hawaii has the most accomodative instituions in the US with and average 71.67% minority whereas the least accomodative is Maine with 9.92%.*"}
-
+```{r leaflet, fig.cap="*The figure is an interactive map by leaflet which shows the average percentage of minority in schools of each state. Hawaii has the most accommodative institutions in the US with an average 71.67% minority whereas the least accommodative is Maine with 9.92%.*"}
+# used a US state map using the leaflet package to plot the minority % over all the US states
+# also used a geojson file which contained all the geographical info
 states <- geojsonio::geojson_read("json/us-states.geojson", what = "sp")
 
 
@@ -553,14 +559,16 @@ leaflet(states,options = leafletOptions(minZoom = 3)) %>%
 
 ```
 
-To plot the minorities across various US states, first we calculated the enrolment percentage for all minorities in US universities and then made use of a leaflet plot in the R leaflet package to plot the minority percentages across different US states as seen in figure \@ref(fig:leaflet). This was done with the help of a geojson file which contains the geographical information. The figure or the choropleth map is interactive and hovering over individual states show the percentage of minorities enrolled in universities in those states.
+To plot the minorities across various US states, first we calculated the enrolment percentage for all minorities in US universities and then made use of a leaflet plot in the *R leaflet package 2020* to plot the minority percentages across different US states as seen in figure \@ref(fig:leaflet). This was done with the help of a geojson file which contains the geographical information. The figure or the choropleth map is interactive and hovering over individual states show the percentage of minorities enrolled in universities in those states.
 
-From the figure it is visible that the universities in the state of Hawaii harbours the most amount of minority groups and the state of Maine harbours the least.
+From the figure, it is visible that the universities in the state of Hawaii harbours the most amount of minority groups and the state of Maine harbours the least.
 
 
 After looking at the states and their accommodative nature of accepting different ethnic backgrounds, we now shift our focus to look at how expensive and inexpensive universities accommodate students of different ethnic backgrounds.
 
 ```{r averagecal}
+# grouped by the name of universities then summarised using mean the in_state_total cost of tuition fee
+# then arranged according to the top 50 expensive and top 50 inexpensive colleges
 averagecal <- tuition_cost %>% 
   group_by(name) %>%
   summarise(avg_fee=mean(in_state_total))
@@ -573,11 +581,13 @@ inex <- averagecal%>%
   head(50) 
 ```
 
-To categorise universities into the economic groups,*Expensive* and *Inexpensive*, we first grouped all the universities by their name, summarized them to find the mean tuition cost and reordered them according to the top 50 colleges with the highest tuition fees and the bottom 50 colleges with the lowest tuition fees.Later, we joined the dataset showing tuition with the diversity dataset using the name of the universities and filtered out the total minorities, women and other categories to showcase the distribuition better. We also calculated the enrolment percentages for the top 50 expensive and bottom 50 inexpensive colleges and rendered two separate plots as shown below,to display the percentage of students of various ethnic groups enrolled in US universities.
+To categorise universities into the economic groups, *Expensive* and *Inexpensive*, we first grouped all the universities by their name, summarized them to find the mean tuition cost and reordered them according to the top 50 colleges with the highest tuition fees and the bottom 50 colleges with the lowest tuition fees. Later, we joined the dataset showing tuition with the diversity dataset using the name of the universities and filtered out the total minorities, women and other categories to showcase the distribution better. We also calculated the enrolment percentages for the top 50 expensive and bottom 50 inexpensive colleges and rendered two separate plots as shown below to display the percentage of students of various ethnic groups enrolled in US universities.
 
 
-```{r stack, fig.width=10,fig.height=8, fig.cap="*The horizontal stacked bar plot depicts the proportion of enrolments in the top 50 expensive educational instituitions in the US, according to ethnicity. An overwhemingly large population of people having White ethnicity  is seen where Hispanic,Black ,Asian population form the minority.*"}
-
+```{r stack, fig.width=10,fig.height=8, fig.cap="*The horizontal stacked bar plot depicts the proportion of enrolments in the top 50 expensive educational institutions in the US, according to ethnicity. An overwhelmingly large population of people having White ethnicity is seen where Hispanic, Black ,Asian population form the minority.*"}
+# joined the diversity and tuition cost dataset using an inner join and recoded some categories to other
+# then calculated enrollment percentage for all the colleges using mutate
+# then created a stacked barplot using ggplot and filled with different diversity groups for top 50 expensive colleges
 econ <- diversity_school
 econ$category <- recode(econ$category,
                                   "Two Or More Races"="Other",
@@ -616,8 +626,10 @@ diversity_cost_ex <-diversity_cost_ex %>%
 
 In Figure \@ref(fig:stack) it is clearly seen that the majority of enrolment in the top 50 expensive colleges in the US is that of white ethnicity followed by Hispanic, black and Asian ethnicities which form the minority.
 
-```{r stackin, fig.width=10,fig.height=8, fig.cap="*The horizontal stacked bar plot shown here depicts the proportion of enrolments in the top 50 inexpensive educational instituitions in the US, according to ethnicity.Majority of the enrolments in inexpensive schools are Hispanic population followed by Black and Asian population.The Native Hawaiian and American Indian population remain a minorty in these schools as well.The inexpensive instituitions are mostly community colleges.*"}
-
+```{r stackin, fig.width=10,fig.height=8, fig.cap="*The horizontal stacked bar plot shown here depicts the proportion of enrolments in the top 50 inexpensive educational institutions in the US, according to ethnicity. Majority of the enrolments in inexpensive schools are Hispanic population followed by Black and Asian population. The Native Hawaiian and American Indian population remain a minority in these schools as well. The inexpensive institutions are mostly community colleges.*"}
+# joined the diversity and tuition cost dataset using an inner join 
+# then calculated enrollment percentage for all the colleges using mutate
+# then created a stacked barplot using ggplot and filled with different diversity groups for top 50 expensive colleges
  diversity_cost_inex <- econ  %>%
   
   inner_join(inex,by="name") 
@@ -657,6 +669,8 @@ In Figure \@ref(fig:stackin) it is observed that the majority of enrolment in th
 As we have seen from the earlier sections, students make a huge investment in tuition fees to propel their careers. Through this section we intend to find out if this investment does indeed bear the expected results?
 
 ```{r tiplot, fig.height=6, fig.width=10, fig.cap="*Interactive Matrix scatter-plots showing correlation between the variables tuition, initial salary, mid-career pay, STEM and Impact. Institutes with higher tuition fee seem to produce alumni who earn high salary. *"}
+# joined the tuition and salary datasets using an inner join and selected the variables related to this exploration
+# Used ggpairs function to render a matrix scatterplot
 library(plotly)
 salary_tuition <- salary_potential %>%
   inner_join(tuition_cost,by="name") %>%
@@ -680,20 +694,20 @@ ggpairs(salary_tuition,columnLabels = c("Tuition", "Initial Pay", "Mid Pay","Imp
 
 ```
 
-To find out if there is any relation between tuition and career growth, we first joined the tuition and the salary datasets with the help of university names. Then we have produced a matrix scatter plot using the ggpairs function of GGALLY package.
+To find out if there is any relation between tuition and career growth, we first joined the tuition and the salary datasets with the help of university names. Then we have produced a matrix scatter plot using the ggpairs function of *GGALLY package 2020*.
 
-A matrix scatter plot is a powerful tool for visualising the correlation between various variables in a dataset. As can be seen from figure \@ref(fig:tiplot) apart from the Impact variable, which is a percentage provided by students who think they are making the world a better place all the other variables show a positive correlation amongst each other. This suggests that paying a higher tuition fee does mean that a greater initial salary, mid career salary can be expected by the students. Another interesting point to note is that the presence of STEM students escalates the possibility of getting a better initial and mid career pay. STEM is an acronym for science, technology, engineering and maths. Having STEM courses in a university boosts the prospects of the university and thus the students. 
+A matrix scatter plot is a powerful tool for visualising the correlation between various variables in a dataset. As can be seen from figure \@ref(fig:tiplot), apart from the Impact variable, which is a percentage provided by students who think they are making the world a better place, all the other variables show a positive correlation amongst each other. This suggests that paying a higher tuition fee does mean that a greater initial salary, mid career salary can be expected by the students. Another interesting point to note is that the presence of STEM students escalates the possibility of getting a better initial and mid career pay. STEM is an acronym for science, technology, engineering and mathematics. Having STEM courses in a university boosts the prospects of the university and thus, the students. 
 
-There are also some values which are contradictory to the correlation. These can be found by hovering over the plot as the plot has been made interactive using the plotly package in R. 
+There are also some values which are contradictory to the correlation. These can be found by hovering over the plot as the plot has been made interactive using the *plotly package 2020* in R. 
 
-One such observation is where the initial pay is USD 81K , mid career pay is around USD 144k whereas the stem percent is only 2% and impact is 82%. Another being where tuition is just USD 7000 with above average initial pay of USD 62K and mid career pay of USD 120K.This differs from what is observed in the figure above where stem percentage and higher tuition cost aligns with higher initial and mid career salary.
+One such observation is where the initial pay is USD 81K, mid career pay is around USD 144k whereas the stem percent is only 2% and impact is 82%. Another being where tuition is just USD 7000 with above average initial pay of USD 62K and mid career pay of USD 120K.This differs from what is observed in the figure above where stem percentage and higher tuition cost aligns with higher initial and mid career salary.
 
 
 After observing the correlation between tuition and initial salary, let us now look at the universities which offer the highest initial payment and check if they support the growth throughout the career.
 
-```{r icgiplot, fig.width=10, fig.cap="*The dumbell chart depicts Universities Offering the highest initial pay and whether the trend continues throughout the careers. Samuel Merritt University offers highest initial salary but a career growth of only 68.97%.*"}
+```{r icgiplot, fig.width=10, fig.cap="*The dumbbell chart depicts Universities Offering the highest initial pay and whether the trend continues throughout the careers. Samuel Merritt University offers highest initial salary but a career growth of only 68.97%.*"}
 
-
+# arranged the top paying uni in descending order and selected the first 25 universities. Used ggplot to display the highest salary and carrer growth using improvement calculated in earlier sections
 top_pay_uni <- salary_potential %>%
   arrange(desc(early_career_pay)) %>%
   head(25)
@@ -718,7 +732,7 @@ The highest career growth is observed in Harvard University where the mid career
 
 Before exploring all the datasets at hand in greater depths, we asked ourselves the question, How valuable is the investment in American universities? After profound exploration, thorough analysis and meticulous inspection, we can safely say that we have an answer.
 
-Firstly we observed that majority of the American population, both non residents and citizens enroll in public universities for higher education as the tuition fee is comparatively lower for public universities than private or for profit universities. Also, we noticed that non-residents pay more tuition fee in public universities than citizens of the US. Then we explored how much burden that is the tuition cost a student takes on average across various income groups. We also found out that universities also offer scholarships to eligible students with academic accolades and according to their economic backgrounds. Students with weaker economic backgrounds received more scholarships than those with better economic backgrounds there by reducing the net cost or burden on such students. 
+Firstly, we observed that majority of the American population, both non-residents and citizens enrol in public universities for higher education as the tuition fee is comparatively lower for public universities than private or for profit universities. Also, we noticed that non-residents pay more tuition fee in public universities than citizens of the US. Then we explored how much burden that is the tuition cost a student takes on average across various income groups. We also found out that universities also offer scholarships to eligible students with academic accolades and according to their economic backgrounds. Students with weaker economic backgrounds received more scholarships than those with better economic backgrounds there by reducing the net cost or burden on such students. 
 
 Then we investigated which states in the US offer best career growth opportunities to students by calculating the improvement in their salaries half way into their careers. Almost all the states provided a growth percentage of more than 70% to the students which contributed immensely to us arriving at the answer for our primary research question.
 
@@ -726,11 +740,66 @@ We also probed into how alumni from different states think that they are contrib
 
 We then understood that US is accommodative towards different ethnic groups who want to live the American dream. We then examined how different states accommodate the minority groups in their prestigious  universities. We also studied how the most expensive and the most inexpensive colleges embrace the multi-cultural population. Finally, we scrutinized the correlation between the tuition cost, initial salary offered and the mid-career salary, all of which asserted a positive correlation. This authenticated the worthiness of the heavy investment students have to make in the form of tuition fees.
 
-After diligent and rigorous exploration we can safely say that pursuing a university degree from the US is definitely worth every penny which a student pays for a better future. 
+After diligent and rigorous exploration, we can safely say that pursuing a university degree from the US is definitely worth every penny which a student pays for a better future. 
 
+# References
 
+- Interactive Choropleth Map - Leaflet - a JavaScript library for interactive maps. (2020). Retrieved 18 September 2020, from https://leafletjs.com/examples/choropleth/
 
+- Create Dumbbell Plots to Visualize Group Differences in R. (2020). Retrieved 18 September 2020, from https://towardsdatascience.com/create-dumbbell-plots-to-visualize-group-differences-in-r-3536b7d0a19a
 
- 
+- Sievert, C. (2020). 16 Client-side linking | Interactive web-based data visualization with R, plotly, and shiny. Retrieved 18 September 2020, from https://plotly-r.com/client-side-linking.html
 
+- Letter value summaries. (2020). Retrieved 18 September 2020, from https://mgimond.github.io/ES218/Week08b.html
+
+- (2020). Retrieved 18 September 2020, from https://www.r-project.org/conferences/useR-2006/Slides/HofmannEtAl.pdf
+
+- Financial Assistance. (2020). Retrieved 18 September 2020, from https://www.curtis.edu/admissions/financial-assistance/
+
+- Awarding Policies and Guidelines | Duke Financial Aid. (2020). Retrieved 18 September 2020, from https://financialaid.duke.edu/awarding-and-policy
+
+- Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686, https://doi.org/10.21105/joss.01686
+  
+- Hadley Wickham, Romain François, Lionel Henry and Kirill Müller (2020). dplyr: A Grammar of Data Manipulation. R package version 1.0.1. https://CRAN.R-project.org/package=dplyr
+
+- Hao Zhu (2019). kableExtra: Construct Complex Table with 'kable' and Pipe Syntax. R package version 1.1.0. https://CRAN.R-project.org/package=kableExtra
+
+- Claus O. Wilke (2020). ggridges: Ridgeline Plots in 'ggplot2'. R package version 0.5.2. https://CRAN.R-project.org/package=ggridges
+
+- H. Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York, 2016.
+
+- Simon Garnier (2018). viridis: Default Color Maps from 'matplotlib'. R package version 0.5.1. https://CRAN.R-project.org/package=viridis
+
+- Bob Rudis (2020). hrbrthemes: Additional Themes, Theme Components and Utilities for 'ggplot2'. R package version 0.8.0. https://CRAN.R-project.org/package=hrbrthemes
+
+- Baptiste Auguie (2017). gridExtra: Miscellaneous Functions for "Grid" Graphics. R package version 2.3. https://CRAN.R-project.org/package=gridExtra
+
+- Hadley Wickham and Dana Seidel (2020). scales: Scale Functions for Visualization. R package version 1.1.1. https://CRAN.R-project.org/package=scales
+
+- Yihui Xie, Joe Cheng and Xianying Tan (2020). DT: A Wrapper of the JavaScript Library 'DataTables'. R package version 0.15. https://CRAN.R-project.org/package=DT
+
+- C. Sievert. Interactive Web-Based Data Visualization with R, plotly, and shiny. Chapman and Hall/CRC Florida, 2020.
+
+- R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+
+- Stefan McKinnon Edwards (2020). lemon: Freshing Up your 'ggplot2' Plots. R package version 0.4.5. https://CRAN.R-project.org/package=lemon
+
+- Hadley Wickham and Heike Hofmann (2016). lvplot: Letter Value 'Boxplots'. R package version 0.2.0. https://CRAN.R-project.org/package=lvplot
+
+- Tierney N (2017). “visdat: Visualising Whole Data Frames.” _JOSS_, *2*(16), 355. doi: 10.21105/joss.00355 (URL:
+https://doi.org/10.21105/joss.00355), <URL: http://dx.doi.org/10.21105/joss.00355>.
+
+- Barret Schloerke, Di Cook, Joseph Larmarange, Francois Briatte, Moritz Marbach, Edwin Thoen, Amos Elberg and Jason Crowley (2020). GGally: Extension to 'ggplot2'. R package version 2.0.0. https://CRAN.R-project.org/package=GGally
+
+- James Keirstead (2015). jkr: Functions and packages frequently used by James Keirstead. R package version 0.1.0.
+
+- Bob Rudis, Ben Bolker and Jan Schulz (2017). ggalt: Extra Coordinate Systems, 'Geoms', Statistical Transformations, Scales and Fonts for 'ggplot2'. R package version 0.4.0. https://CRAN.R-project.org/package=ggalt
+
+- Thomas Lin Pedersen and David Robinson (2020). gganimate: A Grammar of Animated Graphics. R package version 1.0.6. https://CRAN.R-project.org/package=gganimate
+
+- Simon Urbanek (2013). png: Read and write PNG images. R package version 0.1-7. https://CRAN.R-project.org/package=png
+
+- Jeroen Ooms (2018). gifski: Highest Quality GIF Encoder. R package version 0.8.6. https://CRAN.R-project.org/package=gifski
+
+- Garrett Grolemund, Hadley Wickham (2011). Dates and Times Made Easy with lubridate. Journal of Statistical Software, 40(3), 1-25. URL http://www.jstatsoft.org/v40/i03/.
 
